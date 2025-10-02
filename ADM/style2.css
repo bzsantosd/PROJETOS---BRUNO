@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap');
+
+:root {
+    --primary-purple: #8a2be2;
+    --dark-bg: #111; 
+    --card-bg: #333; /* Fundo do card */
+    --text-color: #ffffff;
+    --secondary-text: #cccccc;
+    --trend-up: #32cd32; /* Verde para alta (Novos Clientes) */
+    --trend-down: #ff4500; /* Laranja/Vermelho para baixa */
+    --value-red: #ff0000; /* Vermelho para valores críticos/picos */
+    --value-yellow: #ffd700; /* Amarelo para média diária */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    padding: 30px 40px; 
+    min-height: 100vh;
+}
+
+/* --- CABEÇALHO --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.main-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    /* Alinha o título ACADEMIA TECHFIT */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* --- PERFIL DO USUÁRIO (Esquerda) --- */
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-image: url('image_471b88.png'); 
+    background-size: cover;
+    background-position: top center;
+    border: 2px solid var(--primary-purple);
+    margin-right: 10px;
+    /* Ajuste para focar no rosto da Vitória */
+    background-position: 80% 5%;
+}
+
+.user-info {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.adm-label {
+    color: var(--primary-purple);
+    font-weight: 600;
+}
+
+/* --- LOGO (Direita) --- */
+.logo-box {
+    text-align: center;
+    position: relative;
+    top: -10px; /* Ajuste para centralizar verticalmente com o título */
+}
+
+.logo-box::before {
+    /* Simulação do ícone/escudo roxo atrás do texto do logo */
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-purple);
+    border-radius: 5px;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.logo-box .techfit {
+    color: var(--primary-purple);
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.logo-box .academia {
+    color: var(--text-color);
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- NAVEGAÇÃO DE PERÍODO --- */
+.period-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: var(--secondary-text);
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 5px;
+}
+
+.nav-button.active {
+    color: var(--dark-bg);
+    font-weight: 600;
+    background-color: var(--primary-purple);
+}
+
+/* --- CONTEÚDO PRINCIPAL E CARDS --- */
+.row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--secondary-text);
+}
+
+/* Linha 1: Clientes e Colaboradores */
+.stat-card .card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon-people {
+    font-size: 3rem;
+    opacity: 0.15;
+}
+
+.main-value {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.secondary-label {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+}
+
+.trend {
+    font-size: 1rem;
+    font-weight: 600;
+    position: relative;
+    color: var(--trend-up); /* Verde */
+}
+
+.trend.up::before {
+    content: "▲";
+    position: absolute;
+    top: -5px;
+    left: -10px;
+    font-size: 0.6rem;
+}
+
+/* Linha 2: Produtos */
+.product-high-card {
+    flex: 2; 
+}
+
+.product-low-card {
+    flex: 1;
+}
+
+.product-stats {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-money {
+    font-size: 3rem;
+    opacity: 0.15;
+}
+
+.product-info-group {
+    flex-grow: 1;
+}
+
+.product-name {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.product-values {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.product-value-box {
+    text-align: center;
+}
+
+.product-value-number {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.product-value-number.green {
+    color: var(--trend-up);
+}
+
+.product-value-label {
+    font-size: 0.8rem;
+    color: var(--secondary-text);
+}
+
+
+/* Estoque Baixo */
+.low-stock-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.warning-section {
+    text-align: center;
+    color: var(--trend-down);
+    font-weight: 600;
+}
+
+.icon-warning {
+    font-size: 2.5rem;
+    color: var(--trend-down);
+    transform: rotate(180deg); /* Faz a seta apontar para baixo */
+}
+
+.low-stock-content p {
+    font-size: 0.8rem;
+}
+
+.stock-info {
+    text-align: right;
+    flex-grow: 1;
+}
+
+.stock-name {
+    font-size: 0.8rem;
+    color: var(--secondary-text);
+    margin-bottom: 5px;
+}
+
+.stock-value-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.stock-value-number.red {
+    color: var(--value-red);
+}
+
+.trend.down {
+    color: var(--trend-down);
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+
+.trend.down::before {
+    content: "▼";
+    position: absolute;
+    top: 5px;
+    left: -10px;
+    font-size: 0.6rem;
+}
+
+/* Linha 3: Fluxo de Alunos */
+.flow-card {
+    width: 100%;
+}
+
+.flow-content {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 10px;
+}
+
+.flow-metric {
+    margin-right: 40px;
+    border-right: 1px solid var(--secondary-text); /* Linha divisória */
+    padding-right: 20px;
+}
+
+.flow-value {
+    font-size: 4rem;
+    font-weight: 900;
+    display: block;
+    line-height: 1;
+}
+
+.flow-value.yellow {
+    color: var(--value-yellow);
+}
+
+.flow-label {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+}
+
+.flow-chart {
+    flex-grow: 1;
+    height: 120px;
+    position: relative;
+    border-bottom: 1px dotted var(--secondary-text);
+}
+
+.chart-labels {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.8rem;
+    color: var(--secondary-text);
+}
+
+/* Barras do gráfico */
+.chart-data-point {
+    position: absolute;
+    width: 10px;
+    background-color: var(--value-red); /* Cor vermelha para as barras */
+    bottom: -1px; 
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
