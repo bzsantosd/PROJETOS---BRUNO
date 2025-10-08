@@ -54,7 +54,7 @@ body {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-image: url('image_471b88.png'); 
+    background-image: url('/IMAGEM/vitoria.jpg'); 
     background-size: cover;
     background-position: top center;
     border: 2px solid var(--primary-purple);
@@ -73,46 +73,6 @@ body {
     font-weight: 600;
 }
 
-/* --- LOGO (Direita) --- */
-.logo-box {
-    text-align: center;
-    position: relative;
-    top: -10px; /* Ajuste para centralizar verticalmente com o título */
-}
-
-.logo-box::before {
-    /* Simulação do ícone/escudo roxo atrás do texto do logo */
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 60px;
-    background-color: var(--primary-purple);
-    border-radius: 5px;
-    opacity: 0.2;
-    z-index: 0;
-}
-
-.logo-box .techfit {
-    color: var(--primary-purple);
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1;
-    display: block;
-    position: relative;
-    z-index: 1;
-}
-
-.logo-box .academia {
-    color: var(--text-color);
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    display: block;
-    position: relative;
-    z-index: 1;
-}
 
 /* --- NAVEGAÇÃO DE PERÍODO --- */
 .period-nav {

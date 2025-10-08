@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Produtos - TeamFit Academia</title>
+    <link rel="stylesheet" href="style3.css">
+    </head>
+<body>
+    <div class="header">
+        <div class="user-info">
+            <div class="user-icon"></div>
+            <span>Vitória Pereira | ADM</span>
+        </div>
+        <div class="title-section">
+            <img src="/IMAGEM/cadastro produtos.png" alt="Esculpa Seu Físico" class="title-image">
+            
+        </div>
+        <div class="logo">
+            <img src="https://via.placeholder.com/100x100/1e003a/FFFFFF?text=TeamFit+ACADEMIA" alt="TeamFit Academia Logo">
+        </div>
+    </div>
+
+    <div class="form-container">
+        <form id="product-form">
+
+            <div class="form-row first-row">
+                <div class="input-group code-group">
+                    <label for="codigo">Código:</label>
+                    <input type="text" id="codigo" name="codigo" placeholder="Ex: 1234">
+                </div>
+
+                <div class="input-group status-group">
+                    <label>Status:</label>
+                    <div class="status-buttons">
+                        <button type="button" class="status-btn active-btn selected" data-status="ativo">ATIVO</button>
+                        <button type="button" class="status-btn inactive-btn" data-status="inativo">INATIVO</button>
+                        <input type="hidden" id="status" name="status" value="ativo">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group full-width">
+                    <label for="nome-produto">Nome Produto:</label>
+                    <input type="text" id="nome-produto" name="nome-produto" placeholder="Ex: Creatina">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group full-width">
+                    <label for="descricao-produto">Descrição Produto:</label>
+                    <input type="text" id="descricao-produto" name="descricao-produto" placeholder="Ex: Creatina 100% pura.">
+                </div>
+            </div>
+
+            <div class="form-row last-row">
+                <div class="input-group quarter">
+                    <label for="categoria">Categoria:</label>
+                    <select id="categoria" name="categoria">
+                        <option value="" disabled selected>Selecionar</option>
+                        <option value="suplemento">Suplemento</option>
+                        <option value="vestuario">Vestuário</option>
+                    </select>
+                </div>
+
+                <div class="input-group quarter">
+                    <label for="marca">Marca:</label>
+                    <select id="marca" name="marca">
+                        <option value="" disabled selected>Selecionar</option>
+                        <option value="growth">Growth</option>
+                        <option value="max-titanium">Max Titanium</option>
+                    </select>
+                </div>
+
+                <div class="input-group quarter">
+                    <label for="quantidade">Qtde:</label>
+                    <input type="number" id="quantidade" name="quantidade" placeholder="Ex: 10">
+                </div>
+
+                <div class="input-group quarter">
+                    <label for="preco-unitario">Preço Unitário:</label>
+                    <input type="text" id="preco-unitario" name="preco-unitario" placeholder="Ex: R$ 109,99">
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button type="submit" class="action-btn register-btn">Cadastrar</button>
+                <button type="button" class="action-btn update-btn">Atualizar</button>
+                <button type="button" class="action-btn delete-btn">Deletar</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script3.js"></script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+/* Variáveis de Cores */
+:root {
+    --bg-dark: #121212; /* Fundo principal bem escuro */
+    --text-light: #f0f0f0; /* Cor do texto claro */
+    --form-bg: #000000; /* Fundo do formulário preto puro */
+    --border-color: #8a2be2; /* Cor da borda/destaque (roxo) */
+    --active-color: #00ff00; /* Verde para ATIVO */
+    --inactive-color: #ff0000; /* Vermelho para INATIVO */
+    --placeholder-color: #555555; /* Cor do placeholder/texto de exemplo */
+    
+    /* Cores dos botões de ação com gradiente roxo */
+    --register-gradient: linear-gradient(135deg, #4b0082, #7f00ff); /* Roxo mais forte */
+    --update-gradient: linear-gradient(135deg, #7f00ff, #a94bff); /* Roxo médio */
+    --delete-gradient: linear-gradient(135deg, #a94bff, #d580ff); /* Roxo mais claro */
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; /* Fonte simples e legível */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* --- Cabeçalho (Header) --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color); /* Linha divisória */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+}
+
+.user-icon {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    margin-right: 10px;
+    /* Simulação do ícone: pode ser substituído por uma imagem ou ícone real */
+}
+
+.title-section {
+    text-align: center;
+    flex-grow: 1; /* Permite que ocupe o espaço central */
+}
+
+.title-image {
+    max-width: 100%;
+    height: auto;
+    filter: brightness(0.5) contrast(1.5); /* Efeito escuro/sombreado para o tema dark */
+}
+
+.title-section p {
+    font-size: 0.8em;
+    color: var(--text-light);
+    margin-top: 5px;
+}
+
+.logo img {
+    max-width: 100px;
+    height: auto;
+    /* Ajuste para caber o logo 'TeamFit ACADEMIA' */
+}
+
+/* --- Formulário --- */
+.form-container {
+    max-width: 900px; /* Largura máxima para o formulário */
+    margin: 0 auto;
+    background-color: var(--form-bg);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Distribui os grupos igualmente na linha */
+}
+
+.input-group.full-width {
+    flex: 100%;
+}
+
+.input-group.quarter {
+    flex: 1 1 20%; /* Ajuste para ter 4 elementos por linha */
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-light);
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--form-bg);
+    color: var(--text-light);
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input::placeholder {
+    color: var(--placeholder-color);
+    opacity: 1; /* Para garantir visibilidade */
+}
+
+input:focus,
+select:focus {
+    border-color: #ff00ff; /* Roxo mais claro no foco */
+    box-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+}
+
+/* Estilização específica para o campo de Código */
+.code-group {
+    max-width: 180px; /* Largura menor para o campo de código */
+}
+
+/* --- Status Buttons --- */
+.status-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.status-buttons {
+    display: flex;
+    margin-top: 5px;
+}
+
+.status-btn {
+    padding: 8px 15px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: opacity 0.3s, background-color 0.3s;
+}
+
+.active-btn {
+    background-color: var(--active-color);
+    color: var(--form-bg); /* Texto escuro no verde */
+    opacity: 0.5;
+}
+
+.inactive-btn {
+    background-color: var(--inactive-color);
+    color: var(--text-light); /* Texto claro no vermelho */
+    opacity: 0.5;
+}
+
+.status-btn.selected {
+    opacity: 1; /* Botão selecionado fica mais visível */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* --- Botões de Ação (Cadastrar, Atualizar, Deletar) --- */
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.action-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--text-light);
+    text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s;
+    min-width: 150px;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Gradientes dos Botões (Conforme a imagem) */
+.register-btn {
+    background: var(--register-gradient);
+}
+
+.update-btn {
+    background: var(--update-gradient);
+}
+
+.delete-btn {
+    background: var(--delete-gradient);
+}
+
+/* Responsividade Básica */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo, .user-info {
+        margin-top: 15px;
+    }
+
+    .form-row:not(.first-row) {
+        flex-direction: column;
+    }
+
+    .input-group.quarter {
+        flex: 100%; /* Empilha todos os campos em telas pequenas */
+    }
+
+    .code-group {
+        max-width: 100%;
+    }
+    
+    .status-group {
+        align-items: stretch;
+    }
+    
+    .status-buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .status-btn {
+        flex: 1;
+        margin-right: 0;
+    }
+
+    .button-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
