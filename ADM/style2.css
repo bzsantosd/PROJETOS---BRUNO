@@ -2,14 +2,14 @@
 
 :root {
     --primary-purple: #8a2be2;
-    --dark-bg: #111; 
-    --card-bg: #333; /* Fundo do card */
+    --dark-bg: #111;
+    --card-bg: #333;
     --text-color: #ffffff;
     --secondary-text: #cccccc;
-    --trend-up: #32cd32; /* Verde para alta (Novos Clientes) */
-    --trend-down: #ff4500; /* Laranja/Vermelho para baixa */
-    --value-red: #ff0000; /* Vermelho para valores críticos/picos */
-    --value-yellow: #ffd700; /* Amarelo para média diária */
+    --trend-up: #32cd32;
+    --trend-down: #ff4500;
+    --value-red: #ff0000;
+    --value-yellow: #ffd700;
 }
 
 * {
@@ -22,26 +22,17 @@
 body {
     background-color: var(--dark-bg);
     color: var(--text-color);
-    padding: 30px 40px; 
+    padding: 30px 40px;
     min-height: 100vh;
 }
 
-/* --- CABEÇALHO --- */
+
+/* Depois */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 30px;
-}
-
-.main-title {
-    font-size: 1.8rem;
-    font-weight: 900;
-    letter-spacing: 2px;
-    /* Alinha o título ACADEMIA TECHFIT */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    padding-bottom: 10px; /* Novo valor para reduzir o espaço */
 }
 
 /* --- PERFIL DO USUÁRIO (Esquerda) --- */
@@ -54,13 +45,11 @@ body {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-image: url('/IMAGEM/vitoria.jpg'); 
+    background-image: url('/IMAGEM/vitoria.jpg');
     background-size: cover;
-    background-position: top center;
+    background-position: 80% 5%;
     border: 2px solid var(--primary-purple);
     margin-right: 10px;
-    /* Ajuste para focar no rosto da Vitória */
-    background-position: 80% 5%;
 }
 
 .user-info {
@@ -72,7 +61,6 @@ body {
     color: var(--primary-purple);
     font-weight: 600;
 }
-
 
 /* --- NAVEGAÇÃO DE PERÍODO --- */
 .period-nav {
@@ -146,7 +134,7 @@ body {
     font-size: 1rem;
     font-weight: 600;
     position: relative;
-    color: var(--trend-up); /* Verde */
+    color: var(--trend-up);
 }
 
 .trend.up::before {
@@ -159,7 +147,7 @@ body {
 
 /* Linha 2: Produtos */
 .product-high-card {
-    flex: 2; 
+    flex: 2;
 }
 
 .product-low-card {
@@ -214,7 +202,6 @@ body {
     color: var(--secondary-text);
 }
 
-
 /* Estoque Baixo */
 .low-stock-content {
     display: flex;
@@ -231,7 +218,7 @@ body {
 .icon-warning {
     font-size: 2.5rem;
     color: var(--trend-down);
-    transform: rotate(180deg); /* Faz a seta apontar para baixo */
+    transform: rotate(180deg);
 }
 
 .low-stock-content p {
@@ -287,7 +274,7 @@ body {
 
 .flow-metric {
     margin-right: 40px;
-    border-right: 1px solid var(--secondary-text); /* Linha divisória */
+    border-right: 1px solid var(--secondary-text);
     padding-right: 20px;
 }
 
@@ -329,8 +316,8 @@ body {
 .chart-data-point {
     position: absolute;
     width: 10px;
-    background-color: var(--value-red); /* Cor vermelha para as barras */
-    bottom: -1px; 
+    background-color: var(--value-red);
+    bottom: -1px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }

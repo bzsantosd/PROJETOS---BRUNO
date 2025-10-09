@@ -9,9 +9,9 @@
     --placeholder-color: #555555; /* Cor do placeholder/texto de exemplo */
     
     /* Cores dos botões de ação com gradiente roxo */
-    --register-gradient: linear-gradient(135deg, #4b0082, #7f00ff); /* Roxo mais forte */
-    --update-gradient: linear-gradient(135deg, #7f00ff, #a94bff); /* Roxo médio */
-    --delete-gradient: linear-gradient(135deg, #a94bff, #d580ff); /* Roxo mais claro */
+    --register-gradient: linear-gradient(135deg, #8a2be2); 
+    --update-gradient: linear-gradient(135deg,#8a2be2);
+    --delete-gradient: linear-gradient(135deg, #8a2be2);
 }
 
 /* Reset Básico */
@@ -34,8 +34,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 2px;
+    margin-bottom: 2px;
     border-bottom: 1px solid var(--border-color); /* Linha divisória */
 }
 
@@ -43,6 +43,31 @@ body {
     display: flex;
     align-items: center;
     font-size: 1em;
+}
+/* --- Estilização ADM (para ficar igual à referência) --- */
+
+.user-info div {
+    /* Garante o alinhamento vertical dos spans */
+    display: flex;
+    align-items: center;
+    font-weight: bold; /* Deixa o nome mais destacado */
+}
+
+.user-name {
+    color: var(--text-light); /* Cor do nome (branco/claro) */
+}
+
+.user-role {
+    color: var(--border-color); /* Aplica a cor roxa apenas no | ADM */
+}
+
+.user-icon {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    margin-right: 10px;
+    
 }
 
 .user-icon {
@@ -54,15 +79,11 @@ body {
     /* Simulação do ícone: pode ser substituído por uma imagem ou ícone real */
 }
 
-.title-section {
-    text-align: center;
-    flex-grow: 1; /* Permite que ocupe o espaço central */
-}
 
 .title-image {
-    max-width: 100%;
+    max-width: 85%;
     height: auto;
-    filter: brightness(0.5) contrast(1.5); /* Efeito escuro/sombreado para o tema dark */
+ 
 }
 
 .title-section p {
@@ -79,7 +100,7 @@ body {
 
 /* --- Formulário --- */
 .form-container {
-    max-width: 900px; /* Largura máxima para o formulário */
+    max-width: 800px; /* Largura máxima para o formulário */
     margin: 0 auto;
     background-color: var(--form-bg);
     padding: 40px;
