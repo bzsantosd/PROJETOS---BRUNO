@@ -1,6 +1,6 @@
 /* Variáveis de Cores */
 :root {
-    --bg-dark: #121212; /* Fundo principal bem escuro */
+    --bg-dark: #000000; /* Fundo principal bem escuro */
     --text-light: #f0f0f0; /* Cor do texto claro */
     --form-bg: #000000; /* Fundo do formulário preto puro */
     --border-color: #8a2be2; /* Cor da borda/destaque (roxo) */
@@ -44,11 +44,10 @@ body {
     align-items: center;
     font-size: 1em;
 }
-/* --- Estilização ADM (para ficar igual à referência) --- */
 
 .user-info div {
     /* Garante o alinhamento vertical dos spans */
-    display: flex;
+    display: flex; /* REMOVA OU MUDE ISSO */
     align-items: center;
     font-weight: bold; /* Deixa o nome mais destacado */
 }

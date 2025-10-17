@@ -2,7 +2,7 @@
 
 :root {
     --primary-purple: #8a2be2;
-    --dark-bg: #111;
+    --dark-bg: #000000;
     --card-bg: #333;
     --text-color: #ffffff;
     --secondary-text: #cccccc;
@@ -26,6 +26,31 @@ body {
     min-height: 100vh;
 }
 
+/* Container que alinha logo e título lado a lado */
+.header-content {
+    display: flex; /* Habilita o Flexbox */
+    align-items: center; /* Centraliza verticalmente o logo e o texto */
+    gap: 20px; /* Adiciona um espaço de 20px entre o logo e o título */
+}
+
+/* Estilização para o texto, se necessário */
+.main-title {
+    /* Mantenha a estilização que você já tinha para o título,
+       como tamanho da fonte, cor, etc. */
+    font-size: 2.5em; /* Exemplo: ajuste conforme seu design */
+    color: #FFFFFF; /* Exemplo: ajuste conforme seu design */
+    margin: 0; /* Remove margens padrão do h1 para um alinhamento perfeito */
+}
+
+/* Mantém as regras que você já tinha para a imagem */
+.logo-box {
+    max-width: 150px;
+}
+.logo-img {
+    width: 100%;
+    height: auto;
+    max-height: 125px;
+}
 
 /* Depois */
 .header {
