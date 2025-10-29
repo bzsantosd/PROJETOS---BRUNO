@@ -1,0 +1,155 @@
+/* Variáveis de cores para fácil manutenção */
+:root {
+    --primary-color: #8a2be2; /* Um tom de roxo/violeta */
+    --secondary-color: #5d0f99; /* Um roxo mais escuro */
+    --background-color: #000000; /* Fundo preto */
+    --text-color: #ffffff; /* Texto branco */
+    --font-family: 'Poppins', Arial, sans-serif;
+}
+
+/* Estilos globais */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px; /* Largura máxima para centralizar o conteúdo */
+    text-align: center;
+    padding: 40px 20px;
+    /* Removeria a borda para ficar mais fiel ao fundo preto absoluto, 
+    mas se quiser simular um leve contorno interno, descomente: */
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */
+}
+
+/* Área do Logo e Título */
+.logo-area {
+    margin-bottom: 40px;
+}
+
+.logo-placeholder {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 10px;
+    /* Ajuste o SVG dentro do HTML ou substitua por uma imagem real */
+}
+
+.logo-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-text {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+    line-height: 1.1;
+}
+
+.logo-subtext {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: var(--text-color);
+    margin: -5px 0 0;
+    letter-spacing: 5px;
+}
+
+/* Área de Informações do Usuário */
+.user-info {
+    margin-bottom: 50px;
+}
+
+.user-icon-placeholder {
+    width: 30px;
+    height: 30px;
+    margin: 0 auto 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.user-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--text-color); /* Fundo cinza claro ou branco para o ícone */
+}
+
+.user-name {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--text-color);
+    margin: 0 0 5px 10px;
+}
+
+.divider {
+    width: 50%; /* Largura da linha */
+    height: 1px;
+    background-color: var(--primary-color);
+    border: none;
+    margin: 10px auto 0;
+}
+
+/* Área dos Botões de Menu */
+.menu-area {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaçamento entre os botões */
+}
+
+.menu-button {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra para profundidade */
+}
+
+.menu-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.menu-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Cores específicas dos botões */
+.purple-bg {
+    background-color: var(--primary-color); /* Roxo mais claro */
+}
+
+.dark-purple-bg {
+    background-color: var(--secondary-color); /* Roxo mais escuro (ou ajuste para um tom que contraste sutilmente) */
+}
+
+/* Media query para telas menores (opcional) */
+@media (max-width: 600px) {
+    .logo-text {
+        font-size: 2em;
+    }
+    
+    .menu-button {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+}
