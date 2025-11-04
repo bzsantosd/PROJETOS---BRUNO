@@ -78,8 +78,8 @@ body {
 }
 
 .user-icon {
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
     border-radius: 50%;
     background-color: var(--text-color); /* Fundo cinza claro ou branco para o ícone */
 }
@@ -152,4 +152,87 @@ body {
         padding: 12px 15px;
         font-size: 1em;
     }
+}
+/* Estilos para a Área de Informações do Usuário - CORREÇÃO FINAL DE ALINHAMENTO */
+
+/* 1. user-info: Centraliza o bloco principal */
+.user-info {
+    /* Centraliza o bloco 'user-info' horizontalmente */
+    max-width: 100px; 
+    margin: 20px auto 50px; /* Margem ajustada */
+    
+    /* Centraliza todos os elementos filhos (o grupo e o divisor) */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    text-align: center;
+}
+
+/* 2. user-name-group: Alinha o ícone e o nome lado a lado e centraliza na tela */
+.user-name-group {
+    display: flex; /* Habilita Flexbox */
+    align-items: center; /* CHAVE: Alinha a imagem e o texto verticalmente no centro */
+    justify-content: center; /* Centraliza o grupo (ícone + texto) horizontalmente */
+    margin-bottom: 10px; /* Espaço antes do divisor */
+}
+
+/* 3. user-icon-placeholder: Contêiner da Imagem */
+.user-icon-placeholder {
+    /* Tamanho do ícone (Aumentei um pouco para ficar mais próximo da imagem de exemplo) */
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%;
+    overflow: hidden;
+    /* Espaçamento à direita da imagem para separá-la do nome */
+    margin: 0 10px 0 0; /* Aumentei a margem para separar um pouco mais */
+    
+    display: block; 
+}
+
+/* 4. user-icon: A Imagem Real */
+.user-icon {
+    /* Garante que a imagem preencha TODO o container */
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 50%;
+}
+
+/* 5. user-name: O Texto */
+.user-name {
+    /* Aumentei a fonte para combinar com a imagem de exemplo */
+    font-size: 1.2em; 
+    font-weight: 100; /* Deixei mais negrito */
+    color: var(--text-color);
+    margin: 0; /* Remove margens extras que podem desalinhar */
+    white-space: nowrap; /* Impede quebra de linha do nome */
+}
+
+/* 6. adm-highlight: O Roxo */
+.adm-highlight {
+    color: var(--secondary-color); /* Roxo desejado: #5d0f99 */
+    font-weight: 600; 
+}
+
+/* 7. divider: A Linha Divisória */
+.divider {
+    width: 80%; 
+    height: 1px;
+    background-color: var(--primary-color);
+    border: none;
+    margin: 15px auto 0; /* Centraliza a linha */
+}
+
+/* Estilo para a cor roxa (ADM) */
+.adm-highlight {
+    color: #5d0f99; /* Roxo desejado */
+    font-weight: bold; /* Deixa o ADM em negrito (opcional) */
+}
+
+/* Estilo para a linha divisória (opcional) */
+.divider {
+    width: 80%; /* Largura da linha */
+   
+    margin-top: 15px;
+    margin-bottom: 0;
 }

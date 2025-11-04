@@ -20,25 +20,99 @@
                 <img src="/IMAGEM/Logotipo Faustino Academia Ilustrativo Verde Azul Branco.png" alt="" class="background-image">
                 <form id="loginForm" class="login-form">
 
-        <div class="user-info">
-            <div class="user-icon-placeholder">
-                <img src="/IMAGEM/vitoria.jpg" alt="" class="user-icon">
-                </div>
-            <p class="user-name">Vitória Pereira | ADM</p>
-            <hr class="divider">
+    <div class="user-info">
+    <div class="user-name-group">
+        
+        <div class="user-icon-placeholder">
+            <img src="/IMAGEM/vitoria.jpg" alt="Foto da Vitória" class="user-icon">
         </div>
 
-       
-    <button class="btn btn-adm" id="btnAdm">
-           <a href="/ADM/tela.html">  RENDIMENTO MENSAL </a>
-    </button>
-   
-<br>
-     
-    <button class="btn btn-adm" id="btnAdm">
-        <a href="/CADASTRO - PRODUTOS/index.html">
-            CADASTRAR PRODUTOS</a>
-    </button>
+        <p class="user-name">
+            Vitória Pereira | <span class="adm-highlight">ADM</span>
+        </p>
+    </div>
+    
+    <hr class="divider">
+</div>
+
+  <style>
+        /* Estilo para centralizar os botões na página */
+        body {
+            display: flex; /* Habilita o Flexbox */
+            flex-direction: column; /* Coloca os itens em coluna */
+            align-items: center; /* Centraliza horizontalmente */
+            justify-content: center; /* Centraliza verticalmente (se body tiver altura total) */
+            min-height: 100vh; /* Garante que o body ocupa a altura total da viewport */
+            margin: 0; /* Remove margens padrão do body */
+           
+        }
+
+        /* Estilo para o contêiner dos botões (opcional, mas bom para organização) */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Espaço entre os botões */
+        }
+
+        /* Estilos do botão principal */
+        .btn-adm {
+            /* Cor de fundo transparente para ver a cor da borda/texto */
+            background-color: transparent;
+            /* Cor da borda: Roxo #5d0f99 */
+            border: 2px solid #5d0f99;
+            /* Arredondamento da borda para um visual mais suave (opcional) */
+            border-radius: 5px;
+            /* Preenchimento interno para aumentar o tamanho do botão */
+            padding: 15px 30px;
+            /* Tamanho da fonte e peso (opcional) */
+            font-size: 1.1em;
+            font-weight: bold;
+            /* Garante que o botão ocupe o espaço necessário */
+            display: block;
+            /* Remove a decoração de texto do <a> (sublinhado) */
+            text-decoration: none;
+            /* Transição suave para o efeito hover (opcional) */
+            transition: all 0.3s ease;
+            /* Define a largura mínima dos botões para que fiquem alinhados */
+            min-width: 250px;
+            text-align: center;
+        }
+
+        /* Estilo para o link (o texto do botão) */
+        .btn-adm a {
+            /* Cor do texto: Branco */
+            color: #ffffff;
+            /* Cor do texto do link: Branco */
+            text-decoration: none;
+            display: block; /* Faz o link preencher todo o botão */
+        }
+
+        /* Estilo para o link e o botão ao passar o mouse */
+        .btn-adm:hover {
+            /* Mudar a cor de fundo para o roxo no hover */
+            background-color: #5d0f99;
+            /* Aumentar o brilho da borda no hover (opcional) */
+            border-color: #7a15c3;
+            cursor: pointer; /* Muda o cursor para indicar clicável */
+        }
+        
+        /* Mudar a cor do texto para branco no hover */
+        .btn-adm:hover a {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="button-container">
+        <button class="btn-adm">
+            <a href="/ADM/tela.html">RENDIMENTO MENSAL</a>
+        </button>
+
+        <button class="btn-adm">
+            <a href="/CADASTRO - PRODUTOS/index.html">CADASTRAR PRODUTOS</a>
+        </button>
+    </div>
 
     
 
