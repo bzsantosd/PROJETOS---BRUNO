@@ -94,7 +94,7 @@ body {
 }
 
 .divider {
-    width: 50%; /* Largura da linha */
+    width: 0%; /* Largura da linha */
     height: 1px;
     background-color: var(--primary-color);
     border: none;
@@ -153,19 +153,62 @@ body {
         font-size: 1em;
     }
 }
-/* Estilos para a Área de Informações do Usuário - CORREÇÃO FINAL DE ALINHAMENTO */
+/* Estilos para a seção do nome/ícone */
 
-/* 1. user-info: Centraliza o bloco principal */
+/* Garante que o contêiner do ícone, nome e divisor se alinhe corretamente */
 .user-info {
-    /* Centraliza o bloco 'user-info' horizontalmente */
-    max-width: 100px; 
-    margin: 20px auto 50px; /* Margem ajustada */
+    /* Define uma largura máxima para o contêiner, se necessário, ou deixe flexível */
+    /* Exemplo: max-width: 300px; */
+    margin: 0 auto 20px auto; /* Centraliza horizontalmente e adiciona margem inferior */
+    text-align: center; /* Centraliza os elementos internos se não estiver usando flex */
+}
+
+/* Contêiner que segura o ícone e o nome lado a lado */
+.user-name-group {
+    display: flex; /* Habilita o Flexbox para alinhar ícone e texto */
+    align-items: center; /* Alinha verticalmente no centro */
+    justify-content: center; /* Centraliza horizontalmente o grupo dentro do user-info */
+    gap: 15px; /* Espaço entre o ícone e o nome */
+    margin-bottom: 5px; /* Pequena margem antes do divisor */
+}
+
+/* Estilo para o ícone (imagem) */
+.user-icon {
+    width: 50px; /* Ajuste o tamanho do ícone */
+    height: 50px;
+    border-radius: 50%; /* Deixa o ícone redondo */
+    /* Adicione uma borda sutil se quiser */
+    /* border: 2px solid #5d0f99; */
+    object-fit: cover; /* Garante que a imagem preencha o círculo */
+}
+
+/* Estilo para o texto do nome */
+.user-name {
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 0; /* Remove margens padrão do parágrafo */
+    /* Adiciona a fonte Poppins, se não estiver definida globalmente */
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Estilo para o destaque ADM */
+.adm-highlight {
+    color: #5d0f99; /* Cor roxa do ADM */
+    font-weight: 700;
+}
+
+/* Estilo para a linha divisória (<hr class="divider">) */
+.divider {
+    /* Largura da linha: 100% do .user-info ou ajuste manualmente */
+    width: 300%; /* Ajuste a largura para que seja visualmente proporcional ao texto */
+    max-width: 300px; /* Garante que não fique muito larga */
+    border: none;
+    border-top: 3px solid #5d0f99; /* Cor e espessura da linha */
+    margin: 5px auto 0 auto; /* Centraliza a linha, 0 margem inferior */
     
-    /* Centraliza todos os elementos filhos (o grupo e o divisor) */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza horizontalmente */
-    text-align: center;
+    /* *OPCIONAL: se quiser a linha com cantos arredondados* */
+    /* border-radius: 2px; */
 }
 
 /* 2. user-name-group: Alinha o ícone e o nome lado a lado e centraliza na tela */
@@ -179,7 +222,7 @@ body {
 /* 3. user-icon-placeholder: Contêiner da Imagem */
 .user-icon-placeholder {
     /* Tamanho do ícone (Aumentei um pouco para ficar mais próximo da imagem de exemplo) */
-    width: 50px; 
+    width: 45px; 
     height: 50px; 
     border-radius: 50%;
     overflow: hidden;

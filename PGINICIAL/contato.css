@@ -1,0 +1,188 @@
+/* Importar uma fonte similar (ex: Montserrat) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap');
+
+:root {
+    --primary-color: #A020F0; /* Roxo vibrante */
+    --secondary-color: #7B68EE; /* Roxo mais claro (para detalhes) */
+    --text-color: #FFFFFF;
+    --background-color: #000000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* --- Cabeçalho (Navbar) --- */
+.navbar {
+    background-color: var(--background-color);
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main-title {
+    font-size: 1.8em;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--text-color);
+    position: absolute; /* Para centralizar horizontalmente na referência */
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50px; /* Ajuste conforme necessário */
+}
+
+/* Estilo do Logo (canto superior direito) */
+.logo-container {
+    /* Simulação do espaço e cor do logo */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.7em;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.logo-text {
+    margin: 0;
+}
+
+
+/* Navegação */
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 100px; /* Espaço para o título */
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.nav-links .active {
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    color: var(--background-color); /* Texto escuro na aba ativa */
+}
+
+/* --- Conteúdo da Seção de Contato --- */
+.contact-section {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.page-context {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 30px;
+}
+
+.contact-grid {
+    display: grid;
+    /* Duas colunas para os dois primeiros boxes, e a terceira embaixo em uma coluna */
+    grid-template-columns: 1fr 1fr; 
+    gap: 30px;
+    justify-content: center;
+    align-items: start;
+}
+
+.info-box {
+    background-color: rgba(160, 32, 240, 0.1); /* Fundo roxo suave/transparente */
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.5); /* Sombra para destaque */
+}
+
+/* Box 3 (Contatos) precisa ocupar as duas colunas e ser centralizado abaixo */
+.social-box {
+    grid-column: 1 / 3; /* Ocupa as duas colunas */
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-box h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.info-box p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+/* Estilos específicos para o Box de Contatos/Redes Sociais */
+.social-box .contact-detail, 
+.social-box .social-handle {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.social-box .social-text {
+    margin-top: 15px;
+    font-size: 1em;
+    color: var(--secondary-color);
+}
+
+/* Estilo para dar o efeito de negrito na referência (em negrito no HTML) */
+.info-box p strong {
+    font-weight: 700;
+}
+
+/* Responsividade básica (para telas menores) */
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr; /* Uma única coluna */
+    }
+
+    .social-box {
+        grid-column: 1 / 2; /* Ocupa apenas a primeira coluna */
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links li {
+        margin-bottom: 10px;
+    }
+}

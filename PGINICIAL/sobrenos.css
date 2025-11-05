@@ -1,0 +1,146 @@
+/* Variáveis de Cores */
+:root {
+    --color-black: #000000;
+    --color-purple-bright: #5d0f99; /* Roxo brilhante para detalhes */
+    --color-white: #ffffff;
+    --color-menu-bg: rgba(0, 0, 0, 0.7); /* Fundo escuro levemente transparente para o menu */
+}
+
+/* Reset básico e Configurações de Fonte */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Título superior "Sobre Nós" */
+.page-title {
+    align-self: flex-start;
+    margin-left: 5%;
+    font-size: 1.5em;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* --- Header e Nome da Academia --- */
+.main-header {
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.header-container {
+    display: flex;
+    justify-content: center; /* Centraliza o nome e o logo (como na imagem) */
+    align-items: center;
+    position: relative;
+    padding: 0 5%;
+}
+
+.academy-name {
+    font-size: 2.5em;
+    font-weight: 900;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px var(--color-purple-bright);
+}
+
+.academy-logo {
+    /* Posicionamento do logo no canto superior direito */
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px; /* Ajuste conforme o tamanho real do logo */
+    height: 60px;
+    background-color: var(--color-purple-bright); /* Placeholder para o logo */
+    border-radius: 5px;
+    box-shadow: 0 0 15px var(--color-purple-bright);
+}
+
+/* --- Menu de Navegação --- */
+.main-nav {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px 0;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--color-white);
+    font-size: 1.1em;
+    font-weight: 700;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: var(--color-purple-bright);
+}
+
+/* Item de menu ativo (SOBRE NÓS) */
+.main-nav a.active {
+    background-color: var(--color-purple-bright);
+    color: var(--color-white);
+    padding: 5px 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--color-purple-bright);
+}
+
+/* --- Seção "Sobre Nós" (Conteúdo principal) --- */
+.content-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+.about-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.about-text-box {
+    /* Estilo da caixa de texto arredondada e roxa */
+    background: var(--color-purple-dark); /* Fundo roxo escuro */
+    border: 3px solid var(--color-purple-bright); /* Borda roxa brilhante */
+    border-radius: 20px; /* Cantos arredondados */
+    padding: 40px 60px;
+    max-width: 800px;
+    box-shadow: 0 0 20px rgba(147, 0, 255, 0.7); /* Sombra roxa para o efeito "neon" */
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+.about-text-box p {
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.about-text-box p:last-child {
+    margin-bottom: 0;
+}
+
+.about-text-box strong {
+    /* Destaque para as palavras-chave (em negrito no texto original) */
+    color: var(--color-purple-bright);
+    font-weight: 700;
+}
