@@ -19,14 +19,20 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
+
+    /* --- ADICIONADO PARA CENTRALIZAÇÃO VERTICAL --- */
+    min-height: 100vh; /* Garante que o body ocupe toda a altura da viewport */
+    display: flex;
+    flex-direction: column; /* Organiza os filhos (header e main) em coluna */
+    align-items: center; /* Centraliza horizontalmente (navbar e main) */
+    justify-content: center; /* Centraliza verticalmente o conteúdo (se houver espaço) */
+    /* ------------------------------------------------ */
 }
 
-/* --- Cabeçalho (Navbar) --- */
-.navbar {
-    background-color: var(--background-color);
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+/* O restante do CSS que você forneceu para a navegação: */
+/* ... */
+
+
 
 .header-content {
     display: flex;

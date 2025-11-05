@@ -1,7 +1,7 @@
 /* Variáveis de Cores */
 :root {
     --color-black: #000000;
-    --color-purple-bright: #5d0f99; /* Roxo brilhante para detalhes */
+    --color-purple-bright:#A020F0; /* Roxo brilhante para detalhes */
     --color-white: #ffffff;
     --color-menu-bg: rgba(0, 0, 0, 0.7); /* Fundo escuro levemente transparente para o menu */
 }
@@ -125,7 +125,7 @@ body {
     border-radius: 20px; /* Cantos arredondados */
     padding: 40px 60px;
     max-width: 800px;
-    box-shadow: 0 0 20px rgba(147, 0, 255, 0.7); /* Sombra roxa para o efeito "neon" */
+    box-shadow: 0 0 20px #A020F0(147, 0, 255, 0.7); /* Sombra roxa para o efeito "neon" */
     line-height: 1.6;
     font-size: 1.1em;
 }
