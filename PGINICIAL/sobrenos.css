@@ -1,9 +1,8 @@
-/* Variáveis de Cores */
 :root {
     --color-black: #000000;
-    --color-purple-bright:#A020F0; /* Roxo brilhante para detalhes */
+    --color-purple-bright: #A020F0; 
     --color-white: #ffffff;
-    --color-menu-bg: rgba(0, 0, 0, 0.7); /* Fundo escuro levemente transparente para o menu */
+    --color-text-light: #cccccc;
 }
 
 /* Reset básico e Configurações de Fonte */
@@ -16,93 +15,109 @@
 body {
     background-color: var(--color-black);
     color: var(--color-white);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-/* Título superior "Sobre Nós" */
-.page-title {
-    align-self: flex-start;
-    margin-left: 5%;
-    font-size: 1.5em;
-    font-weight: 400;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-/* --- Header e Nome da Academia --- */
-.main-header {
+header {
     width: 100%;
-    padding: 20px 0;
-    text-align: center;
+    padding-top: 50px; 
+    position: relative; 
 }
 
-.header-container {
+/* Container do título e logo */
+.header-content {
     display: flex;
-    justify-content: center; /* Centraliza o nome e o logo (como na imagem) */
+    /* Ajuste principal: Inverte a ordem do conteúdo para que a Logo venha primeiro no layout */
+    flex-direction: row-reverse; 
+    
+    justify-content: space-between; /* Afasta o título da logo */
     align-items: center;
-    position: relative;
-    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.academy-name {
-    font-size: 2.5em;
+/* Estilo do título ACADEMIA TECHFIT (Agora à Direita) */
+.main-title {
+    font-size: 2.2em;
     font-weight: 900;
-    letter-spacing: 5px;
-    text-shadow: 0 0 10px var(--color-purple-bright);
+    letter-spacing: 2px;
+    color: var(--text-color);
+    /* Garante que o título fique o mais à direita possível */
+    margin-left: auto; 
+    margin-right: 0; /* Remove margem desnecessária à direita */
 }
 
-.academy-logo {
-    /* Posicionamento do logo no canto superior direito */
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 60px; /* Ajuste conforme o tamanho real do logo */
-    height: 60px;
-    background-color: var(--color-purple-bright); /* Placeholder para o logo */
-    border-radius: 5px;
-    box-shadow: 0 0 15px var(--color-purple-bright);
-}
 
-/* --- Menu de Navegação --- */
-.main-nav {
+.logo-img {
     width: 100%;
-    margin-top: 30px;
+    height: auto;
+    max-height: 125px;
+    display: block;
 }
 
-.main-nav ul {
+/* --- Header e Navegação (Estilos para posicionar logo à direita) --- */
+
+header {
+    width: 100%;
+    /* Reduz o padding no topo drasticamente. */
+    /* De 30px para 10px ou menos. */
+    padding-top: 0.1px; /* Ajustado para deixar mais próximo do topo */
+    position: relative;
+}
+
+/* Container do título e logo (mantido) */
+.header-content {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px; 
+}
+
+/* Estilo do Logo (Esquerda) (mantido) */
+.logo-box {
+    width: 150px; 
+    height: auto;
+    margin-right: 0; 
+}
+/* ... (Restante do .logo-box e .main-title permanece igual) ... */
+
+/* --- Ajuste na Navegação para Aproximar do Cabeçalho --- */
+
+.nav-links {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 30px;
-    padding: 10px 0;
+    width: 100%;
+    /* Reduz a margem superior de 15px para 5px ou 0px para aproximar da área do logo/título */
+    margin-top: 5px; /* Ajustado para deixar mais próximo do logo/título */
+    padding-bottom: 10px; /* Reduzido um pouco o padding inferior da navegação */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.main-nav a {
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: var(--text-color);
     text-decoration: none;
-    color: var(--color-white);
-    font-size: 1.1em;
-    font-weight: 700;
+    font-weight: 600;
     padding: 5px 10px;
     transition: color 0.3s;
 }
 
-.main-nav a:hover {
-    color: var(--color-purple-bright);
+.nav-links .active {
+    background-color: var(--color-purple-bright);
+    border-radius: 5px;
+    color: var(--color-black);
 }
 
-/* Item de menu ativo (SOBRE NÓS) */
-.main-nav a.active {
-    background-color: var(--color-purple-bright);
-    color: var(--color-white);
-    padding: 5px 15px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px var(--color-purple-bright);
-}
 
 /* --- Seção "Sobre Nós" (Conteúdo principal) --- */
 .content-wrapper {
@@ -125,8 +140,7 @@ body {
     border-radius: 20px; /* Cantos arredondados */
     padding: 40px 60px;
     max-width: 800px;
-    box-shadow: 0 0 20px #A020F0(147, 0, 255, 0.7); /* Sombra roxa para o efeito "neon" */
-    line-height: 1.6;
+   line-height: 1.6;
     font-size: 1.1em;
 }
 
