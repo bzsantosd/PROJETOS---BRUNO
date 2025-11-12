@@ -1,0 +1,260 @@
+/* --- ESTILOS GERAIS E RESET --- */
+:root {
+    --primary-color: #5d288c; /* Roxo principal da TechFit */
+    --secondary-color: #fff; /* Branco */
+    --background-dark: #000; /* Fundo principal escuro */
+    --sidebar-bg: #2d0a4c; /* Fundo mais escuro/saturado da barra lateral */
+    --price-color: #fff; /* Cor do preço */
+
+    --font-family: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: black;
+    display: flex; /* Permite a estrutura de barra lateral e conteúdo */
+    min-height: 100vh;
+}
+
+/* --- ESTRUTURA PRINCIPAL (BARRA LATERAL E CONTEÚDO) --- */
+
+/* Simula a barra lateral esquerda (Purple Bar) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Largura aproximada da barra lateral */
+    height: 100%;
+    background-color: var(--sidebar-bg); /* Fundo roxo */
+    /* Adiciona a imagem de fundo lateral (peso e halter) */
+    background-image: url('Academia.png'); /* Substituir! */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9; /* Deixa a imagem ligeiramente transparente/escura */
+    z-index: -1; /* Fica atrás do conteúdo */
+}
+
+/* Centraliza e estiliza o conteúdo principal (área preta) */
+main {
+    flex-grow: 1;
+    margin-left: 250px; /* Compensa a largura da barra lateral */
+    background-color: var(--background-dark); /* Fundo preto do conteúdo */
+    padding: 30px;
+    color: var(--secondary-color);
+}
+
+/* --- CABEÇALHO, LOGO E NAVEGAÇÃO --- */
+
+.section-title {
+    /* Escondido, pois a imagem usa a logo e o menu na parte superior esquerda */
+    display: none; 
+}
+
+/* A logo usa position: absolute para ficar sobre a barra lateral */
+.logo {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 50px; 
+    height: auto;
+    z-index: 10;
+}
+
+/* Estilos adicionados do CSS 2 para texto da logo (se usado no HTML) */
+.techfit { 
+    display: block; 
+    font-size: 1.2rem; 
+    font-weight: 700; 
+    color: var(--primary-color); /* Usando a variável do CSS 1 */
+    line-height: 1; 
+} 
+
+.academia { 
+    display: block; 
+    font-size: 0.7rem;  
+    font-weight: 400; 
+    color: var(--secondary-color); 
+    letter-spacing: 2px; 
+}
+
+.navbar {
+    /* Ajustado para ficar logo abaixo do header */
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 15px 0;
+    /* Para a navegação do produto, que está no topo: */
+    position: fixed;
+    top: 0;
+    left: 250px; /* Começa após a barra lateral */
+    right: 0;
+    height: 60px;
+    background-color: white; /* Fundo branco do topo */
+    border-bottom: 1px solid black; /* Linha de separação */        
+    z-index: 5;
+    padding: 0 30px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start; /* Alinhamento conforme a imagem do produto */
+    height: 100%;
+    align-items: center;
+    gap: 30px; /* Adicionado do CSS 2 */
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: black; /* Cor do texto preto no topo */
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 0;
+    transition: color 0.3s;
+}
+
+/*destacar class produto*/
+.nav-list a[data-page="produtos"] {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--secondary-color);
+    text-align: center;
+    margin: 40px 0 20px 0;  
+    letter-spacing: 3px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block; /* Para que a linha de baixo siga a largura do texto */
+    width: auto;
+}
+
+/* --- CARDS DE PRODUTOS --- */
+
+.products-grid {
+    display: flex;
+    flex-direction: column; /* Organiza os cards verticalmente como na imagem */
+    gap: 30px; /* Espaçamento entre os cards */
+    max-width: 900px; /* Largura máxima para a área de cards */
+    margin: 0 auto; /* Centraliza a coluna de cards */
+}
+
+.product-card {
+    /* Mantenha o estilo de fundo e padding */
+    background-color: #1a1a1a; 
+    padding: 20px;
+    border-radius: 8px;
+    display: flex; 
+    align-items: center; /* Alinha o conteúdo verticalmente ao centro */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    
+    /* Adiciona uma margem inferior maior para criar o espaço entre eles */
+    margin-bottom: 50px; 
+    
+    /* Adiciona a cor roxa como uma sombra interna para simular o efeito da imagem */
+    box-shadow: inset 5px 0 0 0 var(--primary-color), 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.product-image {
+    width: 100px; /* Tamanho das imagens dos produtos (creatina/whey) */
+    height: auto;
+    margin-right: 20px;
+    border-radius: 4px;
+}
+
+.product-details {
+    flex-grow: 1;
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.product-description {
+    font-size: 14px;
+    font-weight: 300;
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.product-price-box {
+    text-align: right;
+    width: 150px; /* Largura para a coluna de preço/botões */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.product-price {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--price-color);
+    margin-bottom: 5px;
+}
+
+.price-details {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.option-select {
+    font-size: 12px;
+    color: #ccc;
+    margin-bottom: 5px;
+}
+
+.option-button {
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.option-button:hover {
+    background-color: #444;
+}
+
+.action-button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.action-button:hover {
+    opacity: 0.8;
+}
+
+.add-to-cart {
+    background-color: var(--primary-color); /* Fundo roxo */
+    color: var(--secondary-color);
+    border: none;
+}
+
+.remove-from-gym {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+}
