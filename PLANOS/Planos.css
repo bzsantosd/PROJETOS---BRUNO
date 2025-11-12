@@ -111,16 +111,17 @@ body {
 
 /* --- Título da Página de Planos --- */
 .page-title {
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--text-light); 
-    text-transform: uppercase;
-    text-align: left; /* Alinhamento à esquerda (Dashboard) */
-    margin: 0 0 40px 0; 
-    letter-spacing: 2px;
-    display: inline-block;
-    padding-bottom: 5px;
-    border-bottom: 3px solid var(--accent-purple); /* Linha roxa */
+ font-size: 3rem;
+ font-weight: 900;
+ color: var(--text-light); 
+ text-transform: uppercase;
+ text-align: center; /* ALTERADO: Centraliza o texto */
+ margin: 0 auto 40px auto; /* NOVO: Adicionado auto para centralizar o elemento */
+ letter-spacing: 2px;
+ display: block; /* ALTERADO: Mude para 'block' para que 'margin: auto' funcione */
+ padding-bottom: 5px;
+ width: fit-content; /* NOVO: Define a largura para o conteúdo */
+ border-bottom: 3px solid var(--accent-purple); /* Linha roxa */
 }
 .products-grid {
     display: grid;
