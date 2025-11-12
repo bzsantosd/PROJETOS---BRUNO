@@ -1,0 +1,189 @@
+/* VARIÁVEIS CSS (Baseadas no cadastro.html) */
+:root {
+    --color-dark: #000000;
+    --color-text-light: #ffffff;
+    --color-purple-primary: #4F0064;
+    --color-input-bg: #222222;
+    --color-placeholder: #aaaaaa;
+    --color-border: #444444;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    color: blueviolet;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* ESTILOS DE LAYOUT GERAL */
+body {
+    background-color: var(--color-dark);
+    color: var(--color-text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container {
+    display: flex;
+    width: 900px; /* Adaptado para tela Esqueceu Senha */
+    min-height: 450px; /* Adaptado para tela Esqueceu Senha */
+    background-color: var(--color-dark);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    border-radius: 12px;
+    margin: auto; 
+}
+.image-section {
+    width: 40%; /* Adaptado para tela Esqueceu Senha */
+    background-color: var(--color-dark);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    padding: 0px;
+    /* Adicionando uma imagem de fundo para preencher o espaço */
+    background-image: url('academia.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover;
+    background-position: center;
+}
+.techfit-logo {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 120px;
+    height: auto;
+    margin: 0;
+}
+.form-section {
+    width: 60%; /* Adaptado para tela Esqueceu Senha */
+    background-color: var(--color-dark);
+    padding: 40px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+.form-section h2 {
+    font-size: 2.0rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.form-section p { /* Estilo de parágrafo para a instrução */
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--color-placeholder);
+}
+.input-group {
+    margin-bottom: 15px; 
+}
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-text-light);
+}
+.input-group input {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    background-color: var(--color-input-bg);
+    color: var(--color-text-light);
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: border-bottom 0.3s ease;
+}
+.input-group input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--color-purple-primary);
+}
+.input-group input::placeholder {
+    color: var(--color-placeholder);
+    font-size: 0.9rem;
+}
+/* Estilo do botão BUSCAR CONTA */
+.submit-button {
+    font-family: 'Black Ops One';
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #a020f0, #8a2be2);
+    color: var(--color-text-light);
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease, transform 0.1s ease;
+}
+.submit-button:hover {
+    background: linear-gradient(to right, #8a2be2, #a020f0);
+    transform: translateY(-2px);
+}
+.submit-button:active {
+    transform: translateY(0);
+}
+
+/* --- ESTILOS DO MODAL --- */
+.modal-footer a {
+    color: var(--color-purple-primary) !important; 
+    font-weight: bold;
+    padding: 8px 15px;
+    border: 2px solid var(--color-purple-primary);
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    display: inline-block; 
+}
+
+.modal-footer a:hover {
+    background-color: var(--color-purple-primary);
+    color: var(--color-text-light) !important;
+}
+
+.modal-body h5 {
+    color: var(--color-purple-primary) !important; 
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+/* Ajusta o cabeçalho do modal para não ter a cor roxa forçada, usa o estilo padrão do h5 */
+.modal-body h5 {
+    color: var(--color-purple-primary);
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 950px) {
+    .container {
+        flex-direction: column;
+        width: 95%;
+        height: auto;
+        min-height: 100vh;
+    }
+    .image-section {
+        width: 100%;
+        height: 150px; 
+        order: 1; 
+    }
+    .form-section {
+        width: 100%;
+        padding: 20px;
+        order: 2; 
+    }
+    .form-section h2 {
+        margin-top: 20px;
+        text-align: center; 
+    }
+    .techfit-logo {
+        position: relative;
+        margin: 10px auto; 
+        right: auto;
+        bottom: auto;
+    }
+}

@@ -9,6 +9,7 @@
     --link-color: #8a2be2; /* Roxo mais claro para links */
 }
 
+/* --- ESTILOS GERAIS --- */
 * {
     margin: 0;
     padding: 0;
@@ -18,54 +19,32 @@
 
 html, body {
     height: 100%;
-    background-color: #ffffff; /* Fundo branco ao redor do container principal */
+    background-color: #ffffff;
 }
 
 .login-container {
     display: flex;
-    height: 100vh; /* Ocupa a altura total da tela */
+    height: 100vh;
     width: 100%;
 }
 
 /* --- SEÇÃO DA IMAGEM (ESQUERDA) --- */
 .image-section {
-    flex: 1; /* Ocupa metade da largura */
-    background-color: #222; /* Cor de fallback */
-    background-image: url('/IMAGEM/IMG\ LOGIN.png'); /* **Substitua pelo caminho correto da sua imagem!** */
+    flex: 1;
+    background-color: #222; 
+    background-image: url('/IMAGEM/IMG\ LOGIN.png');
     background-size: cover;
     background-position: center;
     position: relative;
     padding: 20px;
     color: var(--text-color);
 }
-
-/* Estilo para "Acesso Geral" */
-.image-section input[type="checkbox"] {
-    /* Esconde o checkbox real */
-    appearance: none;
-    -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    border: 2px solid var(--text-color);
-    border-radius: 3px;
-    margin-right: 5px;
-    vertical-align: middle;
-}
-
-.image-section input[type="checkbox"]:checked {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.image-section label {
-    font-size: 14px;
-    font-weight: 600;
-}
+/* Estilos para checkbox e label omitidos para brevidade, mantenha-os como estão no seu original. */
 
 
 /* --- SEÇÃO DE LOGIN (DIREITA) --- */
 .login-section {
-    flex: 1; /* Ocupa a outra metade da largura */
+    flex: 1;
     background-color: var(--dark-bg);
     color: var(--text-color);
     display: flex;
@@ -86,43 +65,17 @@ html, body {
     letter-spacing: 2px;
 }
 
-/* Estilo do Logo (TechFit Academia) */
-.logo {
-    margin-bottom: 40px;
-    padding: 10px 0;
-    position: relative;
-}
-
-/* Diminui a imagem de fundo do logo */
+/* Estilo do Logo */
 .background-image {
     width: 90px; 
     height: 90px; 
     object-fit: contain;
     display: block;
-    margin: 0 auto 10px auto;
-    
+    margin: 0 auto 40px auto; /* Aumentei o margin-bottom para 40px */
 }
 
-.techfit {
-    display: block;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--primary-color);
-    z-index: 1;
-    position: relative;
-    line-height: 1;
-}
+/* Omiti os estilos .techfit e .academia pois as tags não existem no HTML */
 
-.academia {
-    display: block;
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--text-color);
-    letter-spacing: 4px;
-    z-index: 1;
-    position: relative;
-    margin-top: -5px; /* Puxa para mais perto da palavra acima */
-}
 
 /* Formulário e Inputs */
 .login-form {
@@ -154,58 +107,70 @@ html, body {
 .links {
     text-align: right;
     margin-top: 10px;
+    margin-bottom: 25px; /* Adicionei margem para separar do botão ENTRAR */
     font-size: 13px;
     line-height: 1.5;
 }
 
-.forgot-password {
-    display: block;
+.forgot-password, .register-text a {
     color: var(--link-color);
     text-decoration: none;
-    font-weight: 300;
 }
 
-.register-text {
-    display: block;
-    color: var(--link-color);
-    font-weight: 300;
-}
-
-.register-link {
-    color: #007bff; /* Azul padrão */
-    text-decoration: underline;
+.register-text a {
     font-weight: 600;
 }
 
-/* Botões */
-.btn {
+/* --- NOVO CONTAINER DE BOTÕES --- */
+.botoes-container {
+    /* Não precisa de text-align: center; se os botões são centralizados por margin: auto; */
     width: 100%;
+}
+
+/* --- ESTILO BASE PARA BOTÕES (Links Estilizados) --- */
+.btn {
+    display: block; /* Essencial para que o width e margin: auto funcionem */
     padding: 10px;
-    margin-top: 15px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-decoration: none; /* Remove sublinhado dos links */
+    text-align: center; /* Centraliza o texto dentro do link */
+    
+    /* Centralização com Largura Definida */
+    /* *** Aumenta a largura e centraliza os botões! *** */
+    width: 85%; /* Defina a largura desejada, 85% é um bom tamanho */
+    margin: 15px auto; /* 15px de margem vertical e auto nas laterais para centralizar */
 }
 
-.btn-login {
+/* 1. Botão ENTRAR (Maior e Centralizado) */
+.btn-login-full {
     background-color: var(--primary-color);
     color: var(--text-color);
+    margin-top: 0; /* Ajusta a margem superior já que o links tem margin-bottom */
 }
 
-.btn-login:hover {
-    background-color: #6a0dad; /* Roxo um pouco mais escuro no hover */
-}
-
-.btn-adm {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    max-width: 150px; /* Mais estreito, como na imagem */
-    margin-top: 25px;
-}
-
-.btn-adm:hover {
+.btn-login-full:hover {
     background-color: #6a0dad;
 }
+
+/* 2. Botão ADM (Maior e Centralizado) */
+.btn-adm-full {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    /* Mantém o width: 85% e margin: 15px auto da classe .btn */
+}
+
+.btn-adm-full:hover {
+    background-color: #6a0dad;
+}
+
+
+/* --- CLASSES DE BOTÃO ANTIGAS REMOVIDAS --- */
+/*
+  As classes .btn-login, .btn-adm, .botao-link, .container-centralizador 
+  foram substituídas por .btn-login-full e .btn-adm-full para simplificar e corrigir a centralização/largura.
+*/
