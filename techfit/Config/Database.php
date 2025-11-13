@@ -1,30 +1,45 @@
 <?php
-// Arquivo: Config/Database.php
+// Config/Database.php
 
-// ----------------------------------------------------
-// ⚠️ ATENÇÃO: Substitua os dados abaixo pelos seus!
-// ----------------------------------------------------
-$host = 'localhost'; // Seu host (geralmente localhost)
-$db   = 'TechFit';   // Nome do seu banco de dados
-$user = 'root';      // Seu usuário do MySQL
-$pass = 'sua_senha'; // Sua senha do MySQL
-$charset = 'utf8mb4';
+class Database {
+    private $host = 'localhost';
+    private $db_name = 'techfit';  // ✅ Nome do seu banco
+    private $username = 'root';
+    private $password = 'senaisp'; // ⚠️ ALTERE AQUI se tiver senha
+    private $charset = 'utf8mb4';
+    private $pdo;
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$options = [
-    // Define o modo de erro para exceções
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    // Define o modo de busca padrão para arrays associativos
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
+    /**
+     * Obtém a conexão PDO (Singleton)
+     */
+    public function getConnection() {
+        if ($this->pdo === null) {
+            try {
+                $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset={$this->charset}";
+                
+                $options = [
+                    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_EMULATE_PREPARES   => false,
+                    PDO::ATTR_PERSISTENT         => false
+                ];
 
-try {
-     // Cria o objeto de conexão PDO
-     $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (\PDOException $e) {
-     // Em caso de erro na conexão, interrompe o script e exibe a mensagem
-     die("Erro de Conexão com o Banco de Dados: " . $e->getMessage());
+                $this->pdo = new PDO($dsn, $this->username, $this->password, $options);
+                
+            } catch (PDOException $e) {
+                error_log("Erro de Conexão: " . $e->getMessage());
+                die("Erro ao conectar ao banco de dados. Verifique suas credenciais.");
+            }
+        }
+        
+        return $this->pdo;
+    }
+
+    /**
+     * Fecha a conexão explicitamente
+     */
+    public function closeConnection() {
+        $this->pdo = null;
+    }
 }
-
-// O objeto $pdo agora está pronto para ser usado
+?>
