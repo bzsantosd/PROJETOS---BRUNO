@@ -49,7 +49,7 @@ body {
     align-items: left;
     padding: 0px;
     /* Adicionando uma imagem de fundo para preencher o espaço */
-    background-image: url('academia.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-image: url('/techfit/public/images/academia.jpg'); /* Substitua pelo caminho da sua imagem */
     background-size: cover;
     background-position: center;
 }

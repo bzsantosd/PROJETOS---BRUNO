@@ -32,7 +32,7 @@ html, body {
 .image-section {
     flex: 1;
     background-color: #222; 
-    background-image: url('/IMAGEM/IMG\ LOGIN.png');
+    background-image: url('/IMAGENS/07.jpg');
     background-size: cover;
     background-position: center;
     position: relative;

@@ -1,0 +1,212 @@
+/* style.css */
+
+/* Definição de Cores Padrão (Baseado em cadastro.html) */
+:root {
+    --color-dark: #000000;
+    --color-text-light: #ffffff;
+    --color-purple-primary: #4F0064; /* Cor principal da TechFit */
+    --color-purple-hover: #6a008c;  /* Roxo mais claro para hover */
+    --color-bg-secondary: #1a1a1a;
+    --color-border: #444444;
+}
+
+/* Reset Básico e Fonte */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--color-dark);
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-purple-primary);
+}
+
+/* 1. ESTILO DO CABEÇALHO */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: white;
+    border-bottom: 2px solid var(--color-purple-primary);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--color-purple-primary);
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+}
+
+.nav-item {
+    margin: 0 15px;
+}
+
+.nav-item a {
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+.nav-item.active a,
+.nav-item a:hover {
+    color: var(--color-purple-primary);
+    border-bottom: 2px solid var(--color-purple-primary);
+}
+
+.auth-buttons .btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login {
+    background-color: transparent;
+    border: 2px solid var(--color-text-light);
+}
+
+.btn-login:hover {
+    background-color: var(--color-text-light);
+    color: white;
+}
+
+.btn-register {
+    background-color: white;
+    border: 2px solid var(--color-purple-primary);
+}
+
+.btn-register:hover {
+    background-color: var(--color-purple-hover);
+    border-color: var(--color-purple-hover);
+}
+
+/* 2. SEÇÃO HERO (PRINCIPAL) */
+.hero-section {
+    position: relative;
+    height: 80vh; /* Altura da viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('placeholder-academia.jpg') no-repeat center center/cover;
+    /* Substitua 'placeholder-academia.jpg' por uma imagem de academia */
+    margin-bottom: 50px;
+}
+
+.hero-text h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--color-purple-primary);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.hero-text h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--color-purple-primary);
+    color: var(--color-text-light);
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+}
+
+.cta-button:hover {
+    background-color: var(--color-purple-hover);
+    transform: translateY(-3px);
+}
+
+/* 3. SEÇÃO DE DESTAQUES */
+.features-section {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.feature-card {
+    background-color: var(--color-bg-secondary);
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    max-width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-purple-primary);
+}
+
+.feature-card i {
+    font-size: 3rem;
+    color: var(--color-purple-primary);
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: #cccccc;
+}
+
+/* 4. RODAPÉ */
+.footer {
+    background-color: var(--color-bg-secondary);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer p {
+    font-size: 0.9rem;
+    color: #aaaaaa;
+}

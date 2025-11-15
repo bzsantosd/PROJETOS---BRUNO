@@ -34,7 +34,7 @@ body::before {
     height: 100%;
     background-color: var(--sidebar-bg); /* Fundo roxo */
     /* Adiciona a imagem de fundo lateral (peso e halter) */
-    background-image: url('Academia.png'); /* Substituir! */
+    background-image: url('/IMAGENS/faxada\ em\ limeira.jpg'); /* Substituir! */
     background-size: cover;
     background-position: center;
     opacity: 0.9; /* Deixa a imagem ligeiramente transparente/escura */

@@ -1,5 +1,4 @@
 <?php
-// Model/Administrador.php
 
 class Administrador {
     private $pdo;
