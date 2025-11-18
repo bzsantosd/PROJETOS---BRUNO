@@ -1,112 +1,168 @@
 <?php
-// Model/Produto.php
+// Model/Usuario.php
 
-class Produto {
+class Usuario {
     private $pdo;
-    private $table = 'Produtos';
+    private $table = 'Usuarios';
 
     public function __construct($pdo) {
         $this->pdo = $pdo;
     }
 
     /**
-     * Cadastra novo produto
+     * Busca usuário por email
      */
-    public function cadastrar($nome, $preco, $categoria, $quantidade, $idAdministrador, $idEstoque = 1) {
-        $sql = "INSERT INTO {$this->table} 
-                (nome_produto, preco, categoria, quantidade, Id_Administrador, Id_Estoque) 
-                VALUES (?, ?, ?, ?, ?, ?)";
-        
+    public function buscarPorEmail($email) {
+        $sql = "SELECT * FROM {$this->table} WHERE email = ? LIMIT 1";
         $stmt = $this->pdo->prepare($sql);
-        
-        try {
-            $resultado = $stmt->execute([
-                $nome, 
-                $preco, 
-                $categoria, 
-                $quantidade, 
-                $idAdministrador, 
-                $idEstoque
-            ]);
-            
-            return [
-                'sucesso' => $resultado,
-                'id' => $this->pdo->lastInsertId(),
-                'mensagem' => 'Produto cadastrado com sucesso!'
-            ];
-        } catch (PDOException $e) {
-            error_log("Erro ao cadastrar produto: " . $e->getMessage());
-            return ['sucesso' => false, 'mensagem' => 'Erro ao cadastrar produto.'];
-        }
+        $stmt->execute([$email]);
+        return $stmt->fetch();
     }
 
     /**
-     * Lista todos os produtos ativos
-     */
-    public function listarTodos($filtroCategoria = null) {
-        $sql = "SELECT p.*, e.nome_estoque, u.nome AS cadastrado_por 
-                FROM {$this->table} p
-                INNER JOIN Estoque e ON p.Id_Estoque = e.Id_Estoque
-                INNER JOIN Usuarios u ON p.Id_Administrador = u.Id_Usuario
-                WHERE p.ativo = 1";
-        
-        if ($filtroCategoria) {
-            $sql .= " AND p.categoria = ?";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([$filtroCategoria]);
-        } else {
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
-        }
-        
-        return $stmt->fetchAll();
-    }
-
-    /**
-     * Busca produto por ID
+     * Busca usuário por ID
      */
     public function buscarPorId($id) {
-        $sql = "SELECT * FROM {$this->table} WHERE Id_Produto = ? AND ativo = 1 LIMIT 1";
+        $sql = "SELECT * FROM {$this->table} WHERE Id_Usuario = ? LIMIT 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id]);
         return $stmt->fetch();
     }
 
     /**
-     * Atualiza produto
+     * Login de usuário (usando email e senha)
      */
-    public function atualizar($id, $nome, $preco, $categoria, $quantidade) {
-        $sql = "UPDATE {$this->table} 
-                SET nome_produto = ?, preco = ?, categoria = ?, quantidade = ?
-                WHERE Id_Produto = ?";
+    public function login($email, $senha) {
+        $usuario = $this->buscarPorEmail($email);
+        
+        if (!$usuario) {
+            return ['sucesso' => false, 'mensagem' => 'Usuário não encontrado!'];
+        }
+
+        // Verifica a senha (assumindo que está em hash)
+        if (password_verify($senha, $usuario['senha'])) {
+            return [
+                'sucesso' => true,
+                'usuario' => [
+                    'id' => $usuario['Id_Usuario'],
+                    'nome' => $usuario['nome'],
+                    'email' => $usuario['email'],
+                    'tipo' => $usuario['tipo']
+                ]
+            ];
+        }
+
+        return ['sucesso' => false, 'mensagem' => 'Senha incorreta!'];
+    }
+
+    /**
+     * Cadastra novo usuário
+     */
+    public function cadastrar($nome, $email, $senha, $tipo = 'aluno') {
+        // Verifica se email já existe
+        if ($this->buscarPorEmail($email)) {
+            return ['sucesso' => false, 'mensagem' => 'Email já cadastrado!'];
+        }
+
+        $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO {$this->table} (nome, email, senha, tipo) 
+                VALUES (?, ?, ?, ?)";
         
         $stmt = $this->pdo->prepare($sql);
         
         try {
-            $resultado = $stmt->execute([$nome, $preco, $categoria, $quantidade, $id]);
-            return ['sucesso' => $resultado, 'mensagem' => 'Produto atualizado!'];
+            $resultado = $stmt->execute([$nome, $email, $senhaHash, $tipo]);
+            return [
+                'sucesso' => $resultado,
+                'id' => $this->pdo->lastInsertId(),
+                'mensagem' => 'Usuário cadastrado com sucesso!'
+            ];
         } catch (PDOException $e) {
-            error_log("Erro ao atualizar: " . $e->getMessage());
-            return ['sucesso' => false, 'mensagem' => 'Erro ao atualizar produto.'];
+            error_log("Erro ao cadastrar usuário: " . $e->getMessage());
+            return ['sucesso' => false, 'mensagem' => 'Erro ao cadastrar usuário.'];
         }
     }
 
     /**
-     * Remove produto (soft delete)
+     * Atualiza dados do usuário
+     */
+    public function atualizar($id, $nome, $email) {
+        $sql = "UPDATE {$this->table} 
+                SET nome = ?, email = ?
+                WHERE Id_Usuario = ?";
+        
+        $stmt = $this->pdo->prepare($sql);
+        
+        try {
+            $resultado = $stmt->execute([$nome, $email, $id]);
+            return ['sucesso' => $resultado, 'mensagem' => 'Dados atualizados!'];
+        } catch (PDOException $e) {
+            return ['sucesso' => false, 'mensagem' => 'Erro ao atualizar.'];
+        }
+    }
+
+    /**
+     * Atualiza senha do usuário
+     */
+    public function atualizarSenha($id, $senhaAntiga, $senhaNova) {
+        $usuario = $this->buscarPorId($id);
+        
+        if (!$usuario) {
+            return ['sucesso' => false, 'mensagem' => 'Usuário não encontrado!'];
+        }
+
+        if (!password_verify($senhaAntiga, $usuario['senha'])) {
+            return ['sucesso' => false, 'mensagem' => 'Senha antiga incorreta!'];
+        }
+
+        $senhaHash = password_hash($senhaNova, PASSWORD_DEFAULT);
+        
+        $sql = "UPDATE {$this->table} SET senha = ? WHERE Id_Usuario = ?";
+        $stmt = $this->pdo->prepare($sql);
+        
+        try {
+            $resultado = $stmt->execute([$senhaHash, $id]);
+            return ['sucesso' => $resultado, 'mensagem' => 'Senha atualizada!'];
+        } catch (PDOException $e) {
+            return ['sucesso' => false, 'mensagem' => 'Erro ao atualizar senha.'];
+        }
+    }
+
+    /**
+     * Remove usuário
      */
     public function remover($id) {
-        $sql = "UPDATE {$this->table} SET ativo = 0 WHERE Id_Produto = ?";
+        $sql = "DELETE FROM {$this->table} WHERE Id_Usuario = ?";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([$id]);
     }
 
     /**
-     * Atualiza quantidade em estoque
+     * Lista todos os usuários
      */
-    public function atualizarEstoque($id, $quantidade) {
-        $sql = "UPDATE {$this->table} SET quantidade = quantidade + ? WHERE Id_Produto = ?";
+    public function listarTodos($tipo = null) {
+        if ($tipo) {
+            $sql = "SELECT * FROM {$this->table} WHERE tipo = ? ORDER BY nome";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$tipo]);
+        } else {
+            $sql = "SELECT * FROM {$this->table} ORDER BY nome";
+            $stmt = $this->pdo->query($sql);
+        }
+        
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * Conta usuários por tipo
+     */
+    public function contarPorTipo($tipo) {
+        $sql = "SELECT COUNT(*) as total FROM {$this->table} WHERE tipo = ?";
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([$quantidade, $id]);
+        $stmt->execute([$tipo]);
+        $result = $stmt->fetch();
+        return $result['total'] ?? 0;
     }
 }
 ?>
