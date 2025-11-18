@@ -1,0 +1,315 @@
+/* --- Variáveis CSS --- */
+:root {
+    --primary-color: #A020F0; /* Roxo vibrante */
+    --secondary-color: #7B68EE; /* Roxo mais claro (para detalhes) */
+    --text-color: #FFFFFF;
+    --background-color: #000000;
+}
+
+/* --- Reset Básico e Fontes --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Alterada a fonte para a que foi linkada no HTML (Poppins) */
+    font-family: 'Poppins', sans-serif; 
+}
+
+/* --- Estilo Base do Corpo --- */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* --- Cabeçalho e Conteúdo --- */
+header {
+    width: 100%;
+    /* Ajustado para deixar o header mais próximo do topo */
+    padding-top: 0.1px; 
+    position: relative; 
+}
+
+/* Container do título e logo */
+.header-content {
+    display: flex;
+    /* Ajuste: Logo à esquerda, Título ao centro */
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px; /* Padding ajustado para o container */
+}
+
+/* Estilo do Logo (Esquerda) */
+.logo-box {
+    width: 150px; 
+    height: auto;
+    /* Retirado margin-right: 0; pois o justify-content: space-between já afasta */
+}
+
+.logo-img {
+    width: 100%;
+    height: auto;
+    max-height: 90px;
+    display: block;
+}
+
+/* Estilo do título ACADEMIA TECHFIT (Centralizado) */
+.main-title {
+    font-size: 2.2em;
+    font-weight: 900; 
+    letter-spacing: 2px;
+    color: var(--text-color);
+    /* CORREÇÃO PRINCIPAL: 
+    Margens automáticas horizontais para centralizar um item flex
+    quando ele é o único "grande" elemento entre outros.
+    */
+    margin-left: center;
+    margin-right: auto;
+    /* Adicionamos um padding-left igual à largura da logo para centralização visual */
+    /* Assumindo que o .logo-box tem 150px de largura */
+    padding-left: 150px; 
+}
+
+/* --- Navegação --- */
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* Margem superior reduzida para aproximar da área do logo/título */
+    margin-top: 5px; 
+    padding-bottom: 10px; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links .active a {
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    color: var(--background-color);
+}
+
+/* --- Conteúdo Principal e Testemunhos (Adaptação) --- */
+.content-wrapper {
+    min-height: calc(100vh - 250px); /* Ajuste para ter espaço para o footer (se houver) */
+}
+
+/* Classes de Testemunhos (Mantidas com foco na legibilidade) */
+.testimonials-section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.testimonials-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: rgba(160, 32, 240, 0.05); /* Roxo muito suave */
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 280px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+.card-title {
+    color: var(--primary-color);
+    font-size: 0.9em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-icon {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 900;
+    margin-right: 10px;
+}
+
+.user-name {
+    font-weight: 600;
+}
+
+.rating .star {
+    color: gold;
+    font-size: 1.2em;
+}
+
+.card-text {
+    margin-top: 15px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Botão de Aula Experimental */
+.link-experimental {
+    display: inline-block;
+    margin-top: 40px;
+    text-decoration: none;
+}
+
+.btn-experimental {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    letter-spacing: 1px;
+}
+
+.btn-experimental:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* --- Conteúdo da Seção de Contato --- */
+.contact-section {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 30px;
+    justify-content: center;
+    align-items: start;
+}
+
+.info-box {
+    background-color: rgba(160, 32, 240, 0.1);
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
+}
+
+/* Ajuste do social-box para ocupar a linha inteira */
+.social-box {
+    grid-column: 1 / 3;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-box h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.info-box p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.social-box .contact-detail, 
+.social-box .social-handle {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.info-box p strong {
+    font-weight: 700;
+    color: var(--secondary-color); /* Destaque para os dados importantes */
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    /* Layout do Grid de Contato */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-box {
+        grid-column: 1 / 2;
+    }
+
+    /* Layout do Header */
+    .header-content {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .main-title {
+        margin-left: 0; 
+        margin-right: 0;
+        margin-bottom: 15px;
+        order: 2; /* Título abaixo da logo */
+        font-size: 1.8em;
+    }
+
+    .logo-box {
+        margin-bottom: 15px;
+        order: 1; /* Logo acima do título */
+        width: 90px; /* Reduz o tamanho da logo */
+    }
+
+    /* Layout da Navegação */
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 15px;
+        padding-bottom: 20px;
+    }
+
+    .nav-links li {
+        margin: 5px 0;
+    }
+
+    /* Layout dos Testemunhos */
+    .testimonials-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}

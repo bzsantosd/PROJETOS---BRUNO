@@ -1,0 +1,277 @@
+/* Paleta de Cores */
+:root {
+    --bg-dark: #000000; /* Fundo preto total */
+    --bg-card: #1A1A1A; /* Fundo do card (levemente cinza escuro) */
+    --accent-purple: #A020F0; /* Roxo/Magenta Vibrante (o neon/primary color) */
+    --text-light: #FFFFFF; /* Texto principal claro */
+    --text-secondary: #AAAAAA; /* Texto secundário (descrições) */
+    
+    /* Cores específicas para o novo layout */
+    --sidebar-bg: #5a00a0; /* Um roxo sólido mais escuro para a barra lateral */
+    --nav-top-bg: #FFFFFF; /* Fundo branco para a navegação superior */
+    --nav-top-text: #000000; /* Texto preto para a navegação superior */
+}
+
+/* --- Estilos Globais e Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex; /* Para que o main e a barra lateral funcionem juntos */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+a[data-page="Assinar agora"]:active {
+    background-color: var(--accent-purple); 
+    transform: scale(1.00); 
+    box-shadow: 0 0 20px var(--accent-purple), 0 0 8px var(--text-light); 
+}
+
+body {
+    margin-left: 0; /* Removido: margin-left: 250px; - Se não tem sidebar, não precisa */
+    padding: 30px;
+    padding-top: 90px; /* Espaço para a barra de navegação superior fixa */
+    background-color: var(--bg-dark);
+    /* Adicionado para garantir que o conteúdo da página seja tratado */
+    display: block; 
+    min-height: 100vh;
+}
+
+/* --- CABEÇALHO, LOGO E NAVEGAÇÃO --- */
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: var(--color-bg-secondary);
+    border-bottom: 2px solid var(--color-purple-primary);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--color-purple-primary);
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    /* MANTÉM: Começa após a barra lateral de 250px */
+    left: 0px; 
+    right: 0;
+    height: 70px;
+    background-color: black; 
+    border-bottom: 1px solid #4F0064; 
+    z-index: 50;
+    padding: 0 30px;
+    
+    /* CHAVE PARA CENTRALIZAR: Usa flexbox para alinhar o conteúdo */
+    display: flex;
+    /* Alinha o conteúdo (o .nav-list) no CENTRO da área branca */
+    justify-content: center; 
+    align-items: center; 
+}
+.nav-list {
+    display: flex;
+    list-style: none;
+}
+.nav-item {
+    margin: 0 15px;
+}
+.nav-item a {
+    font-weight: 600;
+    padding-bottom: 5px;
+    color:rgb(255, 255, 255)
+}
+
+/*destacar class produto*/
+.nav-list a[data-page="planos"] {
+    color: rgb(255, 255, 255);
+    border-bottom: 3px solid #A020F0;
+}
+
+/* Adicionado para centralizar todo o conteúdo da página de planos */
+.testimonials-section {
+    width: 100%;
+    /* Usa flexbox para centralizar horizontalmente o conteúdo */
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+}
+
+/* --- Título da Página de Planos (CORRIGIDO) --- */
+.page-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-light); 
+    text-transform: uppercase;
+    text-align: center; /* CENTRALIZA O TEXTO (A LINHA) */
+    margin: 0 auto 40px auto; /* CENTRALIZA O BLOCO */
+    letter-spacing: 2px;
+    display: block; /* Garante que o elemento ocupe a largura total */
+    max-width: fit-content; /* Permite que a linha sublinhada seja do tamanho do texto */
+    padding-bottom: 5px;
+    border-bottom: 3px solid var(--accent-purple); /* Linha roxa */
+ font-size: 3rem;
+ font-weight: 900;
+ color: var(--text-light); 
+ text-transform: uppercase;
+ text-align: center; /* ALTERADO: Centraliza o texto */
+ margin: 0 auto 40px auto; /* NOVO: Adicionado auto para centralizar o elemento */
+ letter-spacing: 2px;
+ display: block; /* ALTERADO: Mude para 'block' para que 'margin: auto' funcione */
+ padding-bottom: 5px;
+ width: fit-content; /* NOVO: Define a largura para o conteúdo */
+ border-bottom: 3px solid var(--accent-purple); /* Linha roxa */
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px; 
+    max-width: 1100px; 
+    margin: 40px auto; /* Centraliza o grid */
+    width: 100%; /* Adicionado para garantir que o margin: auto funcione corretamente */
+}
+
+.product-card {
+    background-color: var(--bg-card);
+    padding: 10px 20px; 
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column ; /* Organiza o conteúdo interno (detalhes, preço) verticalmente */
+    align-items: center;
+    text-align: center; /* Centraliza o texto dentro do card */
+    min-height: 500px; /* Garante que todos os cards tenham altura similar visualmente */
+    
+    /* Mantendo o efeito Neon da Borda */
+    border: 3px solid var(--accent-purple);
+    box-shadow: 0 0 10px var(--accent-purple); 
+    transition: all 0.3s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px var(--accent-purple);
+}
+
+
+/* --- Detalhes internos do Card --- */
+
+.product-details {
+    flex-grow: 1; /* Permite que o conteúdo estique */
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+}
+
+.product-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--accent-purple);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(160, 32, 240, 0.5); /* Linha divisória sutil */
+}
+
+.card-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-light); /* Mudei para light, já que é a lista de recursos */
+    text-align: left; /* Lista de recursos alinhada à esquerda dentro do card */
+    padding: 0 10px;
+}
+
+.card-text br {
+    line-height: 10px; 
+}
+
+
+/* --- Preços e Botões --- */
+.product-price-box {
+    width: 100%; /* Ocupa a largura total do card */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Empurra o preço e o botão para baixo */
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+}
+
+.price-old {
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+.price-new {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--accent-purple); /* Destaque o preço com a cor neon */
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px rgba(160, 32, 240, 0.7); /* Pequeno brilho no preço */
+}
+
+.action-button {
+    width: 90%; 
+    max-width: 250px; 
+    /* Estilos de clique (mantidos do seu pedido anterior) */
+    background-color: var(--accent-purple);
+    color: var(--text-light);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px; /* Formato de pílula */
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: 0 0 5px var(--accent-purple);
+}
+
+.action-button:hover {
+    background-color: #8A00FF; 
+    box-shadow: 0 0 15px var(--accent-purple);
+}
+
+/* Regra de Clique/Active (Mantida) */
+.action-button:active,
+.action-button:focus,
+a[data-page="assinar agora"]:active,
+a[data-page="assinar agora"]:focus {
+    transform: scale(0.96); /* Efeito mais visível */
+    box-shadow: 0 0 30px var(--accent-purple), 0 0 12px var(--text-light); 
+}
+
+
+/* --- Responsividade para 1 ou 2 Colunas em Telas Menores --- */
+
+@media (max-width: 1200px) {
+    /* Em telas de tablet grandes, use 2 colunas */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Em telas de celular, volte para 1 coluna vertical */
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 20px;
+    }
+    
+    .product-card {
+        min-height: 400px; /* Ajusta a altura em mobile */
+    }
+}
