@@ -70,7 +70,11 @@ body {
     left: 0px; 
     right: 0;
     height: 70px;
+<<<<<<< HEAD
     background-color: rgb(255, 255, 255); 
+=======
+    background-color: black; 
+>>>>>>> 47a436541f57991e6f795816884029b13ba8d2de
     border-bottom: 1px solid #4F0064; 
     z-index: 50;
     padding: 0 30px;
@@ -91,12 +95,20 @@ body {
 .nav-item a {
     font-weight: 600;
     padding-bottom: 5px;
+<<<<<<< HEAD
     color:rgb(0, 0, 0)
+=======
+    color:rgb(255, 255, 255)
+>>>>>>> 47a436541f57991e6f795816884029b13ba8d2de
 }
 
 /*destacar class produto*/
 .nav-list a[data-page="planos"] {
+<<<<<<< HEAD
     color: rgb(0, 0, 0);
+=======
+    color: rgb(255, 255, 255);
+>>>>>>> 47a436541f57991e6f795816884029b13ba8d2de
     border-bottom: 3px solid #A020F0;
 }
 

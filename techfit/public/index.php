@@ -1,4 +1,4 @@
-<?php
+=<?php
 // public/index.php - Front Controller
 
 // Inicia a sessão

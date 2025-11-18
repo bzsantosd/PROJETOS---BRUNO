@@ -31,7 +31,11 @@ body {
 }
 
 a {
+<<<<<<< HEAD
     color: black;
+=======
+    color: var(--color-text-light);
+>>>>>>> 47a436541f57991e6f795816884029b13ba8d2de
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -46,7 +50,11 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     padding: 20px 5%;
+<<<<<<< HEAD
     background-color: white;
+=======
+    background-color: var(--color-bg-secondary);
+>>>>>>> 47a436541f57991e6f795816884029b13ba8d2de
     border-bottom: 2px solid var(--color-purple-primary);
 }
 
@@ -91,11 +99,19 @@ a:hover {
 
 .btn-login:hover {
     background-color: var(--color-text-light);
+<<<<<<< HEAD
     color: white;
 }
 
 .btn-register {
     background-color: white;
+=======
+    color: var(--color-dark);
+}
+
+.btn-register {
+    background-color: var(--color-purple-primary);
+>>>>>>> 47a436541f57991e6f795816884029b13ba8d2de
     border: 2px solid var(--color-purple-primary);
 }
 
