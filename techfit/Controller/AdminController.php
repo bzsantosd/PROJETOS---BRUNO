@@ -1,5 +1,7 @@
 <?php
-// Controller/AdminController.php
+
+require_once __DIR__ . '/../Models/Produto.php';
+require_once __DIR__ . '/../Models/Aluno.php';
 
 class AdminController {
     private $produtoModel;
@@ -14,10 +16,6 @@ class AdminController {
      * Verifica se o usuário é administrador
      */
     private function checarPermissao() {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        
         if (!isset($_SESSION['usuario_logado']) || $_SESSION['user_role'] !== 'admin') {
             $_SESSION['erro_permissao'] = 'Acesso negado! Apenas administradores.';
             header('Location: /login');
@@ -35,7 +33,6 @@ class AdminController {
         $alunos = $this->alunoModel->listarTodos();
         $relatorioCategoria = $this->produtoModel->relatorioCategoria();
         
-        // Estatísticas
         $totalProdutos = count($produtos);
         $totalAlunos = count($alunos);
         $valorEstoque = array_sum(array_map(function($p) {
@@ -43,22 +40,16 @@ class AdminController {
         }, $produtos));
         $produtosBaixoEstoque = $this->produtoModel->listarBaixoEstoque(5);
         
-        include __DIR__ . '/../View/admin/dashboard.php';
+        include __DIR__ . '/../Views/admin/dashboard.php';
     }
 
     // ========== PRODUTOS ==========
     
-    /**
-     * Exibe formulário de cadastro de produtos
-     */
     public function exibirCadastroProduto() {
         $this->checarPermissao();
-        include __DIR__ . '/../View/admin/cadastro_produtos.php';
+        include __DIR__ . '/../Views/admin/cadastro_produtos.php';
     }
 
-    /**
-     * Processa cadastro de produtos
-     */
     public function cadastrarProduto() {
         $this->checarPermissao();
 
@@ -73,7 +64,6 @@ class AdminController {
         $quantidade = (int) ($_POST['quantidade'] ?? 0);
         $idAdministrador = $_SESSION['user_id'];
 
-        // Validações
         if (empty($nome) || $preco <= 0 || empty($categoria) || $quantidade < 0) {
             $_SESSION['erro_produto'] = 'Preencha todos os campos corretamente!';
             $this->exibirCadastroProduto();
@@ -98,21 +88,15 @@ class AdminController {
         }
     }
 
-    /**
-     * Lista todos os produtos
-     */
     public function listarProdutos() {
         $this->checarPermissao();
         
         $categoria = $_GET['categoria'] ?? null;
         $produtos = $this->produtoModel->listarTodos($categoria);
         
-        include __DIR__ . '/../View/admin/lista_produtos.php';
+        include __DIR__ . '/../Views/admin/lista_produtos.php';
     }
 
-    /**
-     * Exibe formulário de edição
-     */
     public function exibirEdicaoProduto($id) {
         $this->checarPermissao();
         
@@ -124,12 +108,9 @@ class AdminController {
             exit();
         }
         
-        include __DIR__ . '/../View/admin/editar_produto.php';
+        include __DIR__ . '/../Views/admin/editar_produto.php';
     }
 
-    /**
-     * Processa edição de produto
-     */
     public function editarProduto($id) {
         $this->checarPermissao();
 
@@ -155,9 +136,6 @@ class AdminController {
         }
     }
 
-    /**
-     * Remove produto
-     */
     public function removerProduto($id) {
         $this->checarPermissao();
         
@@ -173,19 +151,13 @@ class AdminController {
 
     // ========== ALUNOS ==========
     
-    /**
-     * Lista todos os alunos
-     */
     public function listarAlunos() {
         $this->checarPermissao();
         
         $alunos = $this->alunoModel->listarTodos();
-        include __DIR__ . '/../View/admin/lista_alunos.php';
+        include __DIR__ . '/../Views/admin/lista_alunos.php';
     }
 
-    /**
-     * Exibe detalhes de um aluno
-     */
     public function verAluno($id) {
         $this->checarPermissao();
         
@@ -197,12 +169,9 @@ class AdminController {
             exit();
         }
         
-        include __DIR__ . '/../View/admin/detalhes_aluno.php';
+        include __DIR__ . '/../Views/admin/detalhes_aluno.php';
     }
 
-    /**
-     * Remove aluno
-     */
     public function removerAluno($id) {
         $this->checarPermissao();
         
