@@ -1,168 +1,170 @@
 <?php
-// Model/Usuario.php
+
 
 class Usuario {
     private $pdo;
-    private $table = 'Usuarios';
+    private $table = 'Usuario';
 
-    public function __construct($pdo) {
+    private $id;
+    private $nome;
+    private $email;
+    private $senha;
+    private $cpf;
+    private $contato;
+
+
+    public function __construct($pdo, $nome = null, $email = null, $senha = null, $cpf = null, $contato = null) {
         $this->pdo = $pdo;
+        $this->nome = $nome;
+        $this->email = $email;
+        $this->senha = $senha;
+        $this->cpf = $cpf;
+        $this->contato = $contato;
     }
 
-    /**
-     * Busca usuário por email
-     */
+    // Getters / Setters
+    public function getId() { return $this->id; }
+    public function setId($id) { $this->id = $id; return $this; }
+
+    public function getNome() { return $this->nome; }
+    public function setNome($nome) { $this->nome = $nome; return $this; }
+
+    public function getEmail() { return $this->email; }
+    public function setEmail($email) { $this->email = $email; return $this; }
+
+    public function getSenha() { return $this->senha; }
+    public function setSenha($senha) { $this->senha = $senha; return $this; }
+
+    public function getCpf() { return $this->cpf; }
+    public function setCpf($cpf) { $this->cpf = $cpf; return $this; }
+
+    public function getContato() { return $this->contato; }
+    public function setContato($contato) { $this->contato = $contato; return $this; }
+
+    // Mapear linha do banco para objeto
+    public function fromRow(array $row) {
+        $this->id = $row['Id_Usuario'] ?? $row['id'] ?? null;
+        $this->nome = $row['nome_usuario'] ?? $row['nome'] ?? null;
+        $this->email = $row['email'] ?? null;
+        $this->senha = $row['senha'] ?? null;
+        $this->cpf = $row['cpf'] ?? null;
+        $this->contato = $row['contato'] ?? null;
+        return $this;
+    }
+
+    // Consultas
     public function buscarPorEmail($email) {
         $sql = "SELECT * FROM {$this->table} WHERE email = ? LIMIT 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$email]);
-        return $stmt->fetch();
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $row ? $row : false;
     }
 
-    /**
-     * Busca usuário por ID
-     */
+    public function buscarPorCpf($cpf) {
+        $sql = "SELECT * FROM {$this->table} WHERE cpf = ? LIMIT 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$cpf]);
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $row ? $row : false;
+    }
+
+    public function buscarPorEmailSenha($email, $senha) {
+        $sql = "SELECT * FROM {$this->table} WHERE email = ? LIMIT 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$email]);
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if (!$row) return false;
+        return ($row['senha'] === $senha) ? $row : false;
+    }
+
+    // CRUD
+    public function cadastrar($nome = null, $email = null, $senha = null, $cpf = null, $contato = null, $idAdministrador = 1) {
+        $nome = $nome ?? $this->nome;
+        $email = $email ?? $this->email;
+        $senha = $senha ?? $this->senha;
+        $cpf = $cpf ?? $this->cpf;
+        $contato = $contato ?? $this->contato;
+        $idAdministrador = $idAdministrador ?? $this->idAdministrador ?? 1;
+
+        if (!$nome || !$email || !$senha) {
+            return ['sucesso' => false, 'mensagem' => 'Nome, email e senha são obrigatórios.'];
+        }
+
+        if ($this->buscarPorEmail($email)) {
+            return ['sucesso' => false, 'mensagem' => 'Email já cadastrado.'];
+        }
+
+        if ($cpf && $this->buscarPorCpf($cpf)) {
+            return ['sucesso' => false, 'mensagem' => 'CPF já cadastrado.'];
+        }
+
+        $sql = "INSERT INTO {$this->table} (nome_usuario, email, senha, cpf, contato, Id_Administrador)
+                VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $this->pdo->prepare($sql);
+
+        try {
+            $ok = $stmt->execute([$nome, $email, $senha, $cpf, $contato, $idAdministrador]);
+            $this->id = $this->pdo->lastInsertId();
+            $this->nome = $nome;
+            $this->email = $email;
+            $this->senha = $senha;
+            $this->cpf = $cpf;
+            $this->contato = $contato;
+            return ['sucesso' => $ok, 'id' => $this->id, 'mensagem' => 'Usuário cadastrado com sucesso.'];
+        } catch (\PDOException $e) {
+            error_log("Usuario::cadastrar - " . $e->getMessage());
+            return ['sucesso' => false, 'mensagem' => 'Erro ao cadastrar: ' . $e->getMessage()];
+        }
+    }
+
+    public function login($email, $senha) {
+        $row = $this->buscarPorEmailSenha($email, $senha);
+        if (!$row) return ['sucesso' => false, 'mensagem' => 'Credenciais inválidas.'];
+        $user = (new self($this->pdo))->fromRow($row);
+        return ['sucesso' => true, 'usuario' => ['id' => $user->getId(), 'nome' => $user->getNome(), 'email' => $user->getEmail()]];
+    }
+
+    public function listarTodos() {
+        $sql = "SELECT * FROM {$this->table} ORDER BY nome_usuario";
+        $stmt = $this->pdo->query($sql);
+        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $result = [];
+        foreach ($rows as $row) {
+            $result[] = (new self($this->pdo))->fromRow($row);
+        }
+        return $result;
+    }
+
     public function buscarPorId($id) {
         $sql = "SELECT * FROM {$this->table} WHERE Id_Usuario = ? LIMIT 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id]);
-        return $stmt->fetch();
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $row ? (new self($this->pdo))->fromRow($row) : null;
     }
 
-    /**
-     * Login de usuário (usando email e senha)
-     */
-    public function login($email, $senha) {
-        $usuario = $this->buscarPorEmail($email);
-        
-        if (!$usuario) {
-            return ['sucesso' => false, 'mensagem' => 'Usuário não encontrado!'];
-        }
-
-        // Verifica a senha (assumindo que está em hash)
-        if (password_verify($senha, $usuario['senha'])) {
-            return [
-                'sucesso' => true,
-                'usuario' => [
-                    'id' => $usuario['Id_Usuario'],
-                    'nome' => $usuario['nome'],
-                    'email' => $usuario['email'],
-                    'tipo' => $usuario['tipo']
-                ]
-            ];
-        }
-
-        return ['sucesso' => false, 'mensagem' => 'Senha incorreta!'];
-    }
-
-    /**
-     * Cadastra novo usuário
-     */
-    public function cadastrar($nome, $email, $senha, $tipo = 'aluno') {
-        // Verifica se email já existe
-        if ($this->buscarPorEmail($email)) {
-            return ['sucesso' => false, 'mensagem' => 'Email já cadastrado!'];
-        }
-
-        $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-
-        $sql = "INSERT INTO {$this->table} (nome, email, senha, tipo) 
-                VALUES (?, ?, ?, ?)";
-        
+    public function atualizar($id, $nome, $email, $contato) {
+        $sql = "UPDATE {$this->table} SET nome_usuario = ?, email = ?, contato = ? WHERE Id_Usuario = ?";
         $stmt = $this->pdo->prepare($sql);
-        
         try {
-            $resultado = $stmt->execute([$nome, $email, $senhaHash, $tipo]);
-            return [
-                'sucesso' => $resultado,
-                'id' => $this->pdo->lastInsertId(),
-                'mensagem' => 'Usuário cadastrado com sucesso!'
-            ];
-        } catch (PDOException $e) {
-            error_log("Erro ao cadastrar usuário: " . $e->getMessage());
-            return ['sucesso' => false, 'mensagem' => 'Erro ao cadastrar usuário.'];
+            $ok = $stmt->execute([$nome, $email, $contato, $id]);
+            return ['sucesso' => $ok, 'mensagem' => 'Usuário atualizado.'];
+        } catch (\PDOException $e) {
+            error_log("Usuario::atualizar - " . $e->getMessage());
+            return ['sucesso' => false, 'mensagem' => 'Erro ao atualizar: ' . $e->getMessage()];
         }
     }
 
-    /**
-     * Atualiza dados do usuário
-     */
-    public function atualizar($id, $nome, $email) {
-        $sql = "UPDATE {$this->table} 
-                SET nome = ?, email = ?
-                WHERE Id_Usuario = ?";
-        
-        $stmt = $this->pdo->prepare($sql);
-        
-        try {
-            $resultado = $stmt->execute([$nome, $email, $id]);
-            return ['sucesso' => $resultado, 'mensagem' => 'Dados atualizados!'];
-        } catch (PDOException $e) {
-            return ['sucesso' => false, 'mensagem' => 'Erro ao atualizar.'];
-        }
-    }
-
-    /**
-     * Atualiza senha do usuário
-     */
-    public function atualizarSenha($id, $senhaAntiga, $senhaNova) {
-        $usuario = $this->buscarPorId($id);
-        
-        if (!$usuario) {
-            return ['sucesso' => false, 'mensagem' => 'Usuário não encontrado!'];
-        }
-
-        if (!password_verify($senhaAntiga, $usuario['senha'])) {
-            return ['sucesso' => false, 'mensagem' => 'Senha antiga incorreta!'];
-        }
-
-        $senhaHash = password_hash($senhaNova, PASSWORD_DEFAULT);
-        
-        $sql = "UPDATE {$this->table} SET senha = ? WHERE Id_Usuario = ?";
-        $stmt = $this->pdo->prepare($sql);
-        
-        try {
-            $resultado = $stmt->execute([$senhaHash, $id]);
-            return ['sucesso' => $resultado, 'mensagem' => 'Senha atualizada!'];
-        } catch (PDOException $e) {
-            return ['sucesso' => false, 'mensagem' => 'Erro ao atualizar senha.'];
-        }
-    }
-
-    /**
-     * Remove usuário
-     */
     public function remover($id) {
         $sql = "DELETE FROM {$this->table} WHERE Id_Usuario = ?";
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([$id]);
-    }
-
-    /**
-     * Lista todos os usuários
-     */
-    public function listarTodos($tipo = null) {
-        if ($tipo) {
-            $sql = "SELECT * FROM {$this->table} WHERE tipo = ? ORDER BY nome";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([$tipo]);
-        } else {
-            $sql = "SELECT * FROM {$this->table} ORDER BY nome";
-            $stmt = $this->pdo->query($sql);
+        try {
+            return $stmt->execute([$id]);
+        } catch (\PDOException $e) {
+            error_log("Usuario::remover - " . $e->getMessage());
+            return false;
         }
-        
-        return $stmt->fetchAll();
-    }
-
-    /**
-     * Conta usuários por tipo
-     */
-    public function contarPorTipo($tipo) {
-        $sql = "SELECT COUNT(*) as total FROM {$this->table} WHERE tipo = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$tipo]);
-        $result = $stmt->fetch();
-        return $result['total'] ?? 0;
     }
 }
 ?>

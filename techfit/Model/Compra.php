@@ -1,19 +1,19 @@
 <?php
-class Aluno {
+class Compra {
     private $pdo;
-    private $table = 'Aluno';
+    private $table = 'Compra';
 
     private $id;
-    private $nome;
+    private $nomeComprador;
     private $email;
     private $cpf;
     private $endereco;
     private $contato;
     private $idAdministrador;
 
-    public function __construct($pdo, $nome = null, $email = null, $cpf = null, $endereco = null, $contato = null, $idAdministrador = null) {
+    public function __construct($pdo, $nomeComprador = null, $email = null, $cpf = null, $endereco = null, $contato = null, $idAdministrador = null) {
         $this->pdo = $pdo;
-        $this->nome = $nome;
+        $this->nomeComprador = $nomeComprador;
         $this->email = $email;
         $this->cpf = $cpf;
         $this->endereco = $endereco;
@@ -25,8 +25,8 @@ class Aluno {
     public function getId() { return $this->id; }
     public function setId($id) { $this->id = $id; return $this; }
 
-    public function getNome() { return $this->nome; }
-    public function setNome($nome) { $this->nome = $nome; return $this; }
+    public function getNomeComprador() { return $this->nomeComprador; }
+    public function setNomeComprador($nome) { $this->nomeComprador = $nome; return $this; }
 
     public function getEmail() { return $this->email; }
     public function setEmail($email) { $this->email = $email; return $this; }
@@ -45,8 +45,8 @@ class Aluno {
 
     // Preenche objeto a partir de uma linha do banco
     public function fromRow(array $row) {
-        $this->id = $row['Id_Aluno'] ?? $row['id'] ?? null;
-        $this->nome = $row['nome_aluno'] ?? $row['nome'] ?? null;
+        $this->id = $row['Id_Compra'] ?? $row['id'] ?? null;
+        $this->nomeComprador = $row['nome_comprador'] ?? $row['nome'] ?? null;
         $this->email = $row['email'] ?? null;
         $this->cpf = $row['cpf'] ?? null;
         $this->endereco = $row['endereco'] ?? null;
@@ -82,31 +82,28 @@ class Aluno {
         return $row ? $row : false;
     }
 
-    // Cadastra novo aluno
-    public function cadastrar($nome = null, $email = null, $cpf = null, $endereco = null, $contato = null, $idAdministrador = 1) {
-        $nome = $nome ?? $this->nome;
+    // Cadastra nova compra
+    public function cadastrar($nomeComprador = null, $email = null, $cpf = null, $endereco = null, $contato = null, $idAdministrador = 1) {
+        $nomeComprador = $nomeComprador ?? $this->nomeComprador;
         $email = $email ?? $this->email;
         $cpf = $cpf ?? $this->cpf;
         $endereco = $endereco ?? $this->endereco;
         $contato = $contato ?? $this->contato;
         $idAdministrador = $idAdministrador ?? $this->idAdministrador ?? 1;
 
-        if ($this->buscarPorEmail($email)) {
-            return ['sucesso' => false, 'mensagem' => 'Email já cadastrado!'];
+        // validações básicas (ajuste conforme regra de negócio)
+        if (!$email || !$cpf) {
+            return ['sucesso' => false, 'mensagem' => 'Email e CPF são obrigatórios!'];
         }
 
-        if ($this->buscarPorCpf($cpf)) {
-            return ['sucesso' => false, 'mensagem' => 'CPF já cadastrado!'];
-        }
-
-        $sql = "INSERT INTO {$this->table} (nome_aluno, email, cpf, endereco, contato, Id_Administrador)
+        $sql = "INSERT INTO {$this->table} (nome_comprador, email, cpf, endereco, contato, Id_Administrador)
                 VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
 
         try {
-            $resultado = $stmt->execute([$nome, $email, $cpf, $endereco, $contato, $idAdministrador]);
+            $resultado = $stmt->execute([$nomeComprador, $email, $cpf, $endereco, $contato, $idAdministrador]);
             $this->id = $this->pdo->lastInsertId();
-            $this->nome = $nome;
+            $this->nomeComprador = $nomeComprador;
             $this->email = $email;
             $this->cpf = $cpf;
             $this->endereco = $endereco;
@@ -116,35 +113,29 @@ class Aluno {
             return [
                 'sucesso' => $resultado,
                 'id' => $this->id,
-                'mensagem' => 'Cadastro realizado com sucesso!'
+                'mensagem' => 'Compra cadastrada com sucesso!'
             ];
         } catch (\PDOException $e) {
-            error_log("Erro ao cadastrar aluno: " . $e->getMessage());
+            error_log("Erro ao cadastrar compra: " . $e->getMessage());
             return ['sucesso' => false, 'mensagem' => 'Erro ao cadastrar: ' . $e->getMessage()];
         }
     }
 
-    // Login (email + cpf)
-    public function login($email, $cpf) {
-        $row = $this->buscarPorEmailCpf($email, $cpf);
-        if (!$row) {
-            return ['sucesso' => false, 'mensagem' => 'Dados não encontrados!'];
-        }
-        $aluno = (new self($this->pdo))->fromRow($row);
-        return [
-            'sucesso' => true,
-            'aluno' => [
-                'id' => $aluno->getId(),
-                'nome' => $aluno->getNome(),
-                'email' => $aluno->getEmail(),
-                'cpf' => $aluno->getCpf()
-            ]
-        ];
+    // Recupera compra por ID (retorna objeto Compra ou null)
+    public function buscarPorId($id) {
+        $sql = "SELECT c.*, ad.nome_administrador 
+                FROM {$this->table} c
+                LEFT JOIN Administrador ad ON c.Id_Administrador = ad.Id_Administrador
+                WHERE c.Id_Compra = ? LIMIT 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$id]);
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $row ? (new self($this->pdo))->fromRow($row) : null;
     }
 
-    // Lista todos (retorna array de objetos Aluno)
+    // Lista todas as compras (retorna array de objetos Compra)
     public function listarTodos() {
-        $sql = "SELECT * FROM {$this->table} ORDER BY nome_aluno";
+        $sql = "SELECT * FROM {$this->table} ORDER BY Id_Compra DESC";
         $stmt = $this->pdo->query($sql);
         $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         $result = [];
@@ -154,41 +145,29 @@ class Aluno {
         return $result;
     }
 
-    // Busca por ID (retorna objeto Aluno ou null)
-    public function buscarPorId($id) {
-        $sql = "SELECT a.*, ad.nome_administrador 
-                FROM {$this->table} a
-                LEFT JOIN Administrador ad ON a.Id_Administrador = ad.Id_Administrador
-                WHERE a.Id_Aluno = ? LIMIT 1";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$id]);
-        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-        return $row ? (new self($this->pdo))->fromRow($row) : null;
-    }
-
-    // Atualiza aluno
-    public function atualizar($id, $nome, $email, $endereco, $contato) {
+    // Atualiza compra (ajuste campos conforme necessidade)
+    public function atualizar($id, $nomeComprador, $email, $endereco, $contato) {
         $sql = "UPDATE {$this->table}
-                SET nome_aluno = ?, email = ?, endereco = ?, contato = ?
-                WHERE Id_Aluno = ?";
+                SET nome_comprador = ?, email = ?, endereco = ?, contato = ?
+                WHERE Id_Compra = ?";
         $stmt = $this->pdo->prepare($sql);
         try {
-            $resultado = $stmt->execute([$nome, $email, $endereco, $contato, $id]);
-            return ['sucesso' => $resultado, 'mensagem' => 'Dados atualizados!'];
+            $resultado = $stmt->execute([$nomeComprador, $email, $endereco, $contato, $id]);
+            return ['sucesso' => $resultado, 'mensagem' => 'Compra atualizada!'];
         } catch (\PDOException $e) {
-            error_log("Erro ao atualizar aluno: " . $e->getMessage());
+            error_log("Erro ao atualizar compra: " . $e->getMessage());
             return ['sucesso' => false, 'mensagem' => 'Erro ao atualizar: ' . $e->getMessage()];
         }
     }
 
-    // Remove aluno
+    // Remove compra
     public function remover($id) {
-        $sql = "DELETE FROM {$this->table} WHERE Id_Aluno = ?";
+        $sql = "DELETE FROM {$this->table} WHERE Id_Compra = ?";
         $stmt = $this->pdo->prepare($sql);
         try {
             return $stmt->execute([$id]);
         } catch (\PDOException $e) {
-            error_log("Erro ao remover aluno: " . $e->getMessage());
+            error_log("Erro ao remover compra: " . $e->getMessage());
             return false;
         }
     }

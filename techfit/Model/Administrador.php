@@ -4,48 +4,99 @@ class Administrador {
     private $pdo;
     private $table = 'Administrador';
 
-    public function __construct($pdo) {
+    private $id;
+    private $nome;
+    private $cargaHoraria;
+    private $salario;
+    private $email;
+
+    public function __construct($pdo, $nome = null, $cargaHoraria = null, $salario = null, $email = null) {
         $this->pdo = $pdo;
+        $this->nome = $nome;
+        $this->cargaHoraria = $cargaHoraria;
+        $this->salario = $salario;
+        $this->email = $email;
     }
 
-    /**
-     * Busca administrador por email
-     */
+    public function getId() {
+        return $this->id;
+    }
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function getNome() {
+        return $this->nome;
+    }
+    public function setNome($nome) {
+        $this->nome = $nome;
+        return $this;
+    }
+
+    public function getCargaHoraria() {
+        return $this->cargaHoraria;
+    }
+    public function setCargaHoraria($cargaHoraria) {
+        $this->cargaHoraria = $cargaHoraria;
+        return $this;
+    }
+
+    public function getSalario() {
+        return $this->salario;
+    }
+    public function setSalario($salario) {
+        $this->salario = $salario;
+        return $this;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+    public function setEmail($email) {
+        $this->email = $email;
+        return $this;
+    }
+    public function fromRow(array $row) {
+        $this->id = $row['Id_Administrador'] ?? $row['id'] ?? null;
+        $this->nome = $row['nome_administrador'] ?? $row['nome'] ?? null;
+        $this->cargaHoraria = $row['carga_horaria'] ?? $row['cargaHoraria'] ?? null;
+        $this->salario = $row['salario'] ?? $row['valor'] ?? null;
+        $this->email = $row['email'] ?? null;
+        return $this;
+    }
+
     public function buscarPorEmail($email) {
         $sql = "SELECT * FROM {$this->table} WHERE email = ? LIMIT 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$email]);
-        return $stmt->fetch();
+        $row = $stmt->fetch();
+        return $row ? $row : false;
     }
 
-    /**
-     * Login de administrador
-     * Nota: Como sua tabela não tem senha, vamos usar email fixo
-     */
     public function login($email, $senha) {
-        // Admin fixo do seu sistema
         $adminEmail = 'adm@techfit.com';
-        $adminSenha = 'TechF!tAdm#2025$';
+        $adminSenha = 'TechFadm2025#';
 
         if ($email === $adminEmail && $senha === $adminSenha) {
-            // Busca ou cria admin no banco
-            $admin = $this->buscarPorEmail($adminEmail);
+            $adminRow = $this->buscarPorEmail($adminEmail);
             
-            if (!$admin) {
-                // Cria admin se não existir
+            if (!$adminRow) {
                 $sql = "INSERT INTO {$this->table} (nome_administrador, carga_horaria, salario, email) 
                         VALUES (?, ?, ?, ?)";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute(['Administrador Master', 40, 5000.00, $adminEmail]);
-                $admin = $this->buscarPorEmail($adminEmail);
+                $adminRow = $this->buscarPorEmail($adminEmail);
             }
+
+            $adminObj = (new self($this->pdo))->fromRow($adminRow);
 
             return [
                 'sucesso' => true,
                 'admin' => [
-                    'id' => $admin['Id_Administrador'],
-                    'nome' => $admin['nome_administrador'],
-                    'email' => $admin['email']
+                    'id' => $adminObj->getId(),
+                    'nome' => $adminObj->getNome(),
+                    'email' => $adminObj->getEmail()
                 ]
             ];
         }
@@ -53,19 +104,24 @@ class Administrador {
         return ['sucesso' => false, 'mensagem' => 'Credenciais inválidas!'];
     }
 
-    /**
-     * Lista todos os administradores
-     */
     public function listarTodos() {
         $sql = "SELECT * FROM {$this->table} ORDER BY nome_administrador";
         $stmt = $this->pdo->query($sql);
-        return $stmt->fetchAll();
+        $rows = $stmt->fetchAll();
+        $result = [];
+        foreach ($rows as $row) {
+            $result[] = (new self($this->pdo))->fromRow($row);
+        }
+        return $result;
     }
 
-    /**
-     * Cadastra novo administrador
-     */
-    public function cadastrar($nome, $cargaHoraria, $salario, $email) {
+
+    public function cadastrar($nome = null, $cargaHoraria = null, $salario = null, $email = null) {
+        $nome = $nome ?? $this->nome;
+        $cargaHoraria = $cargaHoraria ?? $this->cargaHoraria;
+        $salario = $salario ?? $this->salario;
+        $email = $email ?? $this->email;
+
         $sql = "INSERT INTO {$this->table} (nome_administrador, carga_horaria, salario, email) 
                 VALUES (?, ?, ?, ?)";
         
@@ -73,12 +129,18 @@ class Administrador {
         
         try {
             $resultado = $stmt->execute([$nome, $cargaHoraria, $salario, $email]);
+            $this->id = $this->pdo->lastInsertId();
+            $this->nome = $nome;
+            $this->cargaHoraria = $cargaHoraria;
+            $this->salario = $salario;
+            $this->email = $email;
+
             return [
                 'sucesso' => $resultado,
-                'id' => $this->pdo->lastInsertId(),
+                'id' => $this->id,
                 'mensagem' => 'Administrador cadastrado!'
             ];
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             return ['sucesso' => false, 'mensagem' => 'Erro ao cadastrar: ' . $e->getMessage()];
         }
     }

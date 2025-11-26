@@ -1,5 +1,7 @@
 <?php
-// Controller/AuthController.php
+
+require_once __DIR__ . '/../Models/Aluno.php';
+require_once __DIR__ . '/../Models/Administrador.php';
 
 class AuthController {
     private $alunoModel;
@@ -14,7 +16,7 @@ class AuthController {
      * Exibe o formulário de login
      */
     public function exibirLogin() {
-        include __DIR__ . '/../View/auth/login.php';
+        include __DIR__ . '/../Views/auth/login.php';
     }
 
     /**
@@ -54,7 +56,6 @@ class AuthController {
         }
 
         // Se não for admin, tenta login como ALUNO
-        // Para aluno: usuario = email, senha = CPF (sem pontos e traços)
         $cpfLimpo = preg_replace('/[^0-9]/', '', $senha);
         $cpfFormatado = substr($cpfLimpo, 0, 3) . '.' . 
                         substr($cpfLimpo, 3, 3) . '.' . 
@@ -84,7 +85,7 @@ class AuthController {
      * Exibe formulário de cadastro de aluno
      */
     public function exibirCadastro() {
-        include __DIR__ . '/../View/auth/cadastro.php';
+        include __DIR__ . '/../Views/auth/cadastro.php';
     }
 
     /**
@@ -102,7 +103,6 @@ class AuthController {
         $endereco = htmlspecialchars(trim($_POST['endereco'] ?? ''));
         $contato = htmlspecialchars(trim($_POST['contato'] ?? ''));
 
-        // Validações
         if (empty($nome) || empty($email) || empty($cpf)) {
             $_SESSION['erro_cadastro'] = 'Preencha todos os campos obrigatórios!';
             $this->exibirCadastro();
@@ -115,7 +115,7 @@ class AuthController {
             return;
         }
 
-        // Formata CPF
+
         $cpfFormatado = substr($cpf, 0, 3) . '.' . 
                         substr($cpf, 3, 3) . '.' . 
                         substr($cpf, 6, 3) . '-' . 
@@ -137,7 +137,7 @@ class AuthController {
      * Exibe formulário de recuperação
      */
     public function exibirEsqueceuSenha() {
-        include __DIR__ . '/../View/auth/esqueceu_senha.php';
+        include __DIR__ . '/../Views/auth/esqueceu_senha.php';
     }
 
     /**
@@ -174,7 +174,7 @@ class AuthController {
      * Logout
      */
     public function logout() {
-        session_start();
+        session_unset();
         session_destroy();
         header('Location: /login');
         exit();
