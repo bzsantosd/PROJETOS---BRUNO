@@ -1,45 +1,32 @@
 <?php
-// Config/Database.php
 
-class Database {
-    private $host = 'localhost';
-    private $db_name = 'techfit';  // ✅ Nome do seu banco
-    private $username = 'root';
-    private $password = 'senaisp'; // ⚠️ ALTERE AQUI se tiver senha
-    private $charset = 'utf8mb4';
-    private $pdo;
+class Connection {
+  private static $instance = null;
+  public static function getInstance() {
+    if (!self::$instance) {
+        try {
 
-    /**
-     * Obtém a conexão PDO (Singleton)
-     */
-    public function getConnection() {
-        if ($this->pdo === null) {
-            try {
-                $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset={$this->charset}";
-                
-                $options = [
-                    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                    PDO::ATTR_EMULATE_PREPARES   => false,
-                    PDO::ATTR_PERSISTENT         => false
-                ];
+            $host = 'localhost';
+            $dbname = 'SENAI';
+            $user = 'root';
+            $pass = 'senaisp';
 
-                $this->pdo = new PDO($dsn, $this->username, $this->password, $options);
-                
-            } catch (PDOException $e) {
-                error_log("Erro de Conexão: " . $e->getMessage());
-                die("Erro ao conectar ao banco de dados. Verifique suas credenciais.");
-            }
-        }
-        
-        return $this->pdo;
+
+            //conecta ao MySQL
+            self::$instance = new PDO(
+                "mysql:host=$host;charset=utf8", $user, $pass
+            );
+
+            self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            //cria o banco de dados se não existir
+            self::$instance->exec("CREATE DATABASE IF NOT EXISTS $dbname CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci");
+            self::$instance->exec("USE $dbname");
+
+        } catch (PDOException $e) {
+            die("Erro ao conectar ao MySQL: " . $e->getMessage());
+        }  
     }
-
-    /**
-     * Fecha a conexão explicitamente
-     */
-    public function closeConnection() {
-        $this->pdo = null;
+    return self::$instance;
     }
 }
-?>
