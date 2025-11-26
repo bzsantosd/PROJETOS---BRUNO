@@ -1,0 +1,305 @@
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000; /* Fundo preto para as laterais */
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* --- HEADER --- */
+header {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 15px 0;
+    font-size: 14px;
+}
+
+header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 15px;
+    transition: color 0.3s;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    background: none;
+    border: none;
+    color: #fff;
+    outline: none;
+    padding: 5px;
+    border-bottom: 1px solid #444;
+}
+
+.search-box button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding-left: 5px;
+}
+
+/* --- MAIN PURCHASE CONTENT --- */
+.purchase-page {
+    position: relative;
+    min-height: 80vh; /* Altura mínima para o conteúdo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    overflow: hidden;
+}
+
+.treadmill-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://picsum.photos/1600/900?grayscale&blur=2'); /* Substitua pela imagem da esteira (treadmill) */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.4); /* Escurece a imagem */
+    z-index: 1;
+}
+
+.purchase-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+}
+
+.purchase-content h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.form-container {
+    display: flex;
+    gap: 30px;
+    text-align: left;
+    margin: 0 auto;
+}
+
+/* --- Painel Esquerdo: Formulário --- */
+.form-panel {
+    flex: 2; /* Ocupa mais espaço */
+    background-color: rgba(0, 0, 0, 0.75); /* Fundo escuro semi-transparente */
+    padding: 30px;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 15px 0 10px;
+}
+
+.form-panel input[type="email"],
+.form-panel input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.form-panel input::placeholder {
+    color: #aaa;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row input {
+    flex: 1;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.checkbox-group {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.checkbox-group input {
+    width: auto;
+    margin-right: 10px;
+}
+
+.secure-payment-btn {
+    width: 100%;
+    background-color: #e67e22; /* Laranja da imagem */
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.secure-payment-btn:hover {
+    background-color: #d35400;
+}
+
+.encryption-info {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+    color: #aaa;
+}
+
+/* --- Painel Direito: Resumo --- */
+.summary-panel {
+    flex: 1; /* Ocupa menos espaço */
+    background-color: #333; /* Fundo cinza escuro */
+    padding: 30px;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.plan-info {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #555;
+}
+
+.plan-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.icon-placeholder {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.recommended-tag {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    background-color: #e67e22;
+    color: #fff;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 0 4px 0 4px;
+}
+
+.summary-panel h3 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.summary-panel p {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.pricing-details {
+    padding-top: 20px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.total-due {
+    font-size: 18px;
+    font-weight: 700;
+    padding: 10px 0;
+    border-top: 1px solid #555;
+    margin-top: 15px;
+}
+
+.total-value {
+    color: #e67e22; /* Cor de destaque */
+}
+
+.renewal-info {
+    font-size: 12px;
+    text-align: center;
+    color: #aaa;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #1a1a1a;
+    padding: 20px 0;
+    font-size: 12px;
+}
+
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.social-icons a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.footer-links span {
+    margin-left: 15px;
+    color: #aaa;
+}
