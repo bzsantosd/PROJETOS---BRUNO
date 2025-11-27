@@ -31,11 +31,7 @@ body {
 }
 
 a {
-<<<<<<< HEAD
-    color: black;
-=======
-    color: var(--color-text-light);
->>>>>>> 47a436541f57991e6f795816884029b13ba8d2de
+    color: var(--color-text-light); /* Cor do link branco/claro */
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -44,29 +40,39 @@ a:hover {
     color: var(--color-purple-primary);
 }
 
-/* 1. ESTILO DO CABEÇALHO */
 .header-content {
+    /* MUDANÇA AQUI: Voltando para display: flex para layout em linha */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    /* MUDANÇA AQUI: Distribui o espaço: empurra a navegação (navbar) para o centro */
+    justify-content: space-between; 
+    /* MUDANÇA AQUI: Alinha os itens verticalmente ao centro */
+    align-items: center; 
+    
     padding: 20px 5%;
-<<<<<<< HEAD
-    background-color: white;
-=======
-    background-color: var(--color-bg-secondary);
->>>>>>> 47a436541f57991e6f795816884029b13ba8d2de
+    background-color: var(--color-dark); 
     border-bottom: 2px solid var(--color-purple-primary);
 }
 
-.logo {
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--color-purple-primary);
+/* REMOVER: Esta regra deve ser removida ou modificada se você tiver ela no seu CSS,
+    pois ela forçava a navegação e botões a ficarem um abaixo do outro. 
+*/
+/* .header-content {
+    flex-direction: column; 
+}
+*/
+
+.navbar {
+    /* REMOVER a margem inferior para o layout em linha, se o objetivo é que fique tudo na mesma linha. */
+    margin-bottom: 0; 
+    /* Garantir que a navegação ocupe o espaço central */
+    flex-grow: 1; 
+    text-align: center; /* Centraliza o conteúdo da nav */
 }
 
 .nav-list {
     display: flex;
     list-style: none;
+    /* justify-content: center; Não é necessário se o pai .header-content tiver align-items: center e .navbar não for 100% */
 }
 
 .nav-item {
@@ -76,6 +82,7 @@ a:hover {
 .nav-item a {
     font-weight: 600;
     padding-bottom: 5px;
+    color: var(--color-text-light); /* Garante que os links da nav sejam brancos/claros */
 }
 
 .nav-item.active a,
@@ -88,8 +95,8 @@ a:hover {
     padding: 8px 15px;
     border-radius: 5px;
     font-weight: 600;
-    margin-left: 10px;
-    transition: background-color 0.3s ease;
+    margin: 0 5px; /* Ajusta o margin entre os botões */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .btn-login {
@@ -97,26 +104,28 @@ a:hover {
     border: 2px solid var(--color-text-light);
 }
 
+.btn-login {
+    background-color: var(--color-purple-primary); /* Fundo Roxo */
+    color: var(--color-text-light); /* Texto Branco */
+    border: 2px solid var(--color-purple-primary);
+}
+
 .btn-login:hover {
-    background-color: var(--color-text-light);
-<<<<<<< HEAD
-    color: white;
+    background-color: var(--color-purple-hover); /* Fundo Roxo Claro */
+    color: var(--color-purple-primary); /* Texto Roxo Escuro */
+    border-color: var(--color-purple-hover);
 }
 
+/* NOVO ESTILO PARA O BOTÃO CADASTRE-SE */
 .btn-register {
-    background-color: white;
-=======
-    color: var(--color-dark);
-}
-
-.btn-register {
-    background-color: var(--color-purple-primary);
->>>>>>> 47a436541f57991e6f795816884029b13ba8d2de
+    background-color: var(--color-purple-primary); /* Fundo Roxo */
+    color: var(--color-text-light); /* Texto Branco */
     border: 2px solid var(--color-purple-primary);
 }
 
 .btn-register:hover {
-    background-color: var(--color-purple-hover);
+    background-color: var(--color-purple-hover); /* Fundo Roxo Claro */
+    color: var(--color-purple-primary); /* Texto Roxo Escuro */
     border-color: var(--color-purple-hover);
 }
 

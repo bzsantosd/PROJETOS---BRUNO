@@ -1,11 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assinatura</title>
+    <title>Complete Sua Compra | Fitness+</title>
+    <link rel="stylesheet" href="../public/css/Assinatura.css">
+  
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <div class="container">
     
+            <nav>
+                <ul>
+                    <li><a href="/techfit/public/tela inicial.html">HOME</a></li>
+                    <li><a href="/techfit/public/Planos.html">PLANOS</a></li>
+                    <li><a href="/techfit/public/Produtos.html">PRODUTOS</a></li>
+                    <li><a href="/techfit/public/contato.html">CONTATO</a></li>
+                    <li><a href="/techfit/public/sobrenos.html">SOBRE NÓS</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="BUSCAR...">
+                <button>&#128269;</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="purchase-page">
+        <div class="background-overlay"></div>
+        <div class="treadmill-background"></div>
+
+        <div class="purchase-content">
+            <h1>COMPLETE SUA COMPRA</h1>
+            <div class="form-container">
+                
+                <div class="form-panel">
+                    <form>
+                        <h2 class="section-title">Informações de Contato</h2>
+                        <input type="email" placeholder="Endereço de e-mail" value="joao.silva@email.com">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="keep-informed" checked>
+                            <label for="keep-informed">Mantenha-me informado(a)...</label>
+                        </div>
+                        
+                        <h2 class="section-title">Detalhes do Pagamento</h2>
+                        <input type="text" placeholder="Número do cartão" class="full-width">
+                        
+                        <div class="form-row">
+                            <input type="text" placeholder="Nome no cartão">
+                            <input type="text" placeholder="Data de Vencimento (MM/AA)">
+                        </div>
+                        <div class="form-row">
+                            <input type="text" placeholder="CVV">
+                            <input type="text" placeholder="CVV">
+                        </div>
+
+                        <h2 class="section-title">Endereço de Cobrança</h2>
+                        <input type="text" placeholder="País" class="full-width">
+                        <input type="text" placeholder="Endereço da rua" class="full-width">
+                        <div class="form-row">
+                             <input type="text" placeholder="Estado / Província">
+                            <input type="text" placeholder="Cidade">
+                        </div>
+                        <input type="text" placeholder="CEP / Código Postal" class="full-width">
+                        
+                        <button type="submit" class="secure-payment-btn">PAGAMENTO SEGURO</button>
+                        <p class="encryption-info">Suas informações de pagamento são criptografadas e seguras.</p>
+                    </form>
+                </div>
+
+                <div class="summary-panel">
+                    <div class="plan-info">
+                        <div class="plan-header">
+                            <div class="icon-placeholder">&#128170;</div>
+                            <span class="recommended-tag">RECOMENDADO</span>
+                        </div>
+                        <h3>PREMIUM</h3>
+                        <p>Cobrado Anualmente</p>
+                    </div>
+
+                    <div class="pricing-details">
+                        <div class="price-row">
+                            <span>Desconto:</span>
+                            <span class="discount-value">$957.12</span>
+                        </div>
+                        <div class="price-row total-due">
+                            <span>Total Devido Hoje</span>
+                            <span class="total-value">$957.12</span>
+                        </div>
+                        <p class="renewal-info">Renovação anual por $1056.00</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="#">&#x1F424;</a>
+                <a href="#">&#x1F423;</a>
+                <a href="#">&#x25CF;</a>
+            </div>
+            <div class="footer-links">
+                <span>Links Rápidos</span>
+                <span>Links Úteis</span>
+                <span>Seus Direitos</span>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../public/js/Assinatura.js"></script>
 </body>
 </html>
