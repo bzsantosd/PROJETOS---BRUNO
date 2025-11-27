@@ -274,7 +274,6 @@ if (session_status() === PHP_SESSION_NONE) {
             }
         });
 
-        // Máscara Telefone
         document.getElementById('contato').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length <= 11) {

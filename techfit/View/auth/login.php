@@ -13,13 +13,12 @@ if (session_status() === PHP_SESSION_NONE) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-dark: #000000;
-            --color-text-light: #ffffff;
-            --color-purple-primary: #8a2be2;
-            --color-input-bg: #222222;
-            --color-placeholder: #aaaaaa;
+            --primary-color: #8a2be2; /* Um tom de roxo vibrante */
+            --text-color: #ffffff;
+            --dark-bg: #000000;
+            --input-bg: #ffffff;
+            --link-color: #8a2be2; /* Roxo mais claro para links */
         }
-
         * {
             margin: 0;
             padding: 0;
@@ -27,218 +26,132 @@ if (session_status() === PHP_SESSION_NONE) {
             font-family: 'Poppins', sans-serif;
         }
 
-        body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: var(--color-text-light);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+        html, body {
+            height: 100%;
+            background-color: #ffffff;
         }
 
-        .container {
+        .login-container {
             display: flex;
-            width: 900px;
-            min-height: 500px;
-            background-color: rgba(0, 0, 0, 0.8);
-            box-shadow: 0 0 50px rgba(138, 43, 226, 0.3);
-            overflow: hidden;
-            border-radius: 20px;
-            border: 1px solid rgba(138, 43, 226, 0.2);
+            height: 100vh;
+            width: 100%;
         }
-
         .image-section {
-            width: 45%;
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.5)),
-                        url('/images/academia.jpg');
+            flex: 1;
+            background-color: #222; 
+            background-image: url('/IMAGENS/07.jpg');
             background-size: cover;
             background-position: center;
             position: relative;
+            padding: 20px;
+            color: var(--text-color);
         }
-
-        .image-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.4), transparent);
-        }
-
-        .form-section {
-            width: 55%;
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 60px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .logo h1 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #8a2be2, #a020f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-        }
-
-        .logo p {
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-
-        h2 {
-            font-size: 2rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .alert {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-
-        .alert-error {
-            background-color: rgba(255, 68, 68, 0.2);
-            border: 1px solid #ff4444;
-            color: #ff6b6b;
-        }
-
-        .alert-success {
-            background-color: rgba(0, 200, 81, 0.2);
-            border: 1px solid #00C851;
-            color: #00ff88;
-        }
-
-        .input-group {
-            margin-bottom: 25px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #bbb;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid rgba(138, 43, 226, 0.3);
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--color-text-light);
-            font-size: 1rem;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--color-purple-primary);
-            background-color: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
-        }
-
-        .input-group input::placeholder {
-            color: #666;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #a020f0, #8a2be2);
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
-        }
-
-        .submit-button:active {
-            transform: translateY(0);
-        }
-
-        .links {
-            text-align: center;
-            margin-top: 25px;
-        }
-
-        .links a {
-            color: var(--color-purple-primary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-
-        .links a:hover {
-            color: #a020f0;
-            text-decoration: underline;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        .divider span {
-            color: #666;
-            padding: 0 10px;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
+        .login-section {
             flex: 1;
-            height: 1px;
-            background: rgba(138, 43, 226, 0.3);
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .info-box {
-            background: rgba(138, 43, 226, 0.1);
-            border-left: 3px solid var(--color-purple-primary);
-            padding: 15px;
-            margin-top: 20px;
+        .login-box {
+            width: 80%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        .login-title {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .background-image {
+            width: 90px; 
+            height: 90px; 
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 40px auto; /* Aumentei o margin-bottom para 40px */
+        }
+        .login-form {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .login-form label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 8px 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--input-bg);
+            color: var(--dark-bg);
+            font-size: 16px;
+            outline: none;
+        }
+        .links {
+            text-align: right;
+            margin-top: 10px;
+            margin-bottom: 25px; /* Adicionei margem para separar do botão ENTRAR */
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .forgot-password, .register-text a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .register-text a {
+            font-weight: 600;
+        }
+
+        .botoes-container {
+            width: 100%;
+        }
+        .btn {
+            display: block; /* Essencial para que o width e margin: auto funcionem */
+            padding: 10px;
+            border: none;
             border-radius: 5px;
-            font-size: 0.85rem;
-            color: #aaa;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none; /* Remove sublinhado dos links */
+            text-align: center; /* Centraliza o texto dentro do link */
+            width: 85%; /* Defina a largura desejada, 85% é um bom tamanho */
+            margin: 15px auto; /* 15px de margem vertical e auto nas laterais para centralizar */
+        }
+        .btn-login-full {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            margin-top: 0; 
         }
 
-        @media (max-width: 950px) {
-            .container {
-                flex-direction: column;
-                width: 95%;
-            }
-            .image-section {
-                width: 100%;
-                height: 150px;
-            }
-            .form-section {
-                width: 100%;
-                padding: 40px 30px;
-            }
+        .btn-login-full:hover {
+            background-color: #6a0dad;
         }
+        .btn-adm-full {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+           
+        }
+
+        .btn-adm-full:hover {
+            background-color: #6a0dad;
+        }
+
     </style>
 </head>
 <body>
