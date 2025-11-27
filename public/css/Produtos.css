@@ -1,9 +1,9 @@
 /* --- ESTILOS GERAIS E RESET --- */
 :root {
-    --primary-color: #5d288c; /* Roxo principal da TechFit */
+    --primary-color: #A020F0; /* Roxo principal da TechFit */
     --secondary-color: #fff; /* Branco */
     --background-dark: #000; /* Fundo principal escuro */
-    --sidebar-bg: #2d0a4c; /* Fundo mais escuro/saturado da barra lateral */
+    --sidebar-bg: #A020F0; /* Fundo mais escuro/saturado da barra lateral */
     --price-color: #fff; /* Cor do preço */
 
     --font-family: 'Poppins', sans-serif;

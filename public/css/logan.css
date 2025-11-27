@@ -2,7 +2,6 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-image: url('/techfit/public/images/cliente\ foto.jpg');
     background-size: cover;
     background-position: 80% 5%;
     border: 2px solid var(--primary-purple);

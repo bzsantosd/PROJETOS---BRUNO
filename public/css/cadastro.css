@@ -2,11 +2,12 @@
     :root {
         --color-dark: #000000;
         --color-text-light: #ffffff;
-        --color-purple-primary: #4F0064;
+        --color-purple-primary: #A020F0;
         --color-input-bg: #222222;
         --color-placeholder: #aaaaaa;
         --color-border: #444444;
     }
+    
     * {
         margin: 0;
         padding: 0;

@@ -32,7 +32,7 @@ html, body {
 .image-section {
     flex: 1;
     background-color: #222; 
-    background-image: url('/IMAGENS/07.jpg');
+      background-image: url(https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/IMG%20LOGIN.png?raw=true);
     background-size: cover;
     background-position: center;
     position: relative;
