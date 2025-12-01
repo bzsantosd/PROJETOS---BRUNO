@@ -95,7 +95,7 @@ main {
     left: 250px; /* Começa após a barra lateral */
     right: 0;
     height: 60px;
-    background-color: white; /* Fundo branco do topo */
+    background-color: black; /* Fundo branco do topo */
     border-bottom: 1px solid black; /* Linha de separação */        
     z-index: 5;
     padding: 0 30px;
@@ -112,7 +112,7 @@ main {
 
 .nav-item a {
     text-decoration: none;
-    color: black; /* Cor do texto preto no topo */
+    color: #FFFFFF; /* Cor do texto preto no topo */
     font-weight: 600;
     font-size: 14px;
     padding: 10px 0;

@@ -5,7 +5,7 @@
     --accent-purple: #A020F0; /* Roxo/Magenta Vibrante (o neon/primary color) */
     --text-light: #FFFFFF; /* Texto principal claro */
     --text-secondary: #AAAAAA; /* Texto secundário (descrições) */
-    
+    --color-purple-primary: #A020F0;
     /* Cores específicas para o novo layout */
     --sidebar-bg: #5a00a0; /* Um roxo sólido mais escuro para a barra lateral */
     --nav-top-bg: #FFFFFF; /* Fundo branco para a navegação superior */
@@ -32,6 +32,7 @@ a {
     color: inherit;
 }
 a[data-page="Assinar agora"]:active {
+    color: var(--text-light);
     background-color: var(--accent-purple); 
     transform: scale(1.00); 
     box-shadow: 0 0 20px var(--accent-purple), 0 0 8px var(--text-light); 
@@ -53,9 +54,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
+    padding: 5px 5%;
     background-color: var(--color-bg-secondary);
-    border-bottom: 2px solid var(--color-purple-primary);
 }
 
 .logo {
@@ -65,25 +65,16 @@ body {
 }
 .navbar {
     position: fixed;
-    top: 0;
-    /* MANTÉM: Começa após a barra lateral de 250px */
     left: 0px; 
     right: 0;
     height: 70px;
-<<<<<<< HEAD
-    background-color: rgb(255, 255, 255); 
-=======
-    background-color: black; 
->>>>>>> 47a436541f57991e6f795816884029b13ba8d2de
-    border-bottom: 1px solid #4F0064; 
+    background-color: rgb(0, 0, 0); 
     z-index: 50;
     padding: 0 30px;
     
-    /* CHAVE PARA CENTRALIZAR: Usa flexbox para alinhar o conteúdo */
-    display: flex;
-    /* Alinha o conteúdo (o .nav-list) no CENTRO da área branca */
     justify-content: center; 
-    align-items: center; 
+    align-items: center;  
+    border-bottom: 2px solid var(--color-purple-primary);
 }
 .nav-list {
     display: flex;
@@ -95,20 +86,12 @@ body {
 .nav-item a {
     font-weight: 600;
     padding-bottom: 5px;
-<<<<<<< HEAD
-    color:rgb(0, 0, 0)
-=======
     color:rgb(255, 255, 255)
->>>>>>> 47a436541f57991e6f795816884029b13ba8d2de
 }
 
 /*destacar class produto*/
 .nav-list a[data-page="planos"] {
-<<<<<<< HEAD
-    color: rgb(0, 0, 0);
-=======
-    color: rgb(255, 255, 255);
->>>>>>> 47a436541f57991e6f795816884029b13ba8d2de
+    color: #A020F0;
     border-bottom: 3px solid #A020F0;
 }
 

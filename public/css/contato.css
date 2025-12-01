@@ -31,16 +31,14 @@ header {
     position: relative; 
 }
 
-/* Container do título e logo */
 .header-content {
     display: flex;
-    /* Ajuste: Logo à esquerda, Título ao centro */
-    flex-direction: row; 
     justify-content: space-between; 
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 50px; /* Padding ajustado para o container */
+    align-items: center; 
+    /* AUMENTO NO PADDING VERTICAL para aumentar a altura do cabeçalho */
+    padding: 50px 5%; /* Aumentado de 20px para 30px */
+    background-color: var(--color-dark); 
+    border-bottom: 2px solid var(--color-purple-primary);
 }
 
 /* Estilo do Logo (Esquerda) */
@@ -312,4 +310,17 @@ header {
         flex-direction: column;
         align-items: center;
     }
+}
+/* 4. RODAPÉ */
+.footer {
+    background-color: var(--color-bg-secondary);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer p {
+    font-size: 0.9rem;
+    color: #aaaaaa;
 }

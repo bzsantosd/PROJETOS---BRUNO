@@ -26,9 +26,7 @@ body {
     max-width: 450px; /* Largura máxima para centralizar o conteúdo */
     text-align: center;
     padding: 40px 20px;
-    /* Removeria a borda para ficar mais fiel ao fundo preto absoluto, 
-    mas se quiser simular um leve contorno interno, descomente: */
-    /* border: 1px solid rgba(255, 255, 255, 0.1); */
+  
 }
 
 /* Área do Logo e Título */
