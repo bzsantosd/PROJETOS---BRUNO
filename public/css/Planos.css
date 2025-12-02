@@ -40,8 +40,8 @@ a[data-page="Assinar agora"]:active {
 
 body {
     margin-left: 0; /* Removido: margin-left: 250px; - Se não tem sidebar, não precisa */
-    padding: 30px;
-    padding-top: 90px; /* Espaço para a barra de navegação superior fixa */
+    padding: 10px;
+    padding-top: 30px; /* Espaço para a barra de navegação superior fixa */
     background-color: var(--bg-dark);
     /* Adicionado para garantir que o conteúdo da página seja tratado */
     display: block; 
@@ -49,13 +49,14 @@ body {
 }
 
 /* --- CABEÇALHO, LOGO E NAVEGAÇÃO --- */
-
+/* 1. ESTILO DO CABEÇALHO */
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 5%;
+    padding: 20px 5%;
     background-color: var(--color-bg-secondary);
+    border-bottom: 2px solid var(--color-purple-primary);
 }
 
 .logo {
@@ -63,31 +64,55 @@ body {
     font-weight: 900;
     color: var(--color-purple-primary);
 }
-.navbar {
-    position: fixed;
-    left: 0px; 
-    right: 0;
-    height: 70px;
-    background-color: rgb(0, 0, 0); 
-    z-index: 50;
-    padding: 0 30px;
-    
-    justify-content: center; 
-    align-items: center;  
-    border-bottom: 2px solid var(--color-purple-primary);
-}
+
 .nav-list {
     display: flex;
     list-style: none;
 }
+
 .nav-item {
     margin: 0 15px;
 }
+
 .nav-item a {
     font-weight: 600;
     padding-bottom: 5px;
-    color:rgb(255, 255, 255)
 }
+
+.nav-item.active a,
+.nav-item a:hover {
+    color: var(--color-purple-primary);
+    border-bottom: 2px solid var(--color-purple-primary);
+}
+
+.auth-buttons .btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login {
+    background-color: transparent;
+    border: 2px solid var(--color-text-light);
+}
+
+.btn-login:hover {
+    background-color: var(--color-text-light);
+    color: var(--color-dark);
+}
+
+.btn-register {
+    background-color: var(--color-purple-primary);
+    border: 2px solid var(--color-purple-primary);
+}
+
+.btn-register:hover {
+    background-color: var(--color-purple-hover);
+    border-color: var(--color-purple-hover);
+}
+
 
 /*destacar class produto*/
 .nav-list a[data-page="planos"] {
