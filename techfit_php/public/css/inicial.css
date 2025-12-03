@@ -44,8 +44,7 @@ a:hover {
     display: flex;
     justify-content: space-between; 
     align-items: center; 
-    /* AUMENTO NO PADDING VERTICAL para aumentar a altura do cabeçalho */
-    padding: 50px 5%; /* Aumentado de 20px para 30px */
+    padding: 25px 5%; /* Aumentado de 20px para 30px */
     background-color: var(--color-dark); 
     border-bottom: 2px solid var(--color-purple-primary);
 }
@@ -121,12 +120,17 @@ a:hover {
 /* 2. SEÇÃO HERO (PRINCIPAL) */
 .hero-section {
     position: relative;
-    height: 50vh; /* Altura da viewport */
+    /* Reduz a altura para que a margem/padding adicione o espaço extra */
+    height: auto; /* Alterado de 50vh para auto para melhor controle com padding */
+    min-height: 40vh; /* Define uma altura mínima, se necessário */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     
+    /* ADICIONADO: Espaço no topo da seção para afastar da linha do header */
+    padding-top: 50px; /* Adiciona um espaço de 50px acima do conteúdo */
+
     margin-bottom: 50px;
 }
 

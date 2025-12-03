@@ -1,5 +1,15 @@
 /* --- Variáveis CSS --- */
 :root {
+    --bg-dark: #000000; /* Fundo preto total */
+    --bg-card: #1A1A1A; /* Fundo do card (levemente cinza escuro) */
+    --accent-purple: #A020F0; /* Roxo/Magenta Vibrante (o neon/primary color) */
+    --text-light: #FFFFFF; /* Texto principal claro */
+    --text-secondary: #AAAAAA; /* Texto secundário (descrições) */
+    --color-purple-primary: #A020F0;
+    /* Cores específicas para o novo layout */
+    --sidebar-bg: #5a00a0; /* Um roxo sólido mais escuro para a barra lateral */
+    --nav-top-bg: #FFFFFF; /* Fundo branco para a navegação superior */
+    --nav-top-text: #000000; /* Texto preto para a navegação superior */
     --primary-color: #A020F0; /* Roxo vibrante */
     --secondary-color: #7B68EE; /* Roxo mais claro (para detalhes) */
     --text-color: #FFFFFF;
@@ -24,23 +34,45 @@ body {
 }
 
 /* --- Cabeçalho e Conteúdo --- */
-header {
-    width: 100%;
-    /* Ajustado para deixar o header mais próximo do topo */
-    padding-top: 0.1px; 
-    position: relative; 
-}
-
 .header-content {
     display: flex;
     justify-content: space-between; 
     align-items: center; 
-    /* AUMENTO NO PADDING VERTICAL para aumentar a altura do cabeçalho */
-    padding: 50px 5%; /* Aumentado de 20px para 30px */
+    padding: 25px 5%; /* Aumentado de 20px para 30px */
     background-color: var(--color-dark); 
     border-bottom: 2px solid var(--color-purple-primary);
 }
 
+.navbar {
+    /* REMOVER a margem inferior para o layout em linha, se o objetivo é que fique tudo na mesma linha. */
+    margin-bottom: 0; 
+    /* Garantir que a navegação ocupe o espaço central */
+    flex-grow: 1; 
+    text-align: center; /* Centraliza o conteúdo da nav */
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    /* justify-content: center; Não é necessário se o pai .header-content tiver align-items: center e .navbar não for 100% */
+}
+
+.nav-item {
+    margin: 0 15px;
+}
+
+.nav-item a {
+    font-weight: 600;
+    padding-bottom: 5px;
+    text-decoration: none;
+    color: var(--color-text-light); /* Garante que os links da nav sejam brancos/claros */
+}
+
+.nav-item.active a,
+.nav-item a:hover {
+    color: var(--color-purple-primary);
+    border-bottom: 2px solid var(--color-purple-primary);
+}
 /* Estilo do Logo (Esquerda) */
 .logo-box {
     width: 150px; 
@@ -72,39 +104,6 @@ header {
     padding-left: 150px; 
 }
 
-/* --- Navegação --- */
-.nav-links {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    /* Margem superior reduzida para aproximar da área do logo/título */
-    margin-top: 5px; 
-    padding-bottom: 10px; 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.nav-links li {
-    margin: 0 15px;
-}
-
-.nav-links a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 600;
-    padding: 5px 10px;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--primary-color);
-}
-
-.nav-links .active a {
-    background-color: var(--primary-color);
-    border-radius: 5px;
-    color: var(--background-color);
-}
 
 /* --- Conteúdo Principal e Testemunhos (Adaptação) --- */
 .content-wrapper {
@@ -167,13 +166,11 @@ header {
 }
 
 .rating .star {
-    color: gold;
     font-size: 1.2em;
 }
 
 .card-text {
     margin-top: 15px;
-    font-style: italic;
     color: rgba(255, 255, 255, 0.8);
 }
 

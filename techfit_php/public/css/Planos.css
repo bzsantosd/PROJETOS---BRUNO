@@ -14,9 +14,10 @@
 
 /* --- Estilos Globais e Reset --- */
 * {
-    margin: 0;
+   margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -27,6 +28,11 @@ body {
     display: flex; /* Para que o main e a barra lateral funcionem juntos */
 }
 
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 a {
     text-decoration: none;
     color: inherit;
@@ -40,34 +46,36 @@ a[data-page="Assinar agora"]:active {
 
 body {
     margin-left: 0; /* Removido: margin-left: 250px; - Se não tem sidebar, não precisa */
-    padding: 10px;
-    padding-top: 30px; /* Espaço para a barra de navegação superior fixa */
+
+
     background-color: var(--bg-dark);
     /* Adicionado para garantir que o conteúdo da página seja tratado */
     display: block; 
     min-height: 100vh;
 }
 
-/* --- CABEÇALHO, LOGO E NAVEGAÇÃO --- */
-/* 1. ESTILO DO CABEÇALHO */
-.header-content {
+
+ .header-content {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    background-color: var(--color-bg-secondary);
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 25px 5%; /* Aumentado de 20px para 30px */
+    background-color: var(--color-dark); 
     border-bottom: 2px solid var(--color-purple-primary);
 }
 
-.logo {
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--color-purple-primary);
+.navbar {
+    /* REMOVER a margem inferior para o layout em linha, se o objetivo é que fique tudo na mesma linha. */
+    margin-bottom: 0; 
+    /* Garantir que a navegação ocupe o espaço central */
+    flex-grow: 1; 
+    text-align: center; /* Centraliza o conteúdo da nav */
 }
 
 .nav-list {
     display: flex;
     list-style: none;
+    /* justify-content: center; Não é necessário se o pai .header-content tiver align-items: center e .navbar não for 100% */
 }
 
 .nav-item {
@@ -77,6 +85,7 @@ body {
 .nav-item a {
     font-weight: 600;
     padding-bottom: 5px;
+    color: var(--color-text-light); /* Garante que os links da nav sejam brancos/claros */
 }
 
 .nav-item.active a,
@@ -84,7 +93,6 @@ body {
     color: var(--color-purple-primary);
     border-bottom: 2px solid var(--color-purple-primary);
 }
-
 .auth-buttons .btn {
     padding: 8px 15px;
     border-radius: 5px;
@@ -142,17 +150,7 @@ body {
     max-width: fit-content; /* Permite que a linha sublinhada seja do tamanho do texto */
     padding-bottom: 5px;
     border-bottom: 3px solid var(--accent-purple); /* Linha roxa */
- font-size: 3rem;
- font-weight: 900;
- color: var(--text-light); 
- text-transform: uppercase;
- text-align: center; /* ALTERADO: Centraliza o texto */
- margin: 0 auto 40px auto; /* NOVO: Adicionado auto para centralizar o elemento */
- letter-spacing: 2px;
- display: block; /* ALTERADO: Mude para 'block' para que 'margin: auto' funcione */
- padding-bottom: 5px;
- width: fit-content; /* NOVO: Define a largura para o conteúdo */
- border-bottom: 3px solid var(--accent-purple); /* Linha roxa */
+
 }
 
 .products-grid {
