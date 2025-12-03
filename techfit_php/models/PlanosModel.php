@@ -36,7 +36,7 @@ class PlanosModel {
     public function criar($titulo, $valor, $beneficios) {
         try {
             $stmt = $this->conn->prepare("INSERT INTO planos (titulo, valor, beneficios) VALUES (?, ?, ?)");
-            $stmt->bind_param("sdss", $titulo, $valor, $beneficios);
+            $stmt->bind_param("sds", $titulo, $valor, $beneficios);
             return $stmt->execute();
         } catch (Exception $e) {
             error_log("Erro ao criar plano: " . $e->getMessage());

@@ -137,7 +137,7 @@ a:hover {
 <form action="/admin/planos/criar" method="post">
     titulo: <input name="titulo" required><br><br>
     Valor: <input type="number" step="0.01" name="valor" required><br><br>
-    Beneficios: <textarea name="beneficio"></textarea><br><br>
+    Beneficios: <textarea name="beneficios"></textarea><br><br>
     <button type="submit">Salvar</button>
 </form>
 <br>

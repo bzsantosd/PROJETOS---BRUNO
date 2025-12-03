@@ -134,11 +134,11 @@ a:hover {
 
 <h1>Editar Plano</h1>
 <form action="/admin/planos/salvar" method="post">
-    <input type="hidden" name="id" value="<?= $produto['id'] ?>">
+    <input type="hidden" name="id" value="<?= $plano['id'] ?>">
 
-    Titulo: <input name="titulo" value="<?= $produto['titulo'] ?>" required><br><br>
-    Valor: <input type="number" step="0.01" name="valor" value="<?= $produto['valor'] ?>" required><br><br>
-    Beneficios: <textarea name="beneficios"><?= $produto['beneficios'] ?></textarea><br><br>
+    Titulo: <input name="titulo" value="<?= $plano['titulo'] ?>" required><br><br>
+    Valor: <input type="number" step="0.01" name="valor" value="<?= $plano['valor'] ?>" required><br><br>
+    Beneficios: <textarea name="beneficios"><?= $plano['beneficios'] ?></textarea><br><br>
     <button type="submit">Salvar</button>
 </form>
 <br>

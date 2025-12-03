@@ -1,145 +1,173 @@
 <?php
-// public/index.php - Ponto de entrada único da aplicação
-
-// Inicia a sessão
 session_start();
+date_default_timezone_set('America/Sao_Paulo');
 
-// Define o caminho base
-define('BASE_PATH', dirname(__DIR__));
+// Exibe erros em desenvolvimento
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-// Autoload simples para os controllers
-spl_autoload_register(function($class) {
+// Autoload
+spl_autoload_register(function ($class) {
     $paths = [
-        BASE_PATH . '/app/controllers/' . $class . '.php',
-        BASE_PATH . '/app/models/' . $class . '.php',
-        BASE_PATH . '/core/' . $class . '.php'
+        __DIR__ . '/../controllers/',
+        __DIR__ . '/../models/',
+        __DIR__ . '/../core/'
     ];
     
     foreach ($paths as $path) {
-        if (file_exists($path)) {
-            require_once $path;
+        $file = $path . $class . '.php';
+        if (file_exists($file)) {
+            require_once $file;
             return;
         }
     }
 });
 
-// Obtém a URL solicitada
-$url = $_SERVER['REQUEST_URI'];
-$url = str_replace('/techfit/', '', $url); // Remove o prefixo do projeto
-$url = parse_url($url, PHP_URL_PATH);
-$url = trim($url, '/');
+$uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+$method = $_SERVER["REQUEST_METHOD"];
 
-// Se a URL estiver vazia, redireciona para login
-if (empty($url)) {
-    $url = 'login';
+if (preg_match('/\.html$/', $uri)) {
+    $filePath = __DIR__ . '/../' . $uri; // Busca na pasta pai
+    
+    if (file_exists($filePath)) {
+        header('Content-Type: text/html; charset=UTF-8');
+        readfile($filePath);
+        exit;
+    }
+}
+// Raiz
+if ($uri === "/") {
+    header("Location: /Login.html");
+    exit;
 }
 
-// Sistema de rotas
-switch ($url) {
+// Login
+if ($uri === "/login" && $method === "POST") {
+    $controller = new UsuarioController();
+    $controller->login();
+}
+
+// Cadastro
+if ($uri === "/cadastro" && $method === "POST") {
+    $controller = new UsuarioController();
+    $controller->cadastro();
+}
+
+// Logout
+if ($uri === "/logout") {
+    $controller = new UsuarioController();
+    $controller->logout();
+}
+
+// Produtos
+if ($uri === "/produtos") {
+    $controller = new ProdutoController();
+    $controller->listarJson();
+}
+
+// Rotas Admin
+if (strpos($uri, '/admin') === 0) {
+    if (!isset($_SESSION['user']) || $_SESSION['user']['tipo'] !== 'admin') {
+        http_response_code(403);
+        die("Acesso negado! <a href='/Login.html'>Fazer login</a>");
+    }
     
-    // ============= ROTAS DE AUTENTICAÇÃO =============
-    case 'login':
-        $controller = new UsuarioController();
-        $controller->mostrarLogin();
-        break;
-        
-    case 'login/processar':
-        $controller = new UsuarioController();
-        $controller->processarLogin();
-        break;
-        
-    case 'cadastro':
-        $controller = new UsuarioController();
-        $controller->mostrarCadastro();
-        break;
-        
-    case 'cadastro/processar':
-        $controller = new UsuarioController();
-        $controller->processarCadastro();
-        break;
-        
-    case 'logout':
-        $controller = new UsuarioController();
-        $controller->logout();
-        break;
-    
-    // ============= ROTAS PÚBLICAS =============
-    case 'home':
-    case '':
-        require_once BASE_PATH . '/app/views/home/index.php';
-        break;
-        
-    case 'produtos':
-        $controller = new ProdutoController();
-        $controller->listar();
-        break;
-        
-    case (preg_match('/^produtos\/(\d+)$/', $url, $matches) ? true : false):
-        $controller = new ProdutoController();
-        $controller->detalhes($matches[1]);
-        break;
-    
-    // ============= ROTAS ADMINISTRATIVAS =============
-    case 'admin':
-    case 'admin/dashboard':
-        $controller = new AdminController();
-        $controller->dashboard();
-        break;
-        
-    case 'admin/usuarios':
+    if ($uri === "/admin/usuarios") {
         $controller = new AdminController();
         $controller->listarUsuarios();
-        break;
-        
-    case 'admin/produtos':
-        $controller = new AdminController();
-        $controller->listarProdutos();
-        break;
-        
-    case 'admin/produtos/cadastrar':
-        $controller = new ProdutoController();
-        $controller->mostrarFormularioCadastro();
-        break;
-        
-    case 'admin/produtos/salvar':
-        $controller = new ProdutoController();
-        $controller->cadastrar();
-        break;
-        
-    case (preg_match('/^admin\/produtos\/editar\/(\d+)$/', $url, $matches) ? true : false):
-        $controller = new ProdutoController();
-        $controller->mostrarFormularioEdicao($matches[1]);
-        break;
-        
-    case (preg_match('/^admin\/produtos\/atualizar\/(\d+)$/', $url, $matches) ? true : false):
-        $controller = new ProdutoController();
-        $controller->atualizar($matches[1]);
-        break;
-        
-    case (preg_match('/^admin\/produtos\/deletar\/(\d+)$/', $url, $matches) ? true : false):
-        $controller = new ProdutoController();
-        $controller->deletar($matches[1]);
-        break;
-        
-    case 'admin/relatorio-vendas':
-        $controller = new AdminController();
-        $controller->relatorioVendas();
-        break;
-        
-    case 'admin/fluxo-alunos':
-        $controller = new AdminController();
-        $controller->fluxoAlunos();
-        break;
-        
-    case 'admin/configuracoes':
-        $controller = new AdminController();
-        $controller->configuracoes();
-        break;
+        exit;
+    }
     
-    // ============= ROTA 404 =============
-    default:
-        http_response_code(404);
-        echo "<h1>Página não encontrada</h1>";
-        echo "<a href='/techfit/'>Voltar para o início</a>";
-        break;
+    if ($uri === "/admin/usuarios/deletar" && isset($_GET['id'])) {
+        $controller = new AdminController();
+        $controller->deletarUsuario($_GET['id']);
+    }
+
+        if ($uri === "/admin/usuarios/editar" && isset($_GET['id'])) {
+        $controller = new AdminController();
+        $controller->editarUsuarioForm(id: $_GET['id']);
+        exit;
+    }
+    
+    if ($uri === "/admin/usuarios/salvar" && $method === "POST") {
+        $controller = new AdminController();
+        $controller->editarUsuarioSalvar();
+    }
+    
+    
+// =========================================================================
+// Rotas Produtos
+    if ($uri === "/admin/produtos") {
+        $controller = new ProdutoController();
+        $controller->listar();
+        exit;
+    }
+    
+    if ($uri === "/admin/produtos/novo") {
+        $controller = new ProdutoController();
+        $controller->novo();
+        exit;
+    }
+    
+    if ($uri === "/admin/produtos/criar" && $method === "POST") {
+        $controller = new ProdutoController();
+        $controller->criar();
+    }
+    
+    if ($uri === "/admin/produtos/editar" && isset($_GET['id'])) {
+        $controller = new ProdutoController();
+        $controller->editarForm($_GET['id']);
+        exit;
+    }
+    
+    if ($uri === "/admin/produtos/salvar" && $method === "POST") {
+        $controller = new ProdutoController();
+        $controller->editarSalvar();
+    }
+    
+    if ($uri === "/admin/produtos/deletar" && isset($_GET['id'])) {
+        $controller = new ProdutoController();
+        $controller->deletar($_GET['id']);
+    }
+
+// =========================================================================
+// Rotas Planos
+    if ($uri === "/admin/planos") {
+        $controller = new PlanoController();
+        $controller->listar();
+        exit;
+    }
+    
+    if ($uri === "/admin/planos/novo") {
+        $controller = new PlanoController();
+        $controller->novo();
+        exit;
+    }
+    
+    if ($uri === "/admin/planos/criar" && $method === "POST") {
+        $controller = new PlanoController();
+        $controller->criar();
+    }
+    
+    if ($uri === "/admin/planos/editar" && isset($_GET['id'])) {
+        $controller = new PlanoController();
+        $controller->editarForm($_GET['id']);
+        exit;
+    }
+    
+    if ($uri === "/admin/planos/salvar" && $method === "POST") {
+        $controller = new PlanoController();
+        $controller->editarSalvar();
+    }
+    
+    if ($uri === "/admin/planos/deletar" && isset($_GET['id'])) {
+        $controller = new PlanoController();
+        $controller->deletar($_GET['id']);
+    }
 }
+
+// 404
+http_response_code(404);
+echo "<h1>404 - Página não encontrada</h1>";
+echo "<p>Rota: <strong>{$uri}</strong></p>";
+echo "<a href='/'>Voltar</a>";

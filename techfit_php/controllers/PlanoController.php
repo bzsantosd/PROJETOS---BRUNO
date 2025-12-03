@@ -30,9 +30,9 @@ class PlanoController {
         
         $titulo = $_POST['titulo'] ?? '';
         $valor = $_POST['valor'] ?? 0;
-        $beneficio = $_POST['beneficio'] ?? '';
+        $beneficios = $_POST['beneficios'] ?? '';
         
-        if ($this->model->criar($titulo, $valor, $beneficio)) {
+        if ($this->model->criar($titulo, $valor, $beneficios)) {
             header("Location: /admin/planos?msg=criado");
         } else {
             die("Erro ao criar plano!");
@@ -42,10 +42,10 @@ class PlanoController {
     
     public function editarForm($id) {
         $this->requireAdmin();
-        $produto = $this->model->buscarPorId($id);
+        $plano = $this->model->buscarPorId($id);
         
-        if (!$produto) {
-            die("Produto não encontrado!");
+       if (!$plano) {
+            die("Plano não encontrado!");
         }
         
         include __DIR__ . '/../views/admin/editarPlanos.php';
@@ -57,13 +57,13 @@ class PlanoController {
         $id = $_POST['id'] ?? 0;
         $titulo = $_POST['titulo'] ?? '';
         $valor = $_POST['valor'] ?? 0;
-        $beneficio = $_POST['beneficio'] ?? '';
+        $beneficios = $_POST['beneficios'] ?? '';
         
         
-        if ($this->model->editar($id, $titulo, $valor, $beneficio)) {
+        if ($this->model->editar($id, $titulo, $valor, $beneficios)) {
             header("Location: /admin/planos?msg=editado");
         } else {
-            die("Erro ao editar produto!");
+            die("Erro ao editar plano!");
         }
         exit;
     }

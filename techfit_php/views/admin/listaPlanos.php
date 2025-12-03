@@ -115,7 +115,7 @@ a:hover {
     <td><?= $p['id'] ?></td>
     <td><?= $p['titulo'] ?></td>
     <td>R$ <?= number_format($p['valor'], 2, ',', '.') ?></td>
-    <td><?= $p['beneficio'] ?></td>
+    <td><?= $p['beneficios'] ?></td>
     <td>
         <a href="/admin/planos/editar?id=<?= $p['id'] ?>">✏️</a>
         <a  href="/admin/planos/deletar?id=<?= $p['id'] ?>" onclick="return confirm('Excluir plano?')">🗑</a>

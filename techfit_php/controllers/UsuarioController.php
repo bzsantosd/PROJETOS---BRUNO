@@ -5,7 +5,7 @@ class UsuarioController {
     private $model;
     
     public function __construct() {
-        $this->model = new UserModel();
+        $this->model = new UsuarioModel();
     }
     
     public function login() {

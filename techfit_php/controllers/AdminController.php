@@ -8,7 +8,7 @@ class AdminController {
         if (!isset($_SESSION['user']) || $_SESSION['user']['tipo'] !== 'admin') {
             die("Acesso negado! <a href='/Login.html'>Fazer login</a>");
         }
-        $this->model = new UserModel();
+        $this->model = new UsuarioModel();
     }
     
     public function listarUsuarios() {

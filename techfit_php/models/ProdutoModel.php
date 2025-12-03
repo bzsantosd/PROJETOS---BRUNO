@@ -47,7 +47,7 @@ class ProductModel {
     public function editar($id, $nome, $preco, $descricao, $imagem) {
         try {
             $stmt = $this->conn->prepare("UPDATE produtos SET nome=?, preco=?, descricao=?, imagem=? WHERE id=?");
-            $stmt->bind_param("sdssi", $nome, $preco, $descricao, $imagem, $id);
+            $stmt->bind_param("sdsi", $nome, $preco, $descricao, $imagem, $id);
             return $stmt->execute();
         } catch (Exception $e) {
             error_log("Erro ao editar produto: " . $e->getMessage());
