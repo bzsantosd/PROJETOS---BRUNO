@@ -10,8 +10,8 @@
 :root {
     --color-dark: #000000;
     --color-text-light: #ffffff;
-    --color-purple-primary: #4F0064; /* Cor principal da TechFit */
-    --color-purple-hover: #6a008c;  /* Roxo mais claro para hover */
+
+    --color-purple-primary: #a020f0; /* Cor principal da TechFit */
     --color-bg-secondary: #1a1a1a;
     --color-border: #444444;
 }
