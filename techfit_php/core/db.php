@@ -6,7 +6,7 @@ class Database {
     private $host = "127.0.0.1";
     private $user = "root";
     private $pass = "senaisp";
-    private $dbname = "academia";
+    private $dbname = "SENAI";
     
     private function __construct() {
         try {

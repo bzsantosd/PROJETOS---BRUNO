@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . "/../models/UserModel.php";
+require_once __DIR__ . "/../models/UsuarioModel.php";
 
-class UserController {
+class UsuarioController {
     private $model;
     
     public function __construct() {
