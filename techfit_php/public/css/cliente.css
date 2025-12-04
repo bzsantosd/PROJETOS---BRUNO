@@ -1,0 +1,195 @@
+/* --- Variáveis CSS copiadas de contato.css --- */
+:root {
+    --bg-dark: #000000;
+    --bg-card: #1A1A1A;
+    --accent-purple: #A020F0;
+    --text-light: #FFFFFF;
+    --text-secondary: #AAAAAA;
+    --color-purple-bright: #A020F0;
+    --sidebar-bg: #5a00a0;
+    --nav-top-bg: #FFFFFF;
+    --nav-top-text: #000000;
+    --primary-color: #A020F0;
+    --secondary-color: #7B68EE;
+    --text-color: #FFFFFF;
+    --background-color: #000000;
+}
+
+/* --- Reset Básico e Fontes copiados de contato.css --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; 
+}
+
+/* --- Estilo Base do Corpo - Adotando o estilo dark de contato.css --- */
+body {
+    background-color: var(--background-color); /* Fundo preto */
+    color: var(--text-color); /* Texto branco */
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+
+/* ---------------------------------------------------- */
+/* --- ESTILOS DO HEADER (Adaptados de contato.css) --- */
+/* ---------------------------------------------------- */
+.header-content {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 25px 5%; 
+    background-color: var(--bg-dark); 
+    border-bottom: 2px solid var(--color-purple-bright);
+}
+
+.main-title {
+    /* Título de boas-vindas */
+    font-size: 1.8em; 
+    font-weight: 900; 
+    letter-spacing: 1px;
+    color: var(--color-purple-bright); /* Roxo vibrante */
+    margin: 0; 
+}
+
+.navbar {
+    flex-grow: 1; /* Permite que a navegação ocupe o espaço central */
+    text-align: right; 
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end; /* Alinha os links à direita do navbar */
+}
+
+.nav-item {
+    margin: 0 15px;
+}
+
+.nav-item a {
+    font-weight: 600;
+    padding-bottom: 5px;
+    text-decoration: none;
+    color: var(--text-light); 
+}
+
+.nav-item.active a,
+.nav-item a:hover {
+    color: var(--color-purple-bright);
+    border-bottom: 2px solid var(--color-purple-bright);
+}
+
+
+/* ------------------------------------------------ */
+/* --- ESTILOS DO PERFIL (Adaptados para o tema Dark) --- */
+/* ------------------------------------------------ */
+main {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--bg-dark); /* Fundo principal escuro */
+}
+
+.perfil-secao {
+    background-color: var(--bg-card); /* Card com fundo cinza escuro */
+    color: var(--text-light); /* Texto claro no card */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(160, 32, 240, 0.2); /* Sombra roxa sutil */
+}
+
+.perfil-secao h2 {
+    color: var(--primary-color); /* Títulos em roxo */
+    border-bottom: 1px solid var(--secondary-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.info-bloco {
+    margin-bottom: 15px;
+}
+
+.info-bloco label {
+    display: block;
+    font-weight: bold;
+    color: var(--text-secondary); /* Labels em cinza secundário */
+    margin-bottom: 5px;
+}
+
+.info-bloco p {
+    margin: 0;
+    padding: 10px;
+    background-color: rgba(123, 104, 238, 0.1); /* Fundo suavemente roxo para os dados */
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+    color: var(--text-light);
+}
+
+/* Lista de Pedidos */
+#pedidos ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+#pedidos li {
+    padding: 10px;
+    border-bottom: 1px dashed var(--text-secondary);
+}
+#pedidos li:last-child {
+    border-bottom: none;
+}
+
+.editar-btn {
+    background-color: var(--primary-color); /* Roxo/Magenta */
+    color: var(--text-light);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.editar-btn:hover {
+    background-color: var(--secondary-color); /* Roxo mais claro */
+}
+
+/* Footer simples (adaptado para o tema escuro) */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: var(--bg-dark);
+    border-top: 2px solid var(--color-purple-bright);
+    color: var(--text-secondary);
+}
+
+/* --- Responsividade (Simples, para o header) --- */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .main-title {
+        margin-bottom: 15px;
+        font-size: 1.5em;
+    }
+
+    .navbar {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-list {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-item {
+        margin: 5px 10px;
+    }
+}

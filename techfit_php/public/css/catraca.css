@@ -1,13 +1,13 @@
 :root {
     --bg-color: #17191d; /* Fundo principal escuro */
     --card-color: #24262b; /* Fundo do container e inputs */
-    --primary-color: #007bff; /* Azul primário (botão de entrar) */
+    --primary-color: #A020F0; /* Azul primário (botão de entrar) */
     --secondary-color: #363a40; /* Linha separadora, cinza escuro */
     --text-color: #e0e0e0; /* Texto claro */
     --placeholder-color: #888; /* Placeholder */
     --approve-color: #1abc9c; /* Verde para Aprovar */
     --reject-color: #e74c3c; /* Vermelho para Recusar */
-    --progress-color: #007bff; /* Azul para a barra de progresso */
+    --progress-color: #A020F0; /* Azul para a barra de progresso */
 }
 
 * {
@@ -111,7 +111,7 @@ body {
 
 /* --- Botões --- */
 .btn-entrar {
-    background-color: #0087ff; /* Cor exata do botão na imagem */
+    background-color: #A020F0; /* Cor exata do botão na imagem */
     color: white;
     padding: 15px;
     border: none;
@@ -126,7 +126,7 @@ body {
 }
 
 .btn-entrar:hover {
-    background-color: #006ee6;
+    background-color: #A020F0;
 }
 
 .btn-entrar i {
