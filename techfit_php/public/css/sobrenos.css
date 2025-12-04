@@ -1,11 +1,15 @@
+/* ==================== VARIÁVEIS ==================== */
 :root {
     --color-black: #000000;
-    --color-purple-bright: #A020F0; 
+    --color-purple-bright: #A020F0;
+    --color-purple-dark: #1a0033;
     --color-white: #ffffff;
     --color-text-light: #cccccc;
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-bg-secondary: #0a0a0a;
 }
 
-/* Reset básico e Configurações de Fonte */
+/* ==================== RESET E CONFIGURAÇÕES BÁSICAS ==================== */
 * {
     margin: 0;
     padding: 0;
@@ -19,38 +23,30 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-header {
-    width: 100%;
-    padding-top: 50px; 
-    position: relative; 
 }
 
-/* Container do título e logo */
+/* ==================== HEADER ==================== */
+header {
+    width: 100%;
+    padding-top: 20px;
+    position: relative;
+}
+
+/* Container do cabeçalho */
 .header-content {
     display: flex;
-    /* Ajuste principal: Inverte a ordem do conteúdo para que a Logo venha primeiro no layout */
-    flex-direction: row-reverse; 
-    
-    justify-content: space-between; /* Afasta o título da logo */
+    justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    background-color: var(--color-black);
 }
 
-/* Estilo do título ACADEMIA TECHFIT (Agora à Direita) */
-.main-title {
-    font-size: 2.2em;
-    font-weight: 900;
-    letter-spacing: 2px;
-    color: var(--text-color);
-    /* Garante que o título fique o mais à direita possível */
-    margin-left: auto; 
-    margin-right: 0; /* Remove margem desnecessária à direita */
+/* Logo */
+.logo-box {
+    width: 150px;
+    height: auto;
 }
-
 
 .logo-img {
     width: 100%;
@@ -59,71 +55,62 @@ header {
     display: block;
 }
 
-/* --- Header e Navegação (Estilos para posicionar logo à direita) --- */
+/* Título principal */
+.main-title {
+    font-size: 2.2em;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--color-white);
+}
 
-header {
+/* ==================== NAVEGAÇÃO ==================== */
+nav {
     width: 100%;
-    /* Reduz o padding no topo drasticamente. */
-    /* De 30px para 10px ou menos. */
-    padding-top: 0.1px; /* Ajustado para deixar mais próximo do topo */
-    position: relative;
+    margin-top: 10px;
 }
-
-/* Container do título e logo (mantido) */
-.header-content {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 50px; 
-}
-
-/* Estilo do Logo (Esquerda) (mantido) */
-.logo-box {
-    width: 150px; 
-    height: auto;
-    margin-right: 0; 
-}
-/* ... (Restante do .logo-box e .main-title permanece igual) ... */
-
-/* --- Ajuste na Navegação para Aproximar do Cabeçalho --- */
 
 .nav-links {
     list-style: none;
     display: flex;
-    justify-content: center;
+    justify-content: flex;
+    align-items: none;
     width: 100%;
-    /* Reduz a margem superior de 15px para 5px ou 0px para aproximar da área do logo/título */
-    margin-top: 5px; /* Ajustado para deixar mais próximo do logo/título */
-    padding-bottom: 10px; /* Reduzido um pouco o padding inferior da navegação */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 0;
+    border-bottom: 2px solid var(--color-purple-bright);
 }
 
-.nav-links li {
+.nav-item {
     margin: 0 15px;
 }
 
 .nav-links a {
-    color: var(--text-color);
+    color: var(--color-white);
     text-decoration: none;
     font-weight: 600;
-    padding: 5px 10px;
-    transition: color 0.3s;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    border-radius: 5px;
 }
 
-.nav-links .active {
+.nav-links a:hover {
+    color: var(--color-purple-bright);
+    background-color: rgba(160, 32, 240, 0.1);
+}
+
+.nav-links .active a {
     background-color: var(--color-purple-bright);
-    border-radius: 5px;
     color: var(--color-black);
 }
 
-
-/* --- Seção "Sobre Nós" (Conteúdo principal) --- */
+/* ==================== CONTEÚDO PRINCIPAL ==================== */
 .content-wrapper {
     width: 100%;
     max-width: 1000px;
-    padding: 20px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    flex: 1;
 }
 
 .about-section {
@@ -134,19 +121,26 @@ header {
 }
 
 .about-text-box {
-    /* Estilo da caixa de texto arredondada e roxa */
-    background: var(--color-purple-dark); /* Fundo roxo escuro */
-    border: 3px solid var(--color-purple-bright); /* Borda roxa brilhante */
-    border-radius: 20px; /* Cantos arredondados */
-    padding: 40px 60px;
-    max-width: 800px;
-   line-height: 1.6;
-    font-size: 1.1em;
+    background: linear-gradient(135deg, var(--color-purple-dark) 0%, #0a0015 100%);
+    border: 3px solid var(--color-purple-bright);
+    border-radius: 20px;
+    padding: 50px 60px;
+    max-width: 900px;
+    box-shadow: 0 10px 40px rgba(160, 32, 240, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-text-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(160, 32, 240, 0.3);
 }
 
 .about-text-box p {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-weight: 400;
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--color-text-light);
 }
 
 .about-text-box p:last-child {
@@ -154,20 +148,67 @@ header {
 }
 
 .about-text-box strong {
-    /* Destaque para as palavras-chave (em negrito no texto original) */
     color: var(--color-purple-bright);
     font-weight: 700;
 }
-/* 4. RODAPÉ */
+
+/* ==================== RODAPÉ ==================== */
 .footer {
     background-color: var(--color-bg-secondary);
     text-align: center;
-    padding: 20px 0;
-    margin-top: 50px;
-    border-top: 1px solid var(--color-border);
+    padding: 30px 0;
+    margin-top: auto;
+    border-top: 2px solid var(--color-purple-bright);
+    width: 100%;
 }
 
 .footer p {
     font-size: 0.9rem;
-    color: #aaaaaa;
+    color: var(--color-text-light);
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .main-title {
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-item {
+        margin: 5px 0;
+    }
+
+    .about-text-box {
+        padding: 30px 25px;
+    }
+
+    .about-text-box p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.2em;
+    }
+
+    .logo-box {
+        width: 100px;
+    }
+
+    .about-text-box {
+        padding: 20px;
+        border-radius: 15px;
+    }
 }
