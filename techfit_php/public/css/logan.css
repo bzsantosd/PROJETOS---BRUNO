@@ -13,14 +13,22 @@
     --color-purple-primary: #a020f0; /* Cor principal da TechFit */
     --color-bg-secondary: #1a1a1a;
     --color-border: #444444;
-}
-:root {
     --primary-purple: #8a2be2; /* Roxo vibrante */
     --dark-bg: #000000;
     --text-color: #ffffff;
     --card-bg: #1c1c1c; /* Fundo do card ligeiramente mais claro que o fundo */
     --highlight-border: #8000ff; /* Roxo para o destaque */
     --star-color: #f7d201; /* Cor amarela para estrelas */
+    --bg-dark: #000000; /* Fundo preto total */
+    --bg-card: #1A1A1A; /* Fundo do card (levemente cinza escuro) */
+    --accent-purple: #A020F0; /* Roxo/Magenta Vibrante (o neon/primary color) */
+    --text-light: #FFFFFF; /* Texto principal claro */
+    --text-secondary: #AAAAAA; /* Texto secundário (descrições) */
+    --color-purple-primary: #A020F0;
+    /* Cores específicas para o novo layout */
+    --sidebar-bg: #5a00a0; /* Um roxo sólido mais escuro para a barra lateral */
+    --nav-top-bg: #FFFFFF; /* Fundo branco para a navegação superior */
+    --nav-top-text: #000000; /* Texto preto para a navegação superior */
 }
 
 
@@ -291,11 +299,12 @@ a:hover {
 
 /* 4. RODAPÉ */
 .footer {
+    width: 100%;
     background-color: var(--color-bg-secondary);
     text-align: center;
     padding: 20px 0;
     margin-top: 50px;
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-purple-primary);
 }
 
 .footer p {

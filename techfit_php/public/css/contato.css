@@ -5,7 +5,7 @@
     --accent-purple: #A020F0; /* Roxo/Magenta Vibrante (o neon/primary color) */
     --text-light: #FFFFFF; /* Texto principal claro */
     --text-secondary: #AAAAAA; /* Texto secundário (descrições) */
-    --color-purple-primary: #A020F0;
+    --color-purple-bright: #A020F0;
     /* Cores específicas para o novo layout */
     --sidebar-bg: #5a00a0; /* Um roxo sólido mais escuro para a barra lateral */
     --nav-top-bg: #FFFFFF; /* Fundo branco para a navegação superior */
@@ -40,7 +40,7 @@ body {
     align-items: center; 
     padding: 25px 5%; /* Aumentado de 20px para 30px */
     background-color: var(--color-dark); 
-    border-bottom: 2px solid var(--color-purple-primary);
+    border-bottom: 2px solid var(--color-purple-bright);
 }
 
 .navbar {
@@ -70,8 +70,8 @@ body {
 
 .nav-item.active a,
 .nav-item a:hover {
-    color: var(--color-purple-primary);
-    border-bottom: 2px solid var(--color-purple-primary);
+    color: var(--color-purple-bright);
+    border-bottom: 2px solid var(--color-purple-bright);
 }
 /* Estilo do Logo (Esquerda) */
 .logo-box {
@@ -308,16 +308,17 @@ body {
         align-items: center;
     }
 }
-/* 4. RODAPÉ */
 .footer {
     background-color: var(--color-bg-secondary);
     text-align: center;
-    padding: 20px 0;
-    margin-top: 50px;
+    padding: 30px 0;
+    margin-top: auto;
     border-top: 2px solid var(--color-purple-bright);
+    width: 100%;
 }
 
 .footer p {
     font-size: 0.9rem;
     color: #aaaaaa;
+    
 }

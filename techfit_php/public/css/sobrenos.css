@@ -1,10 +1,19 @@
 /* ==================== VARIÁVEIS ==================== */
 :root {
+    --bg-dark: #000000; /* Fundo preto total */
+    --bg-card: #1A1A1A; /* Fundo do card (levemente cinza escuro) */
+    --accent-purple: #A020F0; /* Roxo/Magenta Vibrante (o neon/primary color) */
+    --text-light: #FFFFFF; /* Texto principal claro */
+    --text-secondary: #AAAAAA; /* Texto secundário (descrições) */
+    --color-purple-primary: #A020F0;
+    /* Cores específicas para o novo layout */
+    --sidebar-bg: #5a00a0; /* Um roxo sólido mais escuro para a barra lateral */
+    --nav-top-bg: #FFFFFF; /* Fundo branco para a navegação superior */
+    --nav-top-text: #000000; /* Texto preto para a navegação superior */
     --color-black: #000000;
     --color-purple-bright: #A020F0;
     --color-purple-dark: #1a0033;
     --color-white: #ffffff;
-    --color-text-light: #cccccc;
     --color-border: rgba(255, 255, 255, 0.1);
     --color-bg-secondary: #0a0a0a;
 }
@@ -26,22 +35,45 @@ body {
 }
 
 /* ==================== HEADER ==================== */
-header {
-    width: 100%;
-    padding-top: 20px;
-    position: relative;
-}
-
-/* Container do cabeçalho */
-.header-content {
+ .header-content {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: var(--color-black);
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 22px 5%; /* Aumentado de 20px para 30px */
+    background-color: var(--color-dark); 
+    border-bottom: 2px solid var(--color-purple-primary);
 }
 
+.navbar {
+    /* REMOVER a margem inferior para o layout em linha, se o objetivo é que fique tudo na mesma linha. */
+    margin-bottom: 0; 
+    /* Garantir que a navegação ocupe o espaço central */
+    flex-grow: 1; 
+    text-align: center; /* Centraliza o conteúdo da nav */
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    /* justify-content: center; Não é necessário se o pai .header-content tiver align-items: center e .navbar não for 100% */
+}
+
+.nav-item {
+    margin: 0 15px;
+}
+
+.nav-item a {
+    font-weight: 600;
+    padding-bottom: 5px;
+    text-decoration: none;
+    color: var(--color-text-light); /* Garante que os links da nav sejam brancos/claros */
+}
+
+.nav-item.active a,
+.nav-item a:hover {
+    color: var(--color-purple-primary);
+    border-bottom: 2px solid var(--color-purple-primary);
+}
 /* Logo */
 .logo-box {
     width: 150px;
@@ -63,46 +95,7 @@ header {
     color: var(--color-white);
 }
 
-/* ==================== NAVEGAÇÃO ==================== */
-nav {
-    width: 100%;
-    margin-top: 10px;
-}
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    justify-content: flex;
-    align-items: none;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px 0;
-    border-bottom: 2px solid var(--color-purple-bright);
-}
-
-.nav-item {
-    margin: 0 15px;
-}
-
-.nav-links a {
-    color: var(--color-white);
-    text-decoration: none;
-    font-weight: 600;
-    padding: 8px 16px;
-    transition: all 0.3s ease;
-    border-radius: 5px;
-}
-
-.nav-links a:hover {
-    color: var(--color-purple-bright);
-    background-color: rgba(160, 32, 240, 0.1);
-}
-
-.nav-links .active a {
-    background-color: var(--color-purple-bright);
-    color: var(--color-black);
-}
 
 /* ==================== CONTEÚDO PRINCIPAL ==================== */
 .content-wrapper {
@@ -121,7 +114,7 @@ nav {
 }
 
 .about-text-box {
-    background: linear-gradient(135deg, var(--color-purple-dark) 0%, #0a0015 100%);
+    background-color: #000000;
     border: 3px solid var(--color-purple-bright);
     border-radius: 20px;
     padding: 50px 60px;
@@ -140,7 +133,7 @@ nav {
     font-weight: 400;
     font-size: 1.1em;
     line-height: 1.8;
-    color: var(--color-text-light);
+    color: #aaaaaa;
 }
 
 .about-text-box p:last-child {
@@ -164,7 +157,7 @@ nav {
 
 .footer p {
     font-size: 0.9rem;
-    color: var(--color-text-light);
+    color: #aaaaaa;
 }
 
 /* ==================== RESPONSIVIDADE ==================== */
