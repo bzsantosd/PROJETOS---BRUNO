@@ -5,22 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/techfit_php/public/css/Produtos.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Produtos - Tech Fit</title>
 </head>
 <body>
-
-    <header class="header-content">
-        
-        <nav class="navbar">
-            <ul class="nav-list">
-                <li class="nav-item active"><a href="tela inicial.html" data-page="home">HOME</a></li>
-                <li class="nav-item"><a href="/techfit_php/public/Planos.html" data-page="planos">PLANOS</a></li>
-                <li class="nav-item"><a href="/techfit_php/public/Produtos.html" data-page="produtos">PRODUTOS</a></li>
-                <li class="nav-item"><a href="/techfit_php/public/contato.html" data-page="contato">CONTATO</a></li>
-                <li class="nav-item"><a href="/techfit_php/public/sobrenos.html" data-page="sobre">SOBRE NÓS</a></li>
-            </ul>
-        </nav>
-    </header>
+<header class="header-content">
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item active"><a href="tela inicial.html" data-page="home">HOME</a></li>
+            <li class="nav-item"><a href="/techfit_php/public/Planos.html" data-page="planos">PLANOS</a></li>
+            <li class="nav-item"><a href="/techfit_php/public/Produtos.html" data-page="produtos">PRODUTOS</a></li>
+            <li class="nav-item"><a href="/techfit_php/public/contato.html" data-page="contato">CONTATO</a></li>
+            <li class="nav-item"><a href="/techfit_php/public/sobrenos.html" data-page="sobre">SOBRE NÓS</a></li>
+            
+            <li class="nav-item cart-icon-item">
+                <a href="/techfit_php/public/carrinho.html" data-page="carrinho">
+                    <i class="fas fa-shopping-cart"></i> CARRINHO
+                    <span id="cart-counter" class="cart-badge">0</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
 
     <main>
         <h2 class="page-title"></h2> 
@@ -32,11 +38,11 @@
                     <img src="https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/01.jpg?raw=true" alt="Conjunto Masculino Tech Fit" class="product-image">
                     <div class="product-details">
                         <h3 class="product-title">Conjunto Masculino</h3>
-                        <p class="product-description">O Kit Camiseta e Shorts de Performance, em preto, oferece tecnologia de tecido para liberdade de movimento e secagem rápida, destacando o logo de escudo roxo e branco que simboliza força e identidade.</p>
+                        <p class="product-description">O Kit Camiseta e Shorts de Performance...</p>
                     </div>
                     <div class="product-price-box">
                         <p class="product-price">R$69,90</p>
-                        <button class="action-button add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="action-button add-to-cart" data-code="C001">Colocar no Carrinho</button>
                     </div>
                 </div>
 
@@ -44,11 +50,11 @@
                     <img src="https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/02.jpg?raw=true" alt="Conjunto Feminino Tech Fit" class="product-image">
                     <div class="product-details">
                         <h3 class="product-title">Conjunto Feminino</h3>
-                        <p class="product-description">Este conjunto de fitness feminino em preto apresenta um top cropped regata e um shorts-saia com legging integrada, ambos adornados com o logo de escudo roxo, e um cós elástico com a marca 'TechFit', oferecendo estilo e funcionalidade para o treino.</p>
+                        <p class="product-description">Este conjunto de fitness feminino em preto apresenta um top cropped...</p>
                     </div>
                     <div class="product-price-box">
                         <p class="product-price">R$69,90</p>
-                        <button class="action-button add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="action-button add-to-cart" data-code="C002">Colocar no Carrinho</button>
                     </div>
                 </div>
                 
@@ -56,11 +62,11 @@
                     <img src="https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/15.jpg?raw=true" alt="Creatina Tech Fit" class="product-image">
                     <div class="product-details">
                         <h3 class="product-title">Creatina 500g</h3>
-                        <p class="product-description">Potencialize seus treinos com nossa creatina em pó, sabor natural.</p>
+                        <p class="product-description">Potencialize seus treinos com nossa creatina em pó...</p>
                     </div>
                     <div class="product-price-box">
                         <p class="product-price">R$34,90</p>
-                        <button class="action-button add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="action-button add-to-cart" data-code="S001">Colocar no Carrinho</button>
                     </div>
                 </div>
                 
@@ -72,7 +78,7 @@
                     </div>
                     <div class="product-price-box">
                         <p class="product-price">R$39,90</p>
-                        <button class="action-button add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="action-button add-to-cart" data-code="S002">Colocar no Carrinho</button>
                     </div>
                 </div>
                 
@@ -84,7 +90,7 @@
                     </div>
                     <div class="product-price-box">
                         <p class="product-price">R$34,90</p>
-                        <button class="action-button add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="action-button add-to-cart" data-code="S003">Colocar no Carrinho</button>
                     </div>
                 </div>
 

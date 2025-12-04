@@ -6,6 +6,7 @@
     <title>Meu Perfil - [Nome do Cliente]</title>
     <link rel="stylesheet" href="/techfit_php/public/css/cliente.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     
@@ -16,47 +17,23 @@
 
         <nav class="navbar"> 
             <ul class="nav-list">
+                
+                <li class="nav-item cart-icon-item">
+                    <a href="/techfit_php/public/carrinho.html" data-page="carrinho">
+                        <i class="fas fa-shopping-cart"></i> CARRINHO
+                        <span id="cart-counter" class="cart-badge">0</span>
+                    </a>
+                </li>
+                
                 <li class="nav-item active"><a href="/techfit_php/public/tela ao logan.html" data-page="home">HOME</a></li>
-                <li class="nav-item"><a href="/techfit_php/public/Planos.html" data-page="planos">PLANOS</a></li>
+                <li class="nav-item"><a href="/techfit_php/public/Planos.html" data-page="planos">PLANO S</a></li>
                 <li class="nav-item"><a href="/techfit_php/public/Produtos.html" data-page="produtos">PRODUTOS</a></li>
                 <li class="nav-item"><a href="/techfit_php/public/contato.html" data-page="contato">CONTATO</a></li>
                 <li class="nav-item"><a href="/techfit_php/public/sobrenos.html" data-page="sobre">SOBRE NÓS</a></li>
             </ul>
         </nav>
     </header>
-
-    <main>
-        <section id="dados" class="perfil-secao">
-            <h2>Meus Dados Pessoais</h2>
-            <div class="info-bloco">
-                <label>Nome Completo:</label>
-                <p id="nome-cliente">Nome do Cliente</p>
-            </div>
-            <div class="info-bloco">
-                <label>Email:</label>
-                <p id="email-cliente">email.cliente@exemplo.com</p>
-            </div>
-            <div class="info-bloco">
-                <label>Telefone:</label>
-                <p id="tel-cliente">(99) 99999-9999</p>
-            </div>
-            <button class="editar-btn">Editar Perfil</button>
-        </section>
-
-        <section id="pedidos" class="perfil-secao">
-            <h2>Histórico de Pedidos</h2>
-            <ul>
-                <li>Pedido #12345 - R$ 150,00 - **Entregue**</li>
-                <li>Pedido #12344 - R$ 99,90 - **Em Separação**</li>
-            </ul>
-        </section>
-        
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Minha Empresa</p>
-    </footer>
-
+    
     <script src="cliente.js"></script> 
 </body>
 </html>

@@ -348,3 +348,35 @@ h2 {
         text-align: center;
     }
 }
+/* O item da lista precisa de posição relativa para ser o 'pai' do badge absoluto */
+.cart-icon-item {
+    position: relative; 
+    /* Adicionado padding-right para garantir espaço para o badge */
+    padding-right: 20px;
+}
+
+/* Estilo do contador (badge) */
+.cart-badge {
+    position: absolute;
+    /* Posição top-right sobre o ícone */
+    top: -10px; 
+    right: -10px;
+    
+    background-color: var(--primary-color); /* Roxo */
+    color: var(--secondary-color); /* Branco */
+    
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    
+    padding: 2px 6px;
+    border-radius: 50%; /* Forma de círculo/oval */
+    min-width: 20px; /* Garante tamanho mínimo para o número */
+    
+    /* Adiciona uma sombra sutil para destacar */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
+    
+    /* Garante que o badge não "roube" o clique do link */
+    pointer-events: none; 
+}

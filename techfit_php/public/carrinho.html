@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras - Tech Fit</title>
+    <link rel="stylesheet" href="/techfit_php/public/css/Produtos.css"> 
+    <link rel="stylesheet" href="carrinho.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="header-content">
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="tela inicial.html" data-page="home">HOME</a></li>
+                <li class="nav-item"><a href="/techfit_php/public/Planos.html" data-page="planos">PLANOS</a></li>
+                <li class="nav-item"><a href="/techfit_php/public/Produtos.html" data-page="produtos">PRODUTOS</a></li>
+                
+                <li class="nav-item cart-icon-item active">
+                    <a href="/techfit_php/public/carrinho.html" data-page="carrinho">
+                        <i class="fas fa-shopping-cart"></i> CARRINHO
+                        <span id="cart-counter" class="cart-badge">0</span>
+                    </a>
+                </li>
+                
+                <li class="nav-item"><a href="/techfit_php/public/contato.html" data-page="contato">CONTATO</a></li>
+                <li class="nav-item"><a href="/techfit_php/public/sobrenos.html" data-page="sobre">SOBRE NÓS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="carrinho-main">
+        <h2 class="page-title">Seu Carrinho de Compras</h2>
+        
+        <div class="cart-container">
+            
+            <section class="cart-items" id="cart-items-list">
+                <div class="cart-item">
+                    <img src="IMAGEM/placeholder.jpg" alt="Produto Exemplo" class="item-image">
+                    <div class="item-details">
+                        <h4 class="item-name">Conjunto Masculino Performance</h4>
+                        <p class="item-price">R$ 69,90</p>
+                    </div>
+                    <div class="item-quantity-control">
+                        <button class="qty-btn remove-one">-</button>
+                        <span class="item-quantity">1</span>
+                        <button class="qty-btn add-one">+</button>
+                    </div>
+                    <button class="remove-item-btn" data-code="C001">Remover</button>
+                </div>
+                </section>
+
+            <aside class="cart-summary" id="cart-summary">
+                <h3>Resumo do Pedido</h3>
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span id="subtotal-value">R$ 0,00</span>
+                </div>
+                <div class="summary-line">
+                    <span>Frete:</span>
+                    <span id="shipping-value">R$ 15,00</span>
+                </div>
+                <div class="summary-line total-line">
+                    <span>Total:</span>
+                    <span id="total-value">R$ 0,00</span>
+                </div>
+                <button class="action-button checkout-btn">Finalizar Compra</button>
+            </aside>
+
+        </div>
+        
+    </main>
+        
+    <script src="produtos_list.js"></script> <script src="carrinho.js"></script> 
+</body>
+</html>

@@ -1,68 +1,87 @@
-// produtos_cliente.js
+// produtos_list.js - Lógica para o carrinho de compras
+
 document.addEventListener('DOMContentLoaded', () => {
     const productsGrid = document.querySelector('.products-grid');
 
-    // Função para obter apenas produtos 'ativos'
-    const getActiveProducts = () => {
-        const productsJSON = localStorage.getItem('techfitProducts');
-        const allProducts = productsJSON ? JSON.parse(productsJSON) : [];
-        // Filtra para mostrar apenas produtos com status 'ativo'
-        return allProducts.filter(p => p.status === 'ativo');
+    // 1. MAPEAMENTO DE PRODUTOS
+    // Este mapeamento é crucial porque os produtos estão hardcoded no HTML.
+    // O JS usa o 'data-code' do HTML para buscar o Nome e Preço do produto aqui.
+    const productDataMap = {
+        'C001': { 'nome-produto': 'Conjunto Masculino', 'preco-unitario': 'R$ 69,90' },
+        'C002': { 'nome-produto': 'Conjunto Feminino', 'preco-unitario': 'R$ 69,90' },
+        'S001': { 'nome-produto': 'Creatina 500g', 'preco-unitario': 'R$ 34,90' },
+        'S002': { 'nome-produto': 'Whey', 'preco-unitario': 'R$ 39,90' },
+        'S003': { 'nome-produto': 'Suplementos', 'preco-unitario': 'R$ 34,90' }
+        // Adicione outros produtos se necessário aqui
     };
 
-    // Função para criar o HTML de um cartão de produto
-    const createProductCard = (product) => {
-        // Função para formatar o preço (opcional, mas bom para a visualização)
-        const formatPrice = (priceStr) => {
-            // Remove 'R$', espaços e substitui vírgula por ponto para conversão
-            const numericPrice = priceStr.replace('R$', '').replace(/\s/g, '').replace(',', '.');
-            const price = parseFloat(numericPrice);
-            return isNaN(price) ? product['preco-unitario'] : `R$ ${price.toFixed(2).replace('.', ',')}`;
-        };
+    // --- FUNÇÕES DE CARRINHO ---
 
-        const card = document.createElement('div');
-        card.classList.add('product-card');
-
-        // Note: 'src="IMAGEM/placeholder.jpg"' é um placeholder, você precisaria de uma imagem real por produto.
-        card.innerHTML = `
-            <img src="IMAGEM/placeholder.jpg" alt="${product['nome-produto']}" class="product-image" style="width: 100%; height: auto;">
-            <div class="product-details">
-                <h3 class="product-title">${product['nome-produto']}<br>(${product.marca || 'Marca Indefinida'})</h3>
-                <p class="product-description">${product['descricao-produto'] || 'Sem descrição.'}</p>
-                <p class="product-category">Categoria: ${product.categoria || 'Geral'}</p>
-                <p class="product-stock">Em Estoque: ${product.quantidade || 0}</p>
-            </div>
-            <div class="product-price-box">
-                <p class="product-price">${formatPrice(product['preco-unitario'])}</p>
-                <button class="action-button add-to-cart" data-code="${product.codigo}">Adicionar ao Carrinho</button>
-            </div>
-        `;
-        return card;
+    // Obtém o carrinho do localStorage ou retorna um array vazio
+    const getCart = () => {
+        const cartJSON = localStorage.getItem('techfitCart');
+        return cartJSON ? JSON.parse(cartJSON) : [];
     };
 
-    // Função principal de renderização
-    const renderProducts = () => {
-        const activeProducts = getActiveProducts();
-        productsGrid.innerHTML = ''; // Limpa o grid existente
+    // Salva o carrinho no localStorage e chama a atualização do contador
+    const saveCart = (cart) => {
+        localStorage.setItem('techfitCart', JSON.stringify(cart));
+        updateCartCount();
+    };
 
-        if (activeProducts.length === 0) {
-            productsGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; padding: 20px;">Nenhum produto ATIVO cadastrado no momento.</p>';
-            return;
+    // Adiciona um produto ao carrinho
+    const addToCart = (productCode, product) => {
+        const cart = getCart();
+        const existingItemIndex = cart.findIndex(item => item.codigo === productCode);
+
+        if (existingItemIndex > -1) {
+            // Se o produto já existe, incrementa a quantidade
+            cart[existingItemIndex].quantidade++;
+        } else {
+            // Se não existe, adiciona o novo item com quantidade 1
+            cart.push({
+                codigo: productCode,
+                nome: product['nome-produto'],
+                preco: product['preco-unitario'],
+                quantidade: 1
+            });
         }
-
-        activeProducts.forEach(product => {
-            productsGrid.appendChild(createProductCard(product));
-        });
+        saveCart(cart);
+        alert(`"${product['nome-produto']}" adicionado ao carrinho!`);
     };
     
-    // Inicializa a renderização
-    renderProducts();
-
-    // Exemplo de manipulação do botão "Adicionar ao Carrinho"
-    productsGrid.addEventListener('click', (e) => {
-        if (e.target.classList.contains('add-to-cart')) {
-            const productCode = e.target.getAttribute('data-code');
-            alert(`Produto código ${productCode} adicionado ao carrinho! (Simulação)`);
+    // Atualiza o contador de itens no cabeçalho (#cart-counter)
+    const updateCartCount = () => {
+        const cart = getCart();
+        // Soma a quantidade de todos os itens no carrinho
+        const totalItems = cart.reduce((sum, item) => sum + item.quantidade, 0);
+        
+        const cartBadge = document.getElementById('cart-counter');
+        if (cartBadge) {
+            // Atualiza o span com o ID 'cart-counter'
+            cartBadge.textContent = totalItems;
         }
-    });
+    };
+
+    // --- MANIPULAÇÃO DE EVENTOS ---
+
+    if (productsGrid) {
+        // Adiciona o listener para todos os botões no grid
+        productsGrid.addEventListener('click', (e) => {
+            // Verifica se o clique foi em um botão com a classe 'add-to-cart'
+            if (e.target.classList.contains('add-to-cart')) {
+                const productCode = e.target.getAttribute('data-code');
+                const productToAdd = productDataMap[productCode];
+
+                if (productToAdd) {
+                    addToCart(productCode, productToAdd);
+                } else {
+                    alert('Erro: Produto não encontrado. Verifique o código no HTML.');
+                }
+            }
+        });
+    }
+    
+    // Inicializa o contador de carrinho quando a página carrega
+    updateCartCount();
 });
