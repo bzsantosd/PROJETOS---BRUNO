@@ -314,7 +314,7 @@ body {
     text-align: center;
     padding: 20px 0;
     margin-top: 50px;
-    border-top: 1px solid var(--color-border);
+    border-top: 2px solid var(--color-purple-bright);
 }
 
 .footer p {

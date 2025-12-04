@@ -32,9 +32,7 @@ body::before {
     left: 0;
     width: 250px; /* Largura aproximada da barra lateral */
     height: 100%;
-    background-color: var(--sidebar-bg); /* Fundo roxo */
-    /* Adiciona a imagem de fundo lateral (peso e halter) */
-    background-image: url('/IMAGENS/faxada\ em\ limeira.jpg'); /* Substituir! */
+
     background-size: cover;
     background-position: center;
     opacity: 0.9; /* Deixa a imagem ligeiramente transparente/escura */
@@ -48,6 +46,8 @@ main {
     background-color: var(--background-dark); /* Fundo preto do conteúdo */
     padding: 30px;
     color: var(--secondary-color);
+    /* ADICIONADO: Ajusta o padding-top para que o conteúdo comece abaixo do navbar fixo */
+    padding-top: 90px; 
 }
 
 /* --- CABEÇALHO, LOGO E NAVEGAÇÃO --- */
@@ -96,7 +96,7 @@ main {
     right: 0;
     height: 60px;
     background-color: black; /* Fundo branco do topo */
-    border-bottom: 1px solid black; /* Linha de separação */        
+    border-bottom: 1px solid black; /* Linha de separação */          
     z-index: 5;
     padding: 0 30px;
 }
@@ -142,10 +142,11 @@ h2 {
 
 .products-grid {
     display: flex;
-    flex-direction: column; /* Organiza os cards verticalmente como na imagem */
+    flex-direction: column; /* Organiza os cards verticalmente como lista */
     gap: 30px; /* Espaçamento entre os cards */
     max-width: 900px; /* Largura máxima para a área de cards */
     margin: 0 auto; /* Centraliza a coluna de cards */
+    width: 100%; /* Garante que a grid use o máximo de largura do seu container */
 }
 
 .product-card {
@@ -157,17 +158,19 @@ h2 {
     align-items: center; /* Alinha o conteúdo verticalmente ao centro */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     
-    /* Adiciona uma margem inferior maior para criar o espaço entre eles */
-    margin-bottom: 50px; 
+    /* REMOVIDO: margin-bottom: 50px; (usando gap do .products-grid) */
     
     /* Adiciona a cor roxa como uma sombra interna para simular o efeito da imagem */
     box-shadow: inset 5px 0 0 0 var(--primary-color), 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 100%; /* Garante que o card preencha toda a largura do .products-grid */
 }
 .product-image {
     width: 100px; /* Tamanho das imagens dos produtos (creatina/whey) */
     height: auto;
     margin-right: 20px;
     border-radius: 4px;
+    /* Ajuste para imagens maiores (conjuntos) */
+    object-fit: contain; 
 }
 
 .product-details {
