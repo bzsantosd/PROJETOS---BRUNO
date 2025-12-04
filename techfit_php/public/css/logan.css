@@ -14,6 +14,16 @@
     --color-bg-secondary: #1a1a1a;
     --color-border: #444444;
 }
+:root {
+    --primary-purple: #8a2be2; /* Roxo vibrante */
+    --dark-bg: #000000;
+    --text-color: #ffffff;
+    --card-bg: #1c1c1c; /* Fundo do card ligeiramente mais claro que o fundo */
+    --highlight-border: #8000ff; /* Roxo para o destaque */
+    --star-color: #f7d201; /* Cor amarela para estrelas */
+}
+
+
 
 /* Reset Básico e Fonte */
 * {
@@ -200,6 +210,83 @@ a:hover {
     font-size: 0.95rem;
     font-weight: 300;
     color: #cccccc;
+}
+
+/* Seção dos Depoimentos (Direita) */
+.testimonials-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+/* Estilo dos Cards de Depoimento */
+.testimonial-card {
+    background-color: var(--card-bg);
+    padding: 15px;
+    border-radius: 8px;
+    border: 3px solid transparent; /* Padrão sem borda */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-height: 180px; /* Garante que todos tenham a mesma altura base */
+}
+
+.testimonial-card.highlighted {
+    border-color: var(--highlight-border); /* Borda destacada */
+}
+
+.card-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--primary-purple);
+    margin-bottom: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.user-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-purple);
+    color: var(--dark-bg);
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.rating {
+    margin: 5px 0 10px 0;
+}
+
+.star {
+    color: var(--star-color);
+    font-size: 1.2rem;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.4;
 }
 
 /* 4. RODAPÉ */
