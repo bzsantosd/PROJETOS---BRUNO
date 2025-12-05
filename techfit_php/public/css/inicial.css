@@ -2,231 +2,245 @@
 
 /* Definição de Cores Padrão (Baseado em cadastro.html) */
 :root {
-    --color-dark: #000000;
-    --color-text-light: #ffffff;
-    --color-purple-primary: #A020F0; /* Cor principal da TechFit */
+  --color-dark: #000000;
+  --color-text-light: #ffffff;
+  --color-purple-primary: #A020F0; /* Cor principal da TechFit */
+    --color-purple-hover: #C567FF; /* Adicionado para completar o código anterior */
 
-    --color-bg-secondary: #1a1a1a;
-    --color-border: #A020F0;
+  --color-bg-secondary: #1a1a1a;
+  --color-border: #A020F0;
 }
 
 /* Reset Básico e Fonte */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background-color: var(--color-dark);
-    color: var(--color-text-light);
-    line-height: 1.6;
+  background-color: var(--color-dark);
+  color: var(--color-text-light);
+  line-height: 1.6;
 }
 
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 a {
-    color: var(--color-text-light); /* Cor do link branco/claro */
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: var(--color-text-light); /* Cor do link branco/claro */
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--color-purple-primary);
+  color: var(--color-purple-primary);
 }
 
 .header-content {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 25px 5%; /* Aumentado de 20px para 30px */
-    background-color: var(--color-dark); 
-    border-bottom: 2px solid var(--color-purple-primary);
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 25px 5%; /* Aumentado de 20px para 30px */
+  background-color: var(--color-dark); 
+  border-bottom: 2px solid var(--color-purple-primary);
 }
 
 .navbar {
-    /* REMOVER a margem inferior para o layout em linha, se o objetivo é que fique tudo na mesma linha. */
-    margin-bottom: 0; 
-    /* Garantir que a navegação ocupe o espaço central */
-    flex-grow: 1; 
-    text-align: center; /* Centraliza o conteúdo da nav */
+  /* REMOVER a margem inferior para o layout em linha, se o objetivo é que fique tudo na mesma linha. */
+  margin-bottom: 0; 
+  /* Garantir que a navegação ocupe o espaço central */
+  flex-grow: 1; 
+  text-align: center; /* Centraliza o conteúdo da nav */
 }
 
 .nav-list {
-    display: flex;
-    list-style: none;
-    /* justify-content: center; Não é necessário se o pai .header-content tiver align-items: center e .navbar não for 100% */
+  display: flex;
+  list-style: none;
+  justify-content: center; /* Adicionado para centralizar a nav-list */
 }
 
 .nav-item {
-    margin: 0 15px;
+  margin: 0 15px;
 }
 
 .nav-item a {
-    font-weight: 600;
-    padding-bottom: 5px;
-    color: var(--color-text-light); /* Garante que os links da nav sejam brancos/claros */
+  font-weight: 600;
+  padding-bottom: 5px;
+  color: var(--color-text-light); /* Garante que os links da nav sejam brancos/claros */
 }
 
 .nav-item.active a,
 .nav-item a:hover {
-    color: var(--color-purple-primary);
-    border-bottom: 2px solid var(--color-purple-primary);
+  color: var(--color-purple-primary);
+  border-bottom: 2px solid var(--color-purple-primary);
 }
 
 .auth-buttons .btn {
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-weight: 600;
-    margin: 0 5px; /* Ajusta o margin entre os botões */
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: 600;
+  margin: 0 5px; /* Ajusta o margin entre os botões */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .btn-login {
-    background-color: transparent;
-    border: 2px solid var(--color-text-light);
-}
-
-.btn-login {
-    background-color: var(--color-purple-primary); /* Fundo Roxo */
-    color: var(--color-text-light); /* Texto Branco */
-    border: 2px solid var(--color-purple-primary);
+  background-color: var(--color-purple-primary); /* Fundo Roxo */
+  color: var(--color-text-light); /* Texto Branco */
+  border: 2px solid var(--color-purple-primary);
 }
 
 .btn-login:hover {
-    background-color: var(--color-purple-hover); /* Fundo Roxo Claro */
-    color: var(--color-purple-primary); /* Texto Roxo Escuro */
-    border-color: var(--color-purple-hover);
+  background-color: var(--color-purple-hover); /* Fundo Roxo Claro */
+  color: var(--color-text-light); /* Corrigido para texto branco ou roxo primário, dependendo do design */
+  border-color: var(--color-purple-hover);
 }
 
 /* NOVO ESTILO PARA O BOTÃO CADASTRE-SE */
 .btn-register {
-    background-color: var(--color-purple-primary); /* Fundo Roxo */
-    color: var(--color-text-light); /* Texto Branco */
-    border: 2px solid var(--color-purple-primary);
+  background-color: var(--color-purple-primary); /* Fundo Roxo */
+  color: var(--color-text-light); /* Texto Branco */
+  border: 2px solid var(--color-purple-primary);
 }
 
 .btn-register:hover {
-    background-color: var(--color-purple-hover); /* Fundo Roxo Claro */
-    color: var(--color-purple-primary); /* Texto Roxo Escuro */
-    border-color: var(--color-purple-hover);
+  background-color: var(--color-purple-hover); /* Fundo Roxo Claro */
+  color: var(--color-text-light); /* Corrigido para texto branco ou roxo primário, dependendo do design */
+  border-color: var(--color-purple-hover);
 }
+
 
 /* 2. SEÇÃO HERO (PRINCIPAL) */
 .hero-section {
-    position: relative;
-    /* Reduz a altura para que a margem/padding adicione o espaço extra */
-    height: auto; /* Alterado de 50vh para auto para melhor controle com padding */
-    min-height: 40vh; /* Define uma altura mínima, se necessário */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    
-    /* ADICIONADO: Espaço no topo da seção para afastar da linha do header */
-    padding-top: 50px; /* Adiciona um espaço de 50px acima do conteúdo */
+position: relative;
+height: auto;
+min-height: 500px; 
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
 
-    margin-bottom: 50px;
+/* --- CORREÇÃO DO DEGRADÊ NAS BORDAS --- */
+background-image: 
+    /* 1. Gradiente Radial (Degradê nas bordas): Transparente no centro, preto nas extremidades */
+    radial-gradient(ellipse at center, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0.8) 100%), 
+        
+    /* 2. Gradiente Linear (Filtro Escuro de cima para baixo) */
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    
+    /* 3. Imagem de Fundo */
+    url('https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/fachada%201.png?raw=true');
+
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+
+padding-top: 50px;
+padding-bottom: 50px; 
+
+margin-bottom: 50px;
 }
 
 .hero-text h1 {
-    font-size: 4rem;
-    font-weight: 900;
-    margin-bottom: 10px;
-    color: var(--color-purple-primary);
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  color: var(--color-purple-primary);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
 }
 
 .hero-text h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .hero-text p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-    font-weight: 300;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  font-weight: 300;
 }
 
 .cta-button {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: var(--color-purple-primary);
-    color: var(--color-text-light);
-    font-size: 1.2rem;
-    font-weight: 700;
-    border-radius: 50px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-transform: uppercase;
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: var(--color-purple-primary);
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-transform: uppercase;
 }
 
 .cta-button:hover {
-    background-color: var(--color-purple-hover);
-    transform: translateY(-3px);
+  background-color: var(--color-purple-hover);
+  transform: translateY(-3px);
 }
 
 .features-section {
-    display: flex;
-    justify-content: center; 
-    /* Mantendo o espaçamento grande entre os cards */
-    gap: 30px; /* Aumentado um pouco mais para 60px */
-    padding: 70px 0; 
-    text-align: center;
+  display: flex;
+  justify-content: center; 
+  /* Mantendo o espaçamento grande entre os cards */
+  gap: 30px; /* Aumentado um pouco mais para 60px */
+  padding: 70px 0; 
+  text-align: center;
 }
 
 .feature-card {
-    background-color: var(--color-bg-secondary);
-    /* NOVO AUMENTO NO PADDING INTERNO */
-    padding: 50px; /* Aumentado de 40px para 50px */
-    border-radius: 10px;
-    border: 1px solid var(--color-border);
-    /* NOVO AUMENTO NO TAMANHO MÁXIMO do card */
-    max-width: 4000px; /* Aumentado de 350px para 380px */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Sombra mais forte */
-    transition: transform 0.3s ease;
+  background-color: var(--color-bg-secondary);
+  /* NOVO AUMENTO NO PADDING INTERNO */
+  padding: 50px; /* Aumentado de 40px para 50px */
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  /* NOVO AUMENTO NO TAMANHO MÁXIMO do card */
+  max-width: 4000px; /* Aumentado de 350px para 380px */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Sombra mais forte */
+  transition: transform 0.3s ease;
 }
 
 .feature-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--color-purple-primary);
+  transform: translateY(-10px);
+  border-color: var(--color-purple-primary);
 }
 
 .feature-card i {
-    /* Aumentando o tamanho do ícone */
-    font-size: 4.5rem; /* Aumentado de 4rem para 4.5rem */
-    color: var(--color-purple-primary);
-    margin-bottom: 25px; /* Aumentado de 20px para 25px */
+  /* Aumentando o tamanho do ícone */
+  font-size: 4.5rem; /* Aumentado de 4rem para 4.5rem */
+  color: var(--color-purple-primary);
+  margin-bottom: 25px; /* Aumentado de 20px para 25px */
 }
 
 .feature-card h3 {
-    /* Aumentando o título */
-    font-size: 1.8rem; /* Aumentado de 1.6rem para 1.8rem */
-    font-weight: 700;
-    margin-bottom: 15px;
+  /* Aumentando o título */
+  font-size: 1.8rem; /* Aumentado de 1.6rem para 1.8rem */
+  font-weight: 700;
+  margin-bottom: 15px;
 }
 
 .feature-card p {
-    /* Aumentando o texto */
-    font-size: 1.1rem; /* Aumentado de 1.05rem para 1.1rem */
-    font-weight: 300;
-    color: #cccccc;
+  /* Aumentando o texto */
+  font-size: 1.1rem; /* Aumentado de 1.05rem para 1.1rem */
+  font-weight: 300;
+  color: #cccccc;
 }
 /* 4. RODAPÉ */
 .footer {
-    background-color: var(--color-bg-secondary);
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 50px;
-    border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-secondary);
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 50px;
+  border-top: 1px solid var(--color-border);
 }
 
 .footer p {
-    font-size: 0.9rem;
-    color: #aaaaaa;
+  font-size: 0.9rem;
+  color: #aaaaaa;
 }

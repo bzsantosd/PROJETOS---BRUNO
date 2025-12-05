@@ -129,16 +129,36 @@ a:hover {
 
 /* 2. SEÇÃO HERO (PRINCIPAL) */
 .hero-section {
-    position: relative;
-    height: 80vh; /* Altura da viewport */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                url('placeholder-academia.jpg') no-repeat center center/cover;
-    /* Substitua 'placeholder-academia.jpg' por uma imagem de academia */
-    margin-bottom: 50px;
+position: relative;
+height: auto;
+min-height: 500px; 
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+
+/* --- CORREÇÃO DO DEGRADÊ NAS BORDAS --- */
+background-image: 
+    /* 1. Gradiente Radial (Degradê nas bordas): Transparente no centro, preto nas extremidades */
+    radial-gradient(ellipse at center, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0.8) 100%), 
+        
+    /* 2. Gradiente Linear (Filtro Escuro de cima para baixo) */
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    
+    /* 3. Imagem de Fundo */
+    url('https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/fachada%201.png?raw=true');
+
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+
+padding-top: 50px;
+padding-bottom: 50px; 
+
+margin-bottom: 50px;
 }
 
 .hero-text h1 {
