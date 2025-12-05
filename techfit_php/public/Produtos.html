@@ -10,26 +10,30 @@
 </head>
 <body>
 <header class="header-content">
+    
+    <div class="logo-placeholder"><span>TECHFIT ACADEMIA</span></div> 
+
     <nav class="navbar">
         <ul class="nav-list">
-            <li class="nav-item active"><a href="tela inicial.html" data-page="home">HOME</a></li>
+            <li class="nav-item"><a href="tela inicial.html" data-page="home">HOME</a></li>
             <li class="nav-item"><a href="/techfit_php/public/Planos.html" data-page="planos">PLANOS</a></li>
-            <li class="nav-item"><a href="/techfit_php/public/Produtos.html" data-page="produtos">PRODUTOS</a></li>
+            <li class="nav-item active"><a href="/techfit_php/public/Produtos.html" data-page="produtos">PRODUTOS</a></li>
             <li class="nav-item"><a href="/techfit_php/public/contato.html" data-page="contato">CONTATO</a></li>
             <li class="nav-item"><a href="/techfit_php/public/sobrenos.html" data-page="sobre">SOBRE NÓS</a></li>
             
-            <li class="nav-item cart-icon-item">
-                <a href="/techfit_php/public/carrinho.html" data-page="carrinho">
-                    <i class="fas fa-shopping-cart"></i> CARRINHO
-                    <span id="cart-counter" class="cart-badge">0</span>
-                </a>
-            </li>
-        </ul>
+            </ul>
     </nav>
+    
+    <li class="nav-item cart-icon-item">
+        <a href="/techfit_php/public/carrinho.html" data-page="carrinho">
+            <i class="fas fa-shopping-cart"></i> CARRINHO
+            <span id="cart-counter" class="cart-badge">0</span>
+        </a>
+    </li>
 </header>
 
     <main>
-        <h2 class="page-title"></h2> 
+        <h2 class="page-title">PRODUTOS TECHFIT</h2> 
         
         <section class="products-section"> 
             <div class="products-grid">
@@ -71,7 +75,7 @@
                 </div>
                 
                 <div class="product-card">
-                    <img src="https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/17.jpg?raw=true" alt="Whey Tech Fit" class="product-image">
+                    <img src="/IMAGENS/whey.png" alt="Whey Tech Fit" class="product-image">
                     <div class="product-details">
                         <h3 class="product-title">Whey</h3>
                         <p class="product-description">Potencialize seus treinos com nosso Whey sabor Morango.</p>
@@ -97,7 +101,11 @@
             </div>
         </section>
     </main>
-        
+    
+    <footer class="footer">
+        <p>&copy; 2025 TechFit Academia. Todos os direitos reservados.</p>
+</footer>
+    
     <script src="produtos_list.js"></script> 
 </body>
 </html>
