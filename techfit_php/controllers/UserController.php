@@ -34,7 +34,7 @@ class UserController {
         // Inclui o arquivo HTML correspondente
         include ROOT_PATH . "/app/views/{$viewName}.html"; 
     }
-}<?php
+}
 class User {
     
     // Simulação de conexão com o Banco de Dados (substitua pela lógica real)
