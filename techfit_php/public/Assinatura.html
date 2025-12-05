@@ -3,15 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Sua Compra | Fitness+</title>
+    <title>Complete Sua Compra | Techfit Academia</title>
     <link rel="stylesheet" href="/techfit_php/public/css/Assinatura.css">
-  
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <header>
         <div class="container">
-           
+            <div class="logo">TECHFIT ACADEMIA</div>
+            <nav>
+                <ul>
+                    <li><a href="tela inicial.html">Home</a></li>
+                    <li><a href="Planos.html">Planos</a></li>
+                    <li><a href="Produtos.html">Produtos</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="Pesquisar...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
         </div>
     </header>
 
@@ -26,32 +37,32 @@
                 <div class="form-panel">
                     <form>
                         <h2 class="section-title">Informações de Contato</h2>
-                        <input type="email" placeholder="Endereço de e-mail" value="">
+                        <input type="email" placeholder="Endereço de e-mail" required>
                         <div class="checkbox-group">
                             <input type="checkbox" id="keep-informed" checked>
-                            <label for="keep-informed">Mantenha-me informado(a)...</label>
+                            <label for="keep-informed">Mantenha-me informado(a) sobre novidades e promoções.</label>
                         </div>
                         
                         <h2 class="section-title">Detalhes do Pagamento</h2>
-                        <input type="text" placeholder="Número do cartão" class="full-width">
+                        <input type="text" placeholder="Número do cartão" class="full-width" required>
                         
                         <div class="form-row">
-                            <input type="text" placeholder="Nome no cartão">
-                            <input type="text" placeholder="Data de Vencimento (MM/AA)">
+                            <input type="text" placeholder="Nome no cartão" required>
+                            <input type="text" placeholder="Data de Vencimento (MM/AA)" required>
                         </div>
                         <div class="form-row">
-                            <input type="text" placeholder="CVV">
-                            <input type="text" placeholder="CVV">
+                            <input type="text" placeholder="CVV" required>
+                            <input type="text" placeholder="CPF/CNPJ">
                         </div>
 
                         <h2 class="section-title">Endereço de Cobrança</h2>
-                        <input type="text" placeholder="País" class="full-width">
-                        <input type="text" placeholder="Endereço da rua" class="full-width">
+                        <input type="text" placeholder="País" class="full-width" required>
+                        <input type="text" placeholder="Endereço da rua" class="full-width" required>
                         <div class="form-row">
-                             <input type="text" placeholder="Estado / Província">
-                            <input type="text" placeholder="Cidade">
+                             <input type="text" placeholder="Estado / Província" required>
+                            <input type="text" placeholder="Cidade" required>
                         </div>
-                        <input type="text" placeholder="CEP / Código Postal" class="full-width">
+                        <input type="text" placeholder="CEP / Código Postal" class="full-width" required>
                         
                         <button type="submit" class="secure-payment-btn">PAGAMENTO SEGURO</button>
                         <p class="encryption-info">Suas informações de pagamento são criptografadas e seguras.</p>
@@ -61,16 +72,33 @@
                 <div class="summary-panel">
                     <div class="plan-info">
                         <div class="plan-header">
-                            <div class="icon-placeholder">&#128170;</div>
+                            <div class="icon-placeholder"><i class="fas fa-dumbbell"></i></div>
                             <span class="recommended-tag">RECOMENDADO</span>
                         </div>
-                        <h3>PREMIUM</h3>
+                        <h3>PLANO PREMIUM</h3>
                         <p>Cobrado Anualmente</p>
                     </div>
+                    
+                    <div class="pricing-details">
+                        <div class="price-row">
+                            <span>Assinatura Anual</span>
+                            <span>R$ 999,00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Desconto Promocional</span>
+                            <span>- R$ 41,88</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Impostos</span>
+                            <span>R$ 0,00</span>
+                        </div>
+                        
                         <div class="price-row total-due">
                             <span>Total Devido Hoje</span>
-                            <span class="total-value">$957.12</span>
+                            <span class="total-value">R$ 957,12</span>
                         </div>
+                    </div>
+                    <p class="renewal-info">Sua assinatura será renovada automaticamente no próximo ciclo.</p>
                 </div>
 
             </div>
@@ -79,7 +107,15 @@
 
     <footer>
         <div class="container">
-           
+            <p>&copy; 2025 Techfit Academia. Todos os direitos reservados.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <div class="footer-links">
+                <span>Termos de Uso</span>
+                <span>Política de Privacidade</span>
             </div>
         </div>
     </footer>
