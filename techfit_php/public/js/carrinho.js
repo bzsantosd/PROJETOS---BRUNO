@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const shippingValue = document.getElementById('shipping-value');
     const FIXED_SHIPPING = 15.00; // Frete fixo R$15,00
 
-    // Funções de utilidade
+    // --- FUNÇÕES DE UTILIDADE ---
+
     const getCart = () => {
         const cartJSON = localStorage.getItem('techfitCart');
         return cartJSON ? JSON.parse(cartJSON) : [];
@@ -15,11 +16,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveCart = (cart) => {
         localStorage.setItem('techfitCart', JSON.stringify(cart));
         renderCart(); // Recarrega o carrinho toda vez que ele é salvo
+        // Opcional: Atualizar o contador do carrinho na navegação após salvar
+        updateCartCounter(); 
     };
 
     const formatPrice = (price) => {
         return `R$ ${price.toFixed(2).replace('.', ',')}`;
     };
+
+    // Função auxiliar para atualizar o contador global (importante para o header)
+    const updateCartCounter = () => {
+        const cart = getCart();
+        let count = 0;
+        cart.forEach(item => { count += item.quantidade; });
+        const cartCounter = document.getElementById('cart-counter');
+        if (cartCounter) {
+            cartCounter.textContent = count.toString();
+            cartCounter.style.display = count > 0 ? 'block' : 'none';
+        }
+    };
+
 
     // --- FUNÇÕES DE RENDERIZAÇÃO E CÁLCULO ---
 
@@ -28,7 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
         card.classList.add('cart-item');
         card.setAttribute('data-code', item.codigo);
 
-        // Converte o preço unitário para número (removendo "R$ " e trocando vírgula por ponto)
+        // Converte o preço unitário para número (recomenda-se que o preço venha como número do seu PHP)
+        // Se vier como string "R$ 69,90", esta lógica funciona:
         const numericPrice = parseFloat(item.preco.replace('R$', '').replace(',', '.').trim());
         const totalPriceItem = numericPrice * item.quantidade;
 
@@ -60,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const shipping = subtotal > 0 ? FIXED_SHIPPING : 0.00;
         const total = subtotal + shipping;
 
-        // Atualiza o DOM
+        // Atualiza o DOM do resumo
         subtotalValue.textContent = formatPrice(subtotal);
         shippingValue.textContent = formatPrice(shipping);
         totalValue.textContent = formatPrice(total);
@@ -72,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (cart.length === 0) {
             cartList.innerHTML = '<p class="empty-cart-message">Seu carrinho está vazio. Visite a página de <a href="/techfit_php/public/Produtos.html" style="color: var(--primary-color);">Produtos</a> para adicionar itens!</p>';
-            totalValue.textContent = formatPrice(0);
         } else {
             cart.forEach(item => {
                 cartList.appendChild(createCartItemElement(item));
@@ -80,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         calculateTotals(cart);
+        updateCartCounter(); // Garante que o contador esteja correto ao renderizar
     };
     
     // --- MANIPULAÇÃO DE EVENTOS DO CARRINHO ---
@@ -124,11 +141,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const cart = getCart();
         if (cart.length > 0) {
             alert('Simulação de Compra Finalizada! Redirecionando para o pagamento...');
-            // Aqui você adicionaria a lógica de limpeza do carrinho e redirecionamento
-            // saveCart([]); // Descomente para limpar o carrinho após a compra simulada
+            // Exemplo de como limpar o carrinho após a finalização:
+            // saveCart([]); 
         } else {
             alert('Seu carrinho está vazio! Adicione produtos para prosseguir.');
         }
     });
-
 });

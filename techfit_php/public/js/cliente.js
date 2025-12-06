@@ -1,92 +1,74 @@
-// script.js
-
-// 1. DADOS DE EXEMPLO (Simulação de um Banco de Dados)
-// Em um sistema real, estes dados viriam de uma API ou do servidor.
-const dadosDoCliente = {
-    'email.cliente@exemplo.com': {
-        nome: 'Maria da Silva',
-        telefone: '(11) 98765-4321',
-        pedidos: [
-            { id: '12345', valor: 150.00, status: 'Entregue' },
-            { id: '12344', valor: 99.90, status: 'Em Separação' },
-            { id: '12343', valor: 25.50, status: 'Cancelado' }
-        ]
-    },
-    'outro.cliente@exemplo.com': {
-        nome: 'João Oliveira',
-        telefone: '(21) 99999-0000',
-        pedidos: [
-            { id: '10001', valor: 500.00, status: 'Aprovado' }
-        ]
-    }
-    // Adicione mais perfis se quiser testar a mudança
-};
-
-// 2. VARIÁVEL QUE SIMULA O CLIENTE LOGADO
-// Aqui você define qual perfil será carregado.
-const emailDoClienteLogado = 'email.cliente@exemplo.com'; // Mude este email para testar outro perfil
-const clienteLogado = dadosDoCliente[emailDoClienteLogado];
-
-
 /**
- * Função para preencher a seção "Meus Dados Pessoais"
+ * cliente.js
+ * Script para funcionalidades da página de perfil do cliente.
  */
-function carregarDadosPessoais() {
-    if (!clienteLogado) {
-        console.error("Cliente não encontrado.");
-        return;
-    }
 
-    // Preenche os elementos HTML com os IDs correspondentes
-    document.getElementById('nome-cliente').textContent = clienteLogado.nome;
-    document.getElementById('email-cliente').textContent = emailDoClienteLogado;
-    document.getElementById('tel-cliente').textContent = clienteLogado.telefone;
+document.addEventListener('DOMContentLoaded', function() {
 
-    // Atualiza o título da página e o cabeçalho
-    document.title = `Meu Perfil - ${clienteLogado.nome.split(' ')[0]}`;
-    document.querySelector('header h1').innerHTML = `Bem-vindo(a), <strong>${clienteLogado.nome.split(' ')[0]}</strong>!`;
-}
-
-
-/**
- * Função para criar a lista de pedidos no HTML
- */
-function carregarHistoricoDePedidos() {
-    if (!clienteLogado || !clienteLogado.pedidos) {
-        return;
-    }
-
-    const listaPedidos = document.querySelector('#pedidos ul');
-    listaPedidos.innerHTML = ''; // Limpa a lista existente
-
-    clienteLogado.pedidos.forEach(pedido => {
-        const li = document.createElement('li');
-        
-        // Formata o valor para Real (R$)
-        const valorFormatado = pedido.valor.toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
+    // --- Funções de utilidade do Carrinho (Copiadas de carrinho.js) ---
+    const getCart = () => {
+        // Lê o carrinho do localStorage. 'techfitCart' é a chave usada em carrinho.js.
+        const cartJSON = localStorage.getItem('techfitCart');
+        return cartJSON ? JSON.parse(cartJSON) : [];
+    };
+    
+    const calculateItemCount = (cart) => {
+        let count = 0;
+        // Soma as quantidades de todos os itens no carrinho
+        cart.forEach(item => {
+            count += item.quantidade;
         });
+        return count;
+    };
 
-        li.innerHTML = `Pedido **#${pedido.id}** - ${valorFormatado} - **${pedido.status}**`;
 
-        // Adiciona um estilo básico de cor para o status
-        if (pedido.status === 'Entregue') {
-            li.style.color = '#28a745'; // Verde
-        } else if (pedido.status === 'Em Separação') {
-            li.style.color = '#ffc107'; // Amarelo
-        } else if (pedido.status === 'Cancelado') {
-            li.style.color = '#dc3545'; // Vermelho
+    // --- 1. Inicialização do Contador do Carrinho ---
+    
+    const cart = getCart();
+    const itemCount = calculateItemCount(cart);
+    
+    const cartCounter = document.getElementById('cart-counter');
+
+    if (cartCounter) {
+        // Atualiza o texto do contador com o número real de itens
+        cartCounter.textContent = itemCount.toString();
+        
+        // Exibe o contador apenas se houver itens
+        if (itemCount > 0) {
+            cartCounter.style.display = 'block'; 
+        } else {
+            cartCounter.style.display = 'none'; // Oculta se estiver vazio
         }
+    }
 
 
-        listaPedidos.appendChild(li);
+    // --- 2. Destaque do Item de Navegação Ativo ---
+    
+    // Este bloco garante que o link da página atual esteja ativo, 
+    // com base no href do link.
+    const navItems = document.querySelectorAll('.nav-item a');
+    // Obtém o nome do arquivo atual (e.g., 'cliente.html')
+    const currentPagePath = window.location.pathname.split('/').pop() || 'cliente.html'; 
+
+    navItems.forEach(item => {
+        const linkPath = item.getAttribute('href').split('/').pop();
+        const parentLi = item.parentElement;
+
+        // Garante que apenas o link correto tenha a classe 'active'
+        if (linkPath === currentPagePath) {
+            parentLi.classList.add('active');
+        } else {
+             parentLi.classList.remove('active');
+        }
     });
-}
 
-
-// 3. EVENTO DE CARREGAMENTO: Garante que as funções só rodem depois que o HTML estiver pronto
-document.addEventListener('DOMContentLoaded', () => {
-    carregarDadosPessoais();
-    carregarHistoricoDePedidos();
+    // --- 3. Funcionalidade básica dos botões de Edição ---
+    
+    const editButtons = document.querySelectorAll('.editar-btn');
+    editButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const section = this.closest('.perfil-secao').querySelector('h2').textContent;
+            alert(`Implementar aqui a lógica para editar: "${section}"`);
+        });
+    });
 });

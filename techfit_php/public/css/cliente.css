@@ -81,6 +81,37 @@ body {
     border-bottom: 2px solid var(--color-purple-bright);
 }
 
+/* ==================== ESTILOS PARA O ÍCONE DO CARRINHO (BADGE) ==================== */
+
+/* O item da lista precisa de posição relativa para ser o 'pai' do badge absoluto */
+.cart-icon-item {
+    position: relative; 
+    padding-right: 20px; /* Adiciona espaço para o badge */
+}
+
+/* Estilo do contador (badge) */
+.cart-badge {
+    position: absolute;
+    /* Posição top-right sobre o ícone (ajustado para as cores do cliente.css) */
+    top: -10px; 
+    right: -10px;
+    
+    background-color: var(--primary-color); /* Roxo */
+    color: var(--text-light); /* Branco */
+    
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    
+    padding: 2px 6px;
+    border-radius: 50%; /* Forma de círculo/oval */
+    min-width: 20px; 
+    
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
+    pointer-events: none; 
+}
+
 
 /* ------------------------------------------------ */
 /* --- ESTILOS DO PERFIL (Adaptados para o tema Dark) --- */
@@ -163,6 +194,7 @@ footer {
     background-color: var(--bg-dark);
     border-top: 2px solid var(--color-purple-bright);
     color: var(--text-secondary);
+    margin-top: auto; /* Garante que o footer vá para o final em um body flex/grid ou min-height */
 }
 
 /* --- Responsividade (Simples, para o header) --- */
@@ -192,107 +224,4 @@ footer {
     .nav-item {
         margin: 5px 10px;
     }
-}
-/* styles.css */
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f7f6;
-    color: #333;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 5%;
-    /* Usei variáveis genéricas do seu CSS. Se o arquivo cliente.css usa cores específicas, ajuste aqui. */
-    background-color: #000000; /* Dark Background */
-    border-bottom: 2px solid #A020F0; /* Purple Bright */
-}
-
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-main {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-}
-
-.perfil-secao {
-    background-color: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.info-bloco {
-    margin-bottom: 15px;
-}
-
-.info-bloco label {
-    display: block;
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 5px;
-}
-
-.info-bloco p {
-    margin: 0;
-    padding: 10px;
-    background-color: #eee;
-    border-radius: 4px;
-}
-
-.editar-btn {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.editar-btn:hover {
-    background-color: #218838;
-}
-
-/* ==================== ESTILOS PARA O ÍCONE DO CARRINHO (BADGE) - NOVO ==================== */
-
-/* O item da lista precisa de posição relativa para ser o 'pai' do badge absoluto */
-.cart-icon-item {
-    position: relative; 
-    padding-right: 20px; /* Adiciona espaço para o badge */
-}
-
-/* Estilo do contador (badge) */
-.cart-badge {
-    position: absolute;
-    /* Posição top-right sobre o ícone (ajustado para as cores do cliente.css) */
-    top: -10px; 
-    right: -10px;
-    
-    background-color: #A020F0; /* Roxo */
-    color: #FFFFFF; /* Branco */
-    
-    font-size: 10px;
-    font-weight: 700;
-    line-height: 1.2;
-    text-align: center;
-    
-    padding: 2px 6px;
-    border-radius: 50%; /* Forma de círculo/oval */
-    min-width: 20px; 
-    
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
-    pointer-events: none; 
 }
