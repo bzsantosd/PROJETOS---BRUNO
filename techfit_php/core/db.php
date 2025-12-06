@@ -3,11 +3,10 @@ class Database {
     private static $instance = null;
     private $conn;
     
-    private $host = getenv('DB_HOST') ?: "127.0.0.1";
-    private $user = getenv('DB_USER') ?: "root";
-    private $pass = getenv('DB_PASS') ?: "senaisp";
-    private $dbname = getenv('DB_NAME') ?: "SENAI";
-    
+private $host = "127.0.0.1";
+private $user = "root";
+private $pass = "senaisp";  
+private $dbname = "TechFit"; 
     private function __construct() {
         try {
             $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->dbname);
