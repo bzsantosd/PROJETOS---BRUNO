@@ -1,126 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechFit Academia - ADM</title>
-    <link rel="stylesheet" href="adm.css">
+    <title>TechFit Academia - Painel ADM</title>
+    
+    <link rel="stylesheet" href="/PAINEL ADM/adm.css"> 
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-           <div class="login-container">
+    
+    <div class="login-container">
         
         <div class="image-section">
-            </div>
+        </div>
 
         <div class="login-section">
             <div class="login-box">
                  
-                <img src="https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/Logotipo%20Faustino%20Academia%20Ilustrativo%20Verde%20Azul%20Branco.png?raw=true" alt="" class="background-image">
-                <form id="loginForm" class="login-form">
+                <img src="https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/Logotipo%20Faustino%20Academia%20Ilustrativo%20Verde%20Azul%20Branco.png?raw=true" alt="Logotipo TechFit Academia" class="background-image">
+                
+                <form id="admDashboard" class="login-form">
 
-    <div class="user-info">
-    <div class="user-name-group">
-        
-        <div class="user-icon-placeholder">
-            <img src="https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/vitoria.jpg?raw=true" alt="Foto da Vitória" class="user-icon">
+                    <div class="user-info">
+                        <div class="user-name-group">
+                            
+                            <div class="user-icon-placeholder">
+                                <img src="https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/vitoria.jpg?raw=true" alt="User Icon" class="user-icon">
+                            </div>
+                            
+                            <div class="user-name">
+                                Bem Vindo(a) <span class="adm-highlight">ADMINISTRADOR</span>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="button-container">
+                        
+                        <button type="button" class="btn-adm">
+                            <a href="/techfit_php/public/rendimento.html">RENDIMENTO MENSAL</a>
+                        </button>
+
+                        <button type="button" class="btn-adm">
+                            <a href="/techfit_php/public/cadproduto.html">CADASTRO DE PRODUTOS</a>
+                        </button>
+                        
+                        <button type="button" class="btn-adm">
+                            <a href="/techfit_php/public/cadclientes.html">CADASTRO DE CLIENTES</a>
+                        </button>
+
+                        <button type="button" class="btn-adm logout">
+                            <a href="/techfit_php/public/login.html">SAIR</a>
+                        </button>
+
+                    </div>
+
+
+                </form>
+            </div>
         </div>
-
-        <p class="user-name">
-            Vitória Pereira | <span class="adm-highlight">ADM</span>
-        </p>
-    </div>
-    
-    <hr class="divider">
-</div>
-
-  <style>
-        /* Estilo para centralizar os botões na página */
-        body {
-            display: flex; /* Habilita o Flexbox */
-            flex-direction: column; /* Coloca os itens em coluna */
-            align-items: center; /* Centraliza horizontalmente */
-            justify-content: center; /* Centraliza verticalmente (se body tiver altura total) */
-            min-height: 100vh; /* Garante que o body ocupa a altura total da viewport */
-            margin: 0; /* Remove margens padrão do body */
-           
-        }
-
-        /* Estilo para o contêiner dos botões (opcional, mas bom para organização) */
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px; /* Espaço entre os botões */
-        }
-
-        /* Estilos do botão principal */
-        .btn-adm {
-            /* Cor de fundo transparente para ver a cor da borda/texto */
-            background-color: transparent;
-            /* Cor da borda: Roxo #5d0f99 */
-            border: 2px solid #5d0f99;
-            /* Arredondamento da borda para um visual mais suave (opcional) */
-            border-radius: 5px;
-            /* Preenchimento interno para aumentar o tamanho do botão */
-            padding: 15px 30px;
-            /* Tamanho da fonte e peso (opcional) */
-            font-size: 1.1em;
-            font-weight: bold;
-            /* Garante que o botão ocupe o espaço necessário */
-            display: block;
-            /* Remove a decoração de texto do <a> (sublinhado) */
-            text-decoration: none;
-            /* Transição suave para o efeito hover (opcional) */
-            transition: all 0.3s ease;
-            /* Define a largura mínima dos botões para que fiquem alinhados */
-            min-width: 250px;
-            text-align: center;
-        }
-
-        /* Estilo para o link (o texto do botão) */
-        .btn-adm a {
-            /* Cor do texto: Branco */
-            color: #ffffff;
-            /* Cor do texto do link: Branco */
-            text-decoration: none;
-            display: block; /* Faz o link preencher todo o botão */
-        }
-
-        /* Estilo para o link e o botão ao passar o mouse */
-        .btn-adm:hover {
-            /* Mudar a cor de fundo para o roxo no hover */
-            background-color: #5d0f99;
-            /* Aumentar o brilho da borda no hover (opcional) */
-            border-color: #7a15c3;
-            cursor: pointer; /* Muda o cursor para indicar clicável */
-        }
-        
-        /* Mudar a cor do texto para branco no hover */
-        .btn-adm:hover a {
-            color: #ffffff;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="button-container">
-        <button class="btn-adm">
-            <a href="/techfit_php/public/rendimento.html">RENDIMENTO MENSAL</a>
-        </button>
-
-        <button class="btn-adm">
-            <a href="/techfit_php/public/cadproduto.html">CADASTRAR PRODUTOS</a>
-        </button>
-
-        <button class="btn-adm">
-            <a href="/techfit_php/public/produtoscadastrados.html">VER PRODUTOS CADASTRADOS</a>
-        </button>
-        
     </div>
 
-    
-
-    <script src="script4.js"></script>
-</body>
+    </body>
 </html>

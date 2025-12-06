@@ -10,6 +10,12 @@
     --sidebar-bg: #5a00a0; /* Um roxo sólido mais escuro para a barra lateral */
     --nav-top-bg: #FFFFFF; /* Fundo branco para a navegação superior */
     --nav-top-text: #000000; /* Texto preto para a navegação superior */
+
+    /* Variáveis necessárias para compatibilidade com o HTML de Planos.html e estilos do header */
+    --color-dark: var(--bg-dark);
+    --color-text-light: var(--text-light);
+    --color-bg-secondary: #1a1a1a;
+    --color-purple-hover: #8000ff; /* Roxo para o destaque / Hover */
 }
 
 /* --- Estilos Globais e Reset --- */
@@ -25,57 +31,41 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-light);
     min-height: 100vh;
-    display: flex; /* Para que o main e a barra lateral funcionem juntos */
+    display: block; /* Alterado de flex para block para layout de página padrão */
 }
 
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px 0; /* Adicionado padding para o conteúdo principal */
 }
 a {
     text-decoration: none;
     color: inherit;
 }
-a[data-page="Assinar agora"]:active {
-    color: var(--text-light);
-    background-color: var(--accent-purple); 
-    transform: scale(1.00); 
-    box-shadow: 0 0 20px var(--accent-purple), 0 0 8px var(--text-light); 
-}
+/* Estilo de clique: mantido apenas para o botão principal .action-button */
 
-body {
-    margin-left: 0; /* Removido: margin-left: 250px; - Se não tem sidebar, não precisa */
-
-
-    background-color: var(--bg-dark);
-    /* Adicionado para garantir que o conteúdo da página seja tratado */
-    display: block; 
-    min-height: 100vh;
-}
-
-
- .header-content {
+/* --- Estilos do Cabeçalho --- */
+.header-content {
+    /* Ajustado para centralizar o menu, pois o HTML não inclui logo/botões de autenticação */
     display: flex;
-    justify-content: space-between; 
+    justify-content: center; /* Centraliza a nav */
     align-items: center; 
-    padding: 25px 5%; /* Aumentado de 20px para 30px */
+    padding: 25px 5%; 
     background-color: var(--color-dark); 
     border-bottom: 2px solid var(--color-purple-primary);
 }
 
 .navbar {
-    /* REMOVER a margem inferior para o layout em linha, se o objetivo é que fique tudo na mesma linha. */
-    margin-bottom: 0; 
-    /* Garantir que a navegação ocupe o espaço central */
-    flex-grow: 1; 
-    text-align: center; /* Centraliza o conteúdo da nav */
+    width: 100%; /* Permite que a lista interna seja centralizada */
+    text-align: center; 
 }
 
 .nav-list {
     display: flex;
     list-style: none;
-    /* justify-content: center; Não é necessário se o pai .header-content tiver align-items: center e .navbar não for 100% */
+    justify-content: center; /* Centraliza os links dentro do menu */
 }
 
 .nav-item {
@@ -85,7 +75,7 @@ body {
 .nav-item a {
     font-weight: 600;
     padding-bottom: 5px;
-    color: var(--color-text-light); /* Garante que os links da nav sejam brancos/claros */
+    color: var(--color-text-light);
 }
 
 .nav-item.active a,
@@ -93,49 +83,18 @@ body {
     color: var(--color-purple-primary);
     border-bottom: 2px solid var(--color-purple-primary);
 }
-.auth-buttons .btn {
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-weight: 600;
-    margin-left: 10px;
-    transition: background-color 0.3s ease;
-}
 
-.btn-login {
-    background-color: transparent;
-    border: 2px solid var(--color-text-light);
-}
-
-.btn-login:hover {
-    background-color: var(--color-text-light);
-    color: var(--color-dark);
-}
-
-.btn-register {
-    background-color: var(--color-purple-primary);
-    border: 2px solid var(--color-purple-primary);
-}
-
-.btn-register:hover {
-    background-color: var(--color-purple-hover);
-    border-color: var(--color-purple-hover);
-}
+/* REMOVIDOS os estilos .auth-buttons, .btn-login e .btn-register que estavam no original, mas não são usados no Planos.html */
 
 
-/*destacar class produto*/
+/* destacando class planos (Mantido) */
 .nav-list a[data-page="planos"] {
-    color: #A020F0;
-    border-bottom: 3px solid #A020F0;
+    color: var(--accent-purple);
+    border-bottom: 3px solid var(--accent-purple);
 }
 
-/* Adicionado para centralizar todo o conteúdo da página de planos */
-.testimonials-section {
-    width: 100%;
-    /* Usa flexbox para centralizar horizontalmente o conteúdo */
-    display: flex; 
-    flex-direction: column;
-    align-items: center; 
-}
+/* Removido .testimonials-section e .testimonials-grid do escopo de planos, pois não é a finalidade principal */
+
 
 /* --- Título da Página de Planos (CORRIGIDO) --- */
 .page-title {
@@ -143,14 +102,13 @@ body {
     font-weight: 900;
     color: var(--text-light); 
     text-transform: uppercase;
-    text-align: center; /* CENTRALIZA O TEXTO (A LINHA) */
-    margin: 0 auto 40px auto; /* CENTRALIZA O BLOCO */
+    text-align: center; 
+    margin: 40px auto; 
     letter-spacing: 2px;
-    display: block; /* Garante que o elemento ocupe a largura total */
-    max-width: fit-content; /* Permite que a linha sublinhada seja do tamanho do texto */
+    display: block; 
+    max-width: fit-content; 
     padding-bottom: 5px;
-    border-bottom: 3px solid var(--accent-purple); /* Linha roxa */
-
+    border-bottom: 3px solid var(--accent-purple); 
 }
 
 .products-grid {
@@ -158,8 +116,8 @@ body {
     grid-template-columns: repeat(3, 1fr); 
     gap: 25px; 
     max-width: 1100px; 
-    margin: 40px auto; /* Centraliza o grid */
-    width: 100%; /* Adicionado para garantir que o margin: auto funcione corretamente */
+    margin: 40px auto; 
+    width: 100%; 
 }
 
 .product-card {
@@ -167,12 +125,11 @@ body {
     padding: 10px 20px; 
     border-radius: 12px;
     display: flex;
-    flex-direction: column ; /* Organiza o conteúdo interno (detalhes, preço) verticalmente */
+    flex-direction: column ; 
     align-items: center;
-    text-align: center; /* Centraliza o texto dentro do card */
-    min-height: 500px; /* Garante que todos os cards tenham altura similar visualmente */
+    text-align: center; 
+    min-height: 500px; 
     
-    /* Mantendo o efeito Neon da Borda */
     border: 3px solid var(--accent-purple);
     box-shadow: 0 0 10px var(--accent-purple); 
     transition: all 0.3s ease-in-out;
@@ -187,9 +144,8 @@ body {
 /* --- Detalhes internos do Card --- */
 
 .product-details {
-    flex-grow: 1; /* Permite que o conteúdo estique */
+    flex-grow: 1; 
     width: 100%;
-    margin-right: 0;
     margin-bottom: 20px;
 }
 
@@ -199,29 +155,27 @@ body {
     color: var(--accent-purple);
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 2px solid rgba(160, 32, 240, 0.5); /* Linha divisória sutil */
+    border-bottom: 2px solid rgba(160, 32, 240, 0.5); 
 }
 
 .card-text {
     font-size: 0.9rem;
     line-height: 1.6;
-    color: var(--text-light); /* Mudei para light, já que é a lista de recursos */
-    text-align: left; /* Lista de recursos alinhada à esquerda dentro do card */
+    color: var(--text-light);
+    text-align: left; 
     padding: 0 10px;
+    /* Ajuste para espaçamento da lista de recursos */
+    margin-bottom: 0; 
+    padding-bottom: 0;
 }
-
-.card-text br {
-    line-height: 10px; 
-}
-
 
 /* --- Preços e Botões --- */
 .product-price-box {
-    width: 100%; /* Ocupa a largura total do card */
+    width: 100%; 
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Empurra o preço e o botão para baixo */
+    justify-content: flex-end; 
     align-items: center;
     padding-top: 15px;
     border-top: 1px solid #333;
@@ -237,24 +191,27 @@ body {
 .price-new {
     font-size: 2.5rem;
     font-weight: 900;
-    color: var(--accent-purple); /* Destaque o preço com a cor neon */
+    color: var(--accent-purple); 
     margin-bottom: 20px;
-    text-shadow: 0 0 5px rgba(160, 32, 240, 0.7); /* Pequeno brilho no preço */
+    text-shadow: 0 0 5px rgba(160, 32, 240, 0.7); 
 }
 
 .action-button {
     width: 90%; 
     max-width: 250px; 
-    /* Estilos de clique (mantidos do seu pedido anterior) */
+    display: inline-block; /* Tornar o link um bloco para padding e width */
     background-color: var(--accent-purple);
     color: var(--text-light);
     border: none;
     padding: 12px 20px;
-    border-radius: 50px; /* Formato de pílula */
+    border-radius: 50px; 
     font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
     box-shadow: 0 0 5px var(--accent-purple);
+    text-align: center; /* Garante que o texto do botão esteja centralizado */
+    margin-bottom: 15px; /* Adiciona espaço abaixo do botão */
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .action-button:hover {
@@ -262,12 +219,10 @@ body {
     box-shadow: 0 0 15px var(--accent-purple);
 }
 
-/* Regra de Clique/Active (Mantida) */
+/* Regra de Clique/Active */
 .action-button:active,
-.action-button:focus,
-a[data-page="assinar agora"]:active,
-a[data-page="assinar agora"]:focus {
-    transform: scale(0.96); /* Efeito mais visível */
+.action-button:focus {
+    transform: scale(0.96); 
     box-shadow: 0 0 30px var(--accent-purple), 0 0 12px var(--text-light); 
 }
 

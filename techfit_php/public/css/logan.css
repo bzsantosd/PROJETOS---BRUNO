@@ -1,37 +1,16 @@
-.profile-img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: 80% 5%;
-    border: 2px solid var(--primary-purple);
-    margin-right: 10px;
-}
+/* Variáveis CSS (Custom Properties) */
 :root {
     --color-dark: #000000;
     --color-text-light: #ffffff;
-    --color-purple-primary: #a020f0; /* Cor principal da TechFit */
+    --color-purple-primary: #a020f0; /* Cor principal da TechFit / Roxo/Magenta Vibrante */
+    --color-purple-hover: #8000ff; /* Roxo para o destaque / Hover */
     --color-bg-secondary: #1a1a1a;
     --color-border: #444444;
-    --primary-purple: #8a2be2; /* Roxo vibrante */
-    --dark-bg: #000000;
-    --text-color: #ffffff;
-    --card-bg: #1c1c1c; /* Fundo do card ligeiramente mais claro que o fundo */
-    --highlight-border: #8000ff; /* Roxo para o destaque */
     --star-color: #f7d201; /* Cor amarela para estrelas */
-    --bg-dark: #000000; /* Fundo preto total */
-    --bg-card: #1A1A1A; /* Fundo do card (levemente cinza escuro) */
-    --accent-purple: #A020F0; /* Roxo/Magenta Vibrante (o neon/primary color) */
-    --text-light: #FFFFFF; /* Texto principal claro */
-    --text-secondary: #AAAAAA; /* Texto secundário (descrições) */
-    --color-purple-primary: #A020F0;
-    /* Cores específicas para o novo layout */
-    --sidebar-bg: #5a00a0; /* Um roxo sólido mais escuro para a barra lateral */
-    --nav-top-bg: #FFFFFF; /* Fundo branco para a navegação superior */
-    --nav-top-text: #000000; /* Texto preto para a navegação superior */
+    --card-bg: #1c1c1c; /* Fundo do card */
+    --text-secondary: #AAAAAA; /* Texto secundário */
+    --highlight-border: var(--color-purple-hover); /* Mantendo a variável de destaque */
 }
-
-
 
 /* Reset Básico e Fonte */
 * {
@@ -66,22 +45,22 @@ a:hover {
 /* 1. ESTILO DO CABEÇALHO */
 .header-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centralizado, pois o logo foi removido no HTML */
     align-items: center;
     padding: 20px 5%;
     background-color: var(--color-bg-secondary);
     border-bottom: 2px solid var(--color-purple-primary);
 }
 
-.logo {
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--color-purple-primary);
+.navbar {
+    /* Garante que o nav use o espaço total para centralização */
+    width: 100%; 
 }
 
 .nav-list {
     display: flex;
     list-style: none;
+    justify-content: center; /* Centraliza a lista de navegação */
 }
 
 .nav-item {
@@ -99,66 +78,31 @@ a:hover {
     border-bottom: 2px solid var(--color-purple-primary);
 }
 
-.auth-buttons .btn {
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-weight: 600;
-    margin-left: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-login {
-    background-color: transparent;
-    border: 2px solid var(--color-text-light);
-}
-
-.btn-login:hover {
-    background-color: var(--color-text-light);
-    color: var(--color-dark);
-}
-
-.btn-register {
-    background-color: var(--color-purple-primary);
-    border: 2px solid var(--color-purple-primary);
-}
-
-.btn-register:hover {
-    background-color: var(--color-purple-hover);
-    border-color: var(--color-purple-hover);
-}
-
 /* 2. SEÇÃO HERO (PRINCIPAL) */
 .hero-section {
-position: relative;
-height: auto;
-min-height: 500px; 
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-
-/* --- CORREÇÃO DO DEGRADÊ NAS BORDAS --- */
-background-image: 
-    /* 1. Gradiente Radial (Degradê nas bordas): Transparente no centro, preto nas extremidades */
-    radial-gradient(ellipse at center, 
-        rgba(0, 0, 0, 0) 0%, 
-        rgba(0, 0, 0, 0) 50%,
-        rgba(0, 0, 0, 0.8) 100%), 
-        
-    /* 2. Gradiente Linear (Filtro Escuro de cima para baixo) */
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    position: relative;
+    height: auto;
+    min-height: 500px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px; 
+    margin-bottom: 50px;
     
-    /* 3. Imagem de Fundo */
-    url('https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/fachada%201.png?raw=true');
+    /* Fundo da Seção HERO */
+    background-image: 
+        radial-gradient(ellipse at center, 
+            rgba(0, 0, 0, 0) 0%, 
+            rgba(0, 0, 0, 0) 50%,
+            rgba(0, 0, 0, 0.8) 100%), 
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+        url('../IMAGENS/interior.png'); /* Verifique se este caminho está correto no seu projeto */
 
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-
-padding-top: 50px;
-padding-bottom: 50px; 
-
-margin-bottom: 50px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero-text h1 {
@@ -198,59 +142,14 @@ margin-bottom: 50px;
     transform: translateY(-3px);
 }
 
-/* 3. SEÇÃO DE DESTAQUES */
-.features-section {
-    display: flex;
-    justify-content: space-around;
-    gap: 30px;
-    padding: 50px 0;
-    text-align: center;
-}
-
-.feature-card {
-    background-color: var(--color-bg-secondary);
-    padding: 30px;
-    border-radius: 10px;
-    border: 1px solid var(--color-border);
-    max-width: 300px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--color-purple-primary);
-}
-
-.feature-card i {
-    font-size: 3rem;
-    color: var(--color-purple-primary);
-    margin-bottom: 15px;
-}
-
-.feature-card h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.feature-card p {
-    font-size: 0.95rem;
-    font-weight: 300;
-    color: #cccccc;
-}
-
-/* Seção dos Depoimentos (Direita) */
+/* 3. SEÇÃO DE DEPOIMENTOS */
 .testimonials-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 20px 0;
 }
 
 .testimonials-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo */
     gap: 20px;
     width: 100%;
     margin-bottom: 40px;
@@ -261,9 +160,11 @@ margin-bottom: 50px;
     background-color: var(--card-bg);
     padding: 15px;
     border-radius: 8px;
-    border: 3px solid transparent; /* Padrão sem borda */
+    border: 3px solid transparent; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    min-height: 180px; /* Garante que todos tenham a mesma altura base */
+    min-height: 180px; 
+    display: flex;
+    flex-direction: column;
 }
 
 .testimonial-card.highlighted {
@@ -273,8 +174,9 @@ margin-bottom: 50px;
 .card-title {
     font-size: 0.7rem;
     font-weight: 700;
-    color: var(--primary-purple);
+    color: var(--color-purple-primary); /* Padronizado para a cor principal */
     margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
 .user-info {
@@ -287,8 +189,8 @@ margin-bottom: 50px;
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-color: var(--primary-purple);
-    color: var(--dark-bg);
+    background-color: var(--color-purple-primary);
+    color: var(--color-dark);
     text-align: center;
     line-height: 20px;
     border-radius: 50%;
@@ -315,6 +217,7 @@ margin-bottom: 50px;
     font-size: 0.9rem;
     font-weight: 300;
     line-height: 1.4;
+    flex-grow: 1; 
 }
 
 /* 4. RODAPÉ */
@@ -329,5 +232,5 @@ margin-bottom: 50px;
 
 .footer p {
     font-size: 0.9rem;
-    color: #aaaaaa;
+    color: var(--text-secondary); /* Usando a variável */
 }

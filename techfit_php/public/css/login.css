@@ -32,145 +32,147 @@ html, body {
 .image-section {
     flex: 1;
     background-color: #222; 
-      background-image: url(https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/IMG%20LOGIN.png?raw=true);
+    background-image: url(https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/IMG%20LOGIN.png?raw=true);
     background-size: cover;
     background-position: center;
-    position: relative;
-    padding: 20px;
-    color: var(--text-color);
+    background-repeat: no-repeat;
 }
-/* Estilos para checkbox e label omitidos para brevidade, mantenha-os como estão no seu original. */
 
-
-/* --- SEÇÃO DE LOGIN (DIREITA) --- */
+/* --- SEÇÃO DO FORMULÁRIO (DIREITA) --- */
 .login-section {
     flex: 1;
-    background-color: var(--dark-bg);
-    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--dark-bg);
 }
 
 .login-box {
     width: 80%;
-    max-width: 350px;
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 10px;
     text-align: center;
+    color: var(--text-color);
 }
 
 .login-title {
-    font-size: 40px;
+    font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
+    margin-bottom: 30px;
+    color: var(--primary-color);
 }
 
-/* Estilo do Logo */
+/* Estilo para a imagem do logo dentro da box */
 .background-image {
-    width: 90px; 
-    height: 90px; 
-    object-fit: contain;
-    display: block;
-    margin: 0 auto 40px auto; /* Aumentei o margin-bottom para 40px */
+    width: 100px; 
+    height: auto;
+    margin-bottom: 20px;
 }
 
-/* Omiti os estilos .techfit e .academia pois as tags não existem no HTML */
-
-
-/* Formulário e Inputs */
+/* --- FORMULÁRIO --- */
 .login-form {
+    display: flex;
+    flex-direction: column;
     text-align: left;
-    margin-bottom: 20px;
 }
 
 .login-form label {
-    display: block;
     margin-top: 15px;
     margin-bottom: 5px;
-    font-size: 14px;
     font-weight: 600;
+    color: var(--text-color);
 }
 
-.login-form input[type="text"],
-.login-form input[type="password"] {
-    width: 100%;
-    padding: 8px 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: var(--input-bg);
-    color: var(--dark-bg);
-    font-size: 16px;
-    outline: none;
-}
-
-/* Links (Esqueceu a senha? Cadastre-se) */
-.links {
-    text-align: right;
-    margin-top: 10px;
-    margin-bottom: 25px; /* Adicionei margem para separar do botão ENTRAR */
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-.forgot-password, .register-text a {
-    color: var(--link-color);
-    text-decoration: none;
-}
-
-.register-text a {
-    font-weight: 600;
-}
-
-/* --- NOVO CONTAINER DE BOTÕES --- */
-.botoes-container {
-    /* Não precisa de text-align: center; se os botões são centralizados por margin: auto; */
-    width: 100%;
-}
-
-/* --- ESTILO BASE PARA BOTÕES (Links Estilizados) --- */
-.btn {
-    display: block; /* Essencial para que o width e margin: auto funcionem */
+.login-form input {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none; /* Remove sublinhado dos links */
-    text-align: center; /* Centraliza o texto dentro do link */
-    
-    /* Centralização com Largura Definida */
-    /* *** Aumenta a largura e centraliza os botões! *** */
-    width: 85%; /* Defina a largura desejada, 85% é um bom tamanho */
-    margin: 15px auto; /* 15px de margem vertical e auto nas laterais para centralizar */
+    background-color: var(--input-bg);
+    color: var(--dark-bg);
+    font-size: 1rem;
+    outline: 2px solid transparent; 
+    transition: outline-color 0.3s;
 }
 
-/* 1. Botão ENTRAR (Maior e Centralizado) */
+.login-form input:focus {
+    outline-color: var(--primary-color);
+}
+
+/* --- LINKS E REGISTRO --- */
+.links {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+.links a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.links a:hover {
+    color: #9d4edd; 
+    text-decoration: underline;
+}
+
+.register-text {
+    display: block;
+    margin-top: 10px;
+    color: #cccccc; 
+}
+
+/* --- BOTÕES --- */
+.btn {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
 .btn-login-full {
     background-color: var(--primary-color);
     color: var(--text-color);
-    margin-top: 0; /* Ajusta a margem superior já que o links tem margin-bottom */
+    margin-top: 10px;
 }
 
 .btn-login-full:hover {
     background-color: #6a0dad;
 }
 
-/* 2. Botão ADM (Maior e Centralizado) */
-.btn-adm-full {
-    background-color: var(--primary-color);
+/* --- NOVO: ESTILO PARA MENSAGEM DE ERRO --- */
+.error-message {
+    display: none; /* Inicia oculto */
+    background-color: #ff3333;
     color: var(--text-color);
-    /* Mantém o width: 85% e margin: 15px auto da classe .btn */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
 }
 
-.btn-adm-full:hover {
-    background-color: #6a0dad;
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+    .image-section {
+        display: none; 
+    }
+    .login-section {
+        min-height: 100vh; 
+        padding: 20px;
+    }
+    .login-box {
+        width: 100%;
+        max-width: none;
+        padding: 20px;
+    }
 }
-
-
-/* --- CLASSES DE BOTÃO ANTIGAS REMOVIDAS --- */
-/*
-  As classes .btn-login, .btn-adm, .botao-link, .container-centralizador 
-  foram substituídas por .btn-login-full e .btn-adm-full para simplificar e corrigir a centralização/largura.
-*/

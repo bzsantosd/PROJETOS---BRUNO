@@ -1,145 +1,195 @@
-
-    :root {
-        --color-dark: #000000;
-        --color-text-light: #ffffff;
-        --color-purple-primary: #A020F0;
-        --color-input-bg: #222222;
-        --color-placeholder: #aaaaaa;
-        --color-border: #444444;
-        
-    }
+:root {
+    --color-dark: #000000;
+    --color-text-light: #ffffff;
+    --color-purple-primary: #A020F0;
+    --color-input-bg: #222222;
+    --color-placeholder: #aaaaaa;
+    --color-border: #444444;
     
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-    }
-    body {
-    background-color: var(--color-dark);
-    color: var(--color-text-light);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    }
-.container {
-    display: flex;
-    width: 1100px;        
-    min-height: 500px;    
-    background-color: var(--color-dark);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    border-radius: 12px;
-    margin-left: 120px; 
 }
-    .image-section {
-        width: 20%;
-        background-color: var(--color-dark);
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-        align-items: left;
-        padding: 00px;
-    }
-    .image-section {
-    flex: 10 20 40%;
-    background-image: url('/techfit/public/images/suplementos.jpg');
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+background-color: var(--color-dark);
+color: var(--color-text-light);
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+}
+.container {
+display: flex;
+width: 1100px;        
+min-height: 500px;    
+background-color: var(--color-dark);
+box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+overflow: hidden;
+border-radius: 12px;
+margin-left: 120px; 
+}
+.image-section {
+    width: 20%;
+    background-color: var(--color-dark);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    padding: 00px;
+}
+.image-section {
+flex: 10 20 40%;
+/* Verifique se o caminho da imagem está correto no seu projeto */
+background-image: url('/techfit/public/images/suplementos.jpg');
+background-size: cover; 
+background-position: center; 
+background-repeat: no-repeat;
 
 }
-    .techfit-logo {
-        position: absolute;
-        right: 20px;
-        bottom: 20px;
-        width: 120px;
+.techfit-logo {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 120px;
+    height: auto;
+    margin: 0;
+}
+.form-section {
+    width: 50%;
+    background-color: var(--color-dark);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+.form-section h2 {
+    font-size: 2.0rem;
+    font-weight: bold;
+    color: var(--color-text-light);
+    margin-bottom: 30px;
+    text-align: center;
+}
+.input-group {
+    margin-bottom: 10px;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-text-light);
+}
+.input-group input {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    background-color: var(--color-input-bg);
+    color: var(--color-text-light);
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: border-bottom 0.3s ease;
+}
+.input-group input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--color-purple-primary);
+}
+.input-group input::placeholder {
+    color: var(--color-placeholder);
+    font-size: 0.9rem;
+}
+
+/* Estilo para o link "CADASTRAR" (botão de submissão) */
+.form-section a {
+    display: block; 
+    text-align: center;
+    font-family: 'Poppins', sans-serif; 
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #a020f0, #8a2be2);
+    color: var(--color-text-light);
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background 0.3s ease, transform 0.1s ease;
+    text-decoration: none; 
+}
+
+.form-section a:hover {
+    background: linear-gradient(to right, #8a2be2, #a020f0);
+    transform: translateY(-2px);
+}
+.form-section a:active {
+    transform: translateY(0);
+}
+
+/* --- ESTILOS PARA O MODAL (NOTIFICAÇÃO) --- */
+
+.modal-content {
+    background-color: var(--color-dark) !important; /* Fundo escuro */
+    border: 1px solid var(--color-purple-primary) !important; /* Borda roxa */
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.4) !important; /* Sombra roxa */
+}
+
+.modal-body {
+    padding: 1.5rem 1rem !important;
+}
+
+.modal-body h5 {
+    font-weight: bold !important;
+    color: var(--color-purple-primary) !important;
+}
+
+.modal-footer {
+    border-top: none !important; /* Remove a linha divisória */
+    padding: 0 !important;
+}
+
+.modal-footer a {
+    /* Transforma o link em um botão de ação */
+    flex: 1; /* Ocupa todo o rodapé */
+    padding: 10px 0;
+    color: var(--color-text-light) !important;
+    text-decoration: none !important;
+    font-weight: bold;
+    background-color: var(--color-purple-primary); /* Cor de fundo roxa */
+    border-bottom-left-radius: 0.2rem; /* Segue o raio do modal */
+    border-bottom-right-radius: 0.2rem;
+    transition: background-color 0.2s ease;
+}
+
+.modal-footer a:hover {
+    background-color: #8a2be2; /* Um roxo ligeiramente diferente no hover */
+}
+
+/* --- FIM DOS ESTILOS DO MODAL --- */
+
+
+@media (max-width: 950px) {
+    .container {
+        flex-direction: column;
+        width: 95%;
         height: auto;
-        margin: 0;
+        min-height: 100vh;
+        margin-left: 0; /* Centraliza no mobile */
+    }
+    .image-section {
+        width: 100%;
+        height: 100px;
     }
     .form-section {
-        width: 50%;
-        background-color: var(--color-dark);
+        width: 100%;
         padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
     }
     .form-section h2 {
-        font-size: 2.0rem;
-        font-weight: bold;
-        color: var(--color-text-light);
-        margin-bottom: 30px;
-        text-align: center;
+        margin-top: 20px;
+        text-align: center; 
     }
-    .input-group {
-        margin-bottom: 10px;
-    }
-    .input-group label {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 1rem;
-        font-weight: bold;
-        color: var(--color-text-light);
-    }
-    .input-group input {
-        width: 100%;
-        padding: 10px 15px;
-        border: none;
-        background-color: var(--color-input-bg);
-        color: var(--color-text-light);
-        font-size: 1rem;
-        border-radius: 5px;
-        transition: border-bottom 0.3s ease;
-    }
-    .input-group input:focus {
-        outline: none;
-        border-bottom: 2px solid var(--color-purple-primary);
-    }
-    .input-group input::placeholder {
-        color: var(--color-placeholder);
-        font-size: 0.9rem;
-    }
-    .register-button {
-        font-family: 'Black Ops One';
-        width: 100%;
-        padding: 12px;
-        background: linear-gradient(to right, #a020f0, #8a2be2);
-        color: var(--color-text-light);
-        font-size: 1.2rem;
-        font-weight: bold;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 30px;
-        transition: background 0.3s ease, transform 0.1s ease;
-    }
-    .register-button:hover {
-        background: linear-gradient(to right, #8a2be2, #a020f0);
-        transform: translateY(-2px);
-    }
-    .register-button:active {
-        transform: translateY(0);
-    }
-    @media (max-width: 950px) {
-        .container {
-            flex-direction: column;
-            width: 95%;
-            height: auto;
-            min-height: 100vh;
-        }
-        .image-section {
-            width: 100%;
-            height: 100px;
-        }
-        .form-section {
-            width: 100%;
-            padding: 20px;
-        }
-        .form-section h2 {
-            margin-top: 20px;
-            text-align: center; 
-        }
-    }
+}

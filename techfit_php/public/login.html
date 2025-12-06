@@ -20,10 +20,12 @@
                 
                 <img src="https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/Logotipo%20Faustino%20Academia%20Ilustrativo%20Verde%20Azul%20Branco.png?raw=true" alt="Logotipo TechFit Academia" class="background-image">
                 
-                <form id="loginForm" class="login-form">
+                <form id="loginForm" class="login-form" action="/login-submit" method="POST">
+                    
+                    <div id="error-message" class="error-message"></div> 
+
                     <label for="usuario">Usuário:</label>
                     <input type="text" id="usuario" name="usuario" required>
-
                     <label for="senha">Senha:</label>
                     <input type="password" id="senha" name="senha" required>
                     
@@ -33,17 +35,14 @@
                             Não tem uma conta? <a href="/techfit_php/public/cadastro.html">Cadastra - se</a>
                         </span>
                     </div>
+                    
+                    <button type="submit" class="btn btn-login-full">Entrar</button>
+                    
                 </form>
                 
-                <div class="botoes-container"> 
-                    <a href="/techfit_php/public/tela ao logan.html" class="btn btn-login-full">Entrar</a>
-                    <a href="/PAINEL ADM/adm.html" class="btn btn-adm-full">ADM</a>
                 </div>
-                
-            </div>
         </div>
     </div>
-    <script src="js/script.js"></script>
+    <script src="js/login.js"></script> 
 </body>
-
-
+</html>
