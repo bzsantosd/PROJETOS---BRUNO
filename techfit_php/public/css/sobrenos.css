@@ -1,61 +1,85 @@
-/* ==================== VARIÁVEIS ==================== */
+/* ==================== VARIÁVEIS CONSOLIDADAS ==================== */
 :root {
-    --bg-dark: #000000; /* Fundo preto total */
-    --bg-card: #1A1A1A; /* Fundo do card (levemente cinza escuro) */
-    --accent-purple: #A020F0; /* Roxo/Magenta Vibrante (o neon/primary color) */
-    --text-light: #FFFFFF; /* Texto principal claro */
-    --text-secondary: #AAAAAA; /* Texto secundário (descrições) */
-    --color-purple-primary: #A020F0;
-    /* Cores específicas para o novo layout */
-    --sidebar-bg: #5a00a0; /* Um roxo sólido mais escuro para a barra lateral */
-    --nav-top-bg: #FFFFFF; /* Fundo branco para a navegação superior */
-    --nav-top-text: #000000; /* Texto preto para a navegação superior */
-    --color-black: #000000;
-    --color-purple-bright: #A020F0;
-    --color-purple-dark: #1a0033;
-    --color-white: #ffffff;
-    --color-border: rgba(255, 255, 255, 0.1);
-    --color-bg-secondary: #0a0a0a;
+    /* Cores */
+    --primary-color: #A020F0; /* Roxo principal/Accent */
+    --secondary-color: #FFFFFF; /* Branco */
+    --background-dark: #000000; /* Fundo preto total */
+    --background-card: #1A1A1A; /* Fundo do card/Elemento */
+    --text-light: #FFFFFF;
+    --text-secondary: #AAAAAA; /* Descrições e detalhes */
+    
+    /* Variáveis antigas mapeadas para as novas */
+    --color-purple-primary: var(--primary-color);
+    --color-purple-bright: var(--primary-color);
+    --color-bg-secondary: var(--background-card); 
+
+    /* Tipografia */
+    --font-family: 'Poppins', sans-serif;
 }
 
-/* ==================== RESET E CONFIGURAÇÕES BÁSICAS ==================== */
+/* ==================== RESET E ESTRUTURA BÁSICA ==================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--font-family);
 }
 
 body {
-    background-color: var(--color-black);
-    color: var(--color-white);
-    font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    background-color: var(--background-dark); 
+    color: var(--text-light); 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh; /* Garante que o rodapé fique no final */
 }
 
-/* ==================== HEADER ==================== */
- .header-content {
+a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+    flex-grow: 1;
+}
+
+/* ==================== ESTILOS DO HEADER (CONSISTÊNCIA) ==================== */
+.header-content {
     display: flex;
     justify-content: space-between; 
     align-items: center; 
-    padding: 22px 5%; /* Aumentado de 20px para 30px */
-    background-color: var(--color-dark); 
-    border-bottom: 2px solid var(--color-purple-primary);
+    padding: 25px 5%; 
+    background-color: var(--background-dark); 
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.main-title {
+    font-size: 1.8em; 
+    font-weight: 900; 
+    letter-spacing: 1px;
+    color: var(--primary-color); 
+    margin: 0; 
 }
 
 .navbar {
-    /* REMOVER a margem inferior para o layout em linha, se o objetivo é que fique tudo na mesma linha. */
-    margin-bottom: 0; 
-    /* Garantir que a navegação ocupe o espaço central */
     flex-grow: 1; 
-    text-align: center; /* Centraliza o conteúdo da nav */
+    text-align: center;
 }
 
 .nav-list {
     display: flex;
+    justify-content: center;
     list-style: none;
-    /* justify-content: center; Não é necessário se o pai .header-content tiver align-items: center e .navbar não for 100% */
+    padding: 0;
+    margin: 0;
 }
 
 .nav-item {
@@ -65,143 +89,207 @@ body {
 .nav-item a {
     font-weight: 600;
     padding-bottom: 5px;
-    text-decoration: none;
-    color: var(--color-text-light); /* Garante que os links da nav sejam brancos/claros */
+    color: var(--text-light);
 }
 
-.nav-item.active a,
+.nav-item.active a {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
 .nav-item a:hover {
-    color: var(--color-purple-primary);
-    border-bottom: 2px solid var(--color-purple-primary);
-}
-/* Logo */
-.logo-box {
-    width: 150px;
-    height: auto;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
 }
 
-.logo-img {
-    width: 100%;
-    height: auto;
-    max-height: 125px;
-    display: block;
+/* Adicionando estilos para o ícone do carrinho, se estiver presente */
+.cart-icon-item {
+    position: relative;
+    font-size: 1.5em;
+    padding-left: 20px;
+}
+.cart-link {
+    color: var(--text-light);
+}
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7em;
+    font-weight: 600;
 }
 
-/* Título principal */
-.main-title {
-    font-size: 2.2em;
+/* ==================== SEÇÃO SOBRE NÓS ==================== */
+
+.title-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 2.5em;
     font-weight: 900;
-    letter-spacing: 2px;
-    color: var(--color-white);
-}
-
-
-
-/* ==================== CONTEÚDO PRINCIPAL ==================== */
-.content-wrapper {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    flex: 1;
+    color: var(--text-light);
+    border-bottom: 3px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 5px;
 }
 
 .about-section {
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 40px 0;
+    gap: 40px;
+    margin-bottom: 60px;
 }
 
 .about-text-box {
-    background-color: #000000;
-    border: 3px solid var(--color-purple-bright);
-    border-radius: 20px;
-    padding: 50px 60px;
-    max-width: 900px;
-    box-shadow: 0 10px 40px rgba(160, 32, 240, 0.2);
+    flex: 2; /* Ocupa mais espaço */
+    background-color: var(--background-card);
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(160, 32, 240, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-text-box:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 50px rgba(160, 32, 240, 0.3);
+    box-shadow: 0 15px 50px rgba(160, 32, 240, 0.5);
 }
 
 .about-text-box p {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     font-weight: 400;
     font-size: 1.1em;
     line-height: 1.8;
-    color: #aaaaaa;
-}
-
-.about-text-box p:last-child {
-    margin-bottom: 0;
+    color: var(--text-secondary);
 }
 
 .about-text-box strong {
-    color: var(--color-purple-bright);
+    color: var(--primary-color);
     font-weight: 700;
+}
+
+.about-visuals {
+    flex: 1; /* Ocupa menos espaço, focado no visual */
+    text-align: center;
+}
+
+.logo-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    filter: drop-shadow(0 0 10px var(--primary-color));
+}
+
+/* ==================== SEÇÃO DE VALORES (NOVA) ==================== */
+.value-section {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.value-title {
+    font-size: 2em;
+    color: var(--text-light);
+    margin-bottom: 40px;
+}
+
+.value-cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.value-card {
+    background-color: var(--background-card);
+    padding: 25px;
+    border-radius: 8px;
+    flex: 1;
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.value-card h4 {
+    color: var(--primary-color);
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.value-card p {
+    font-size: 0.95em;
+    color: var(--text-secondary);
 }
 
 /* ==================== RODAPÉ ==================== */
 .footer {
-    background-color: var(--color-bg-secondary);
+    background-color: var(--background-card);
     text-align: center;
-    padding: 30px 0;
+    padding: 25px 0;
     margin-top: auto;
-    border-top: 2px solid var(--color-purple-bright);
+    border-top: 2px solid var(--primary-color);
     width: 100%;
 }
 
 .footer p {
     font-size: 0.9rem;
-    color: #aaaaaa;
+    color: var(--text-secondary);
 }
+
 
 /* ==================== RESPONSIVIDADE ==================== */
-@media (max-width: 768px) {
-    .header-content {
+
+@media (max-width: 992px) {
+    /* Em telas de tablet, a seção sobre nós passa a ser vertical */
+    .about-section {
         flex-direction: column;
-        gap: 20px;
-        padding: 20px;
     }
-
-    .main-title {
-        font-size: 1.5em;
-        text-align: center;
+    
+    .about-visuals {
+        order: -1; /* Coloca a imagem no topo */
+        margin-bottom: 30px;
     }
-
-    .nav-links {
+    
+    .value-cards {
         flex-direction: column;
-        gap: 10px;
-    }
-
-    .nav-item {
-        margin: 5px 0;
-    }
-
-    .about-text-box {
-        padding: 30px 25px;
-    }
-
-    .about-text-box p {
-        font-size: 1em;
     }
 }
 
-@media (max-width: 480px) {
-    .main-title {
-        font-size: 1.2em;
+@media (max-width: 768px) {
+    /* Header em coluna para telas pequenas */
+    .header-content {
+        flex-direction: column; 
+        align-items: center;
+        padding: 20px 5%;
+    }
+    
+    .navbar {
+        order: 2; 
+        margin: 15px 0;
     }
 
-    .logo-box {
-        width: 100px;
+    .nav-list {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .cart-icon-item {
+        order: 3;
+        margin-top: 10px;
     }
 
+    .section-title {
+        font-size: 2em;
+    }
+    
     .about-text-box {
         padding: 20px;
-        border-radius: 15px;
+    }
+    
+    .about-text-box p {
+        font-size: 1em;
     }
 }

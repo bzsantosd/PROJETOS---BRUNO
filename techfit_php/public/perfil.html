@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - TechFit</title>
+    <link rel="stylesheet" href="/techfit_php/public/css/perfil.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    </head>
+<body>
+
+  <header class="header">
+    <nav class="nav-menu">
+        <ul>
+            <li class="nav-item active"><a href="/techfit_php/public/perfil.html">HOME</a></li>
+            <li class="nav-item"><a href="/techfit_php/public/Planos.html">PLANOS</a></li>
+            <li class="nav-item"><a href="/techfit_php/public/Produtos.html">PRODUTOS</a></li>
+            <li class="nav-item"><a href="/techfit_php/public/contato.html">CONTATO</a></li>
+            <li class="nav-item"><a href="/techfit_php/public/sobrenos.html">SOBRE NÓS</a></li>
+        </ul>
+    </nav>
+    <div class="user-info">
+        <div class="user-avatar" style="background-image: url('https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/19.jpg?raw=true');"></div>
+        <span>Beatriz Santos</span>
+    </div>
+</header>
+<div class="header-line-separator"></div>
+    <main class="container">
+
+        <section class="profile-details">
+            <h2></h2> <p><strong>Nome completo: </strong>Beatriz Santos</p>
+            <p><strong>Data Nascimento: </strong>02/08/2005</p>
+            <p><strong>Membro desde: </strong>2020</p>
+            <p><strong>Plano: </strong>AVANÇADO</p>
+        </section>
+
+        <div class="content-wrapper">
+            
+           <section class="agenda-card">
+    <h2>Agenda</h2>
+    <div class="day-selector">
+        <button class="day-button active" data-day="dom">D</button>
+        <button class="day-button" data-day="seg">S</button>
+        <button class="day-button" data-day="ter">T</button>
+        <button class="day-button" data-day="qua">Q</button>
+        <button class="day-button" data-day="qui">Q</button>
+        <button class="day-button" data-day="sex">S</button>
+        <button class="day-button" data-day="sab">S</button>
+    </div>
+    
+    <div class="schedule-date">
+        <span class="day-of-week">Dom</span>
+        <span class="date">07</span>
+    </div>
+
+    <div class="class-list" id="dom-schedule">
+        <p style="color: white; padding: 20px;">Não há aulas agendadas para Domingo.</p>
+    </div>
+
+    <div class="class-list hidden" id="seg-schedule">
+        <div class="class-item">
+            <span class="class-name">MUSCULAÇÃO</span>
+            <span class="class-time">19:00 - 20:00</span>
+            <span class="class-instructor">PEDRO SILVA</span>
+        </div>
+    </div>
+
+    <div class="class-list hidden" id="ter-schedule">
+        <div class="class-item">
+            <span class="class-name">FUNCIONAL</span>
+            <span class="class-time">07:00 - 08:00</span>
+            <span class="class-instructor">MARIA OLIVEIRA</span>
+        </div>
+    </div>
+
+    <div class="class-list hidden" id="qua-schedule">
+        <div class="class-item">
+            <span class="class-name">ZUMBA</span>
+            <span class="class-time">20:00 - 21:00</span>
+            <span class="class-instructor">PAULO BRITO</span>
+        </div>
+    </div>
+
+    <div class="class-list hidden" id="qui-schedule">
+        <div class="class-item">
+            <span class="class-name">YOGA</span>
+            <span class="class-time">06:00 - 07:00</span>
+            <span class="class-instructor">ANA COSTA</span>
+        </div>
+    </div>
+
+    <div class="class-list hidden" id="sex-schedule">
+        <div class="class-item">
+            <span class="class-name">TREINO LIVRE</span>
+            <span class="class-time">18:00 - 19:00</span>
+            <span class="class-instructor">JOÃO PEREIRA</span>
+        </div>
+    </div>
+
+    <div class="class-list hidden" id="sab-schedule">
+        <p style="color: white; padding: 20px;">Não há aulas agendadas para Sábado.</p>
+    </div>
+
+</section>
+            <section class="payment-card">
+                <h2>Pagamento</h2>
+                <div class="payment-method">
+                    <div class="visa-logo">VISA</div>
+                    <div class="card-details">
+                        <span class="card-holder">Beatriz Santos</span>
+                        <span class="card-number">VISA **** 1818</span>
+                    </div>
+                </div>
+                <p class="payment-note">Deseja trocar o cartão? Fale diretamente com a recepção!</p>
+            </section>
+        </div>
+    </main>
+
+    <script src="/techfit_php/public/js/perfil.js"></script>
+</body>
+</html>

@@ -6,16 +6,12 @@
     --text-light: #FFFFFF; /* Texto principal claro */
     --text-secondary: #AAAAAA; /* Texto secundário (descrições) */
     --color-purple-primary: #A020F0;
-    /* Cores específicas para o novo layout */
-    --sidebar-bg: #5a00a0; /* Um roxo sólido mais escuro para a barra lateral */
-    --nav-top-bg: #FFFFFF; /* Fundo branco para a navegação superior */
-    --nav-top-text: #000000; /* Texto preto para a navegação superior */
+    --color-purple-hover: #8000ff; /* Roxo para o destaque / Hover */
 
     /* Variáveis necessárias para compatibilidade com o HTML de Planos.html e estilos do header */
     --color-dark: var(--bg-dark);
     --color-text-light: var(--text-light);
     --color-bg-secondary: #1a1a1a;
-    --color-purple-hover: #8000ff; /* Roxo para o destaque / Hover */
 }
 
 /* --- Estilos Globais e Reset --- */
@@ -31,14 +27,14 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-light);
     min-height: 100vh;
-    display: block; /* Alterado de flex para block para layout de página padrão */
+    display: block;
 }
 
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0; /* Adicionado padding para o conteúdo principal */
+    padding: 20px 0;
 }
 a {
     text-decoration: none;
@@ -48,9 +44,8 @@ a {
 
 /* --- Estilos do Cabeçalho --- */
 .header-content {
-    /* Ajustado para centralizar o menu, pois o HTML não inclui logo/botões de autenticação */
     display: flex;
-    justify-content: center; /* Centraliza a nav */
+    justify-content: center;
     align-items: center; 
     padding: 25px 5%; 
     background-color: var(--color-dark); 
@@ -58,14 +53,14 @@ a {
 }
 
 .navbar {
-    width: 100%; /* Permite que a lista interna seja centralizada */
+    width: 100%;
     text-align: center; 
 }
 
 .nav-list {
     display: flex;
     list-style: none;
-    justify-content: center; /* Centraliza os links dentro do menu */
+    justify-content: center;
 }
 
 .nav-item {
@@ -78,25 +73,18 @@ a {
     color: var(--color-text-light);
 }
 
-.nav-item.active a,
+/* Corrigido: Usando a classe 'active' para o link ativo (Planos) */
+.nav-item.active a {
+    color: var(--color-purple-primary);
+    border-bottom: 2px solid var(--color-purple-primary);
+}
+
 .nav-item a:hover {
     color: var(--color-purple-primary);
     border-bottom: 2px solid var(--color-purple-primary);
 }
 
-/* REMOVIDOS os estilos .auth-buttons, .btn-login e .btn-register que estavam no original, mas não são usados no Planos.html */
-
-
-/* destacando class planos (Mantido) */
-.nav-list a[data-page="planos"] {
-    color: var(--accent-purple);
-    border-bottom: 3px solid var(--accent-purple);
-}
-
-/* Removido .testimonials-section e .testimonials-grid do escopo de planos, pois não é a finalidade principal */
-
-
-/* --- Título da Página de Planos (CORRIGIDO) --- */
+/* --- Título da Página de Planos --- */
 .page-title {
     font-size: 3rem;
     font-weight: 900;
@@ -111,10 +99,11 @@ a {
     border-bottom: 3px solid var(--accent-purple); 
 }
 
+/* --- Layout Grid dos Cards --- */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
-    gap: 25px; 
+    gap: 30px; /* Aumentado um pouco o gap */
     max-width: 1100px; 
     margin: 40px auto; 
     width: 100%; 
@@ -122,13 +111,13 @@ a {
 
 .product-card {
     background-color: var(--bg-card);
-    padding: 10px 20px; 
+    padding: 25px; /* Aumentado o padding interno */
     border-radius: 12px;
     display: flex;
     flex-direction: column ; 
     align-items: center;
     text-align: center; 
-    min-height: 500px; 
+    min-height: 550px; /* Aumentado para garantir espaço */
     
     border: 3px solid var(--accent-purple);
     box-shadow: 0 0 10px var(--accent-purple); 
@@ -136,17 +125,17 @@ a {
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 25px var(--accent-purple);
+    transform: translateY(-8px); /* Efeito hover mais pronunciado */
+    box-shadow: 0 0 30px var(--accent-purple); /* Sombra mais forte no hover */
 }
 
 
 /* --- Detalhes internos do Card --- */
 
 .product-details {
-    flex-grow: 1; 
+    flex-grow: 1; /* Permite que o conteúdo ocupe o espaço extra */
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .product-title {
@@ -159,14 +148,11 @@ a {
 }
 
 .card-text {
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 1rem; /* Tamanho ajustado para melhor leitura */
+    line-height: 2; /* Aumentado o espaçamento entre as linhas */
     color: var(--text-light);
     text-align: left; 
     padding: 0 10px;
-    /* Ajuste para espaçamento da lista de recursos */
-    margin-bottom: 0; 
-    padding-bottom: 0;
 }
 
 /* --- Preços e Botões --- */
@@ -177,7 +163,7 @@ a {
     flex-direction: column;
     justify-content: flex-end; 
     align-items: center;
-    padding-top: 15px;
+    padding-top: 20px; /* Mais espaço acima do preço */
     border-top: 1px solid #333;
 }
 
@@ -185,37 +171,38 @@ a {
     color: var(--text-secondary);
     text-decoration: line-through;
     font-size: 0.95rem;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 
 .price-new {
-    font-size: 2.5rem;
-    font-weight: 900;
+    font-size: 2.1rem; /* Preço maior e mais destacado */
+    font-weight: 700; /* Negrito para destaque */
     color: var(--accent-purple); 
-    margin-bottom: 20px;
+    margin-bottom: 20px;/* Espaço maior abaixo do preço */
     text-shadow: 0 0 5px rgba(160, 32, 240, 0.7); 
 }
 
 .action-button {
     width: 90%; 
     max-width: 250px; 
-    display: inline-block; /* Tornar o link um bloco para padding e width */
+    display: inline-block;
     background-color: var(--accent-purple);
     color: var(--text-light);
     border: none;
-    padding: 12px 20px;
+    padding: 15px 25px; /* Botão maior */
     border-radius: 50px; 
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 700;
     text-transform: uppercase;
     box-shadow: 0 0 5px var(--accent-purple);
-    text-align: center; /* Garante que o texto do botão esteja centralizado */
-    margin-bottom: 15px; /* Adiciona espaço abaixo do botão */
+    text-align: center;
+    margin-top: auto; /* IMPORTANTE: Empurra o botão para baixo */
+    margin-bottom: 20px; /* Adiciona espaço abaixo do botão */
     transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .action-button:hover {
-    background-color: #8A00FF; 
+    background-color: var(--color-purple-hover); 
     box-shadow: 0 0 15px var(--accent-purple);
 }
 
@@ -227,12 +214,13 @@ a {
 }
 
 
-/* --- Responsividade para 1 ou 2 Colunas em Telas Menores --- */
+/* --- Responsividade --- */
 
 @media (max-width: 1200px) {
     /* Em telas de tablet grandes, use 2 colunas */
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
     }
 }
 
@@ -245,6 +233,16 @@ a {
     }
     
     .product-card {
-        min-height: 400px; /* Ajusta a altura em mobile */
+        min-height: auto; /* Permite que a altura se ajuste ao conteúdo em mobile */
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        margin: 30px auto;
+    }
+    
+    .action-button {
+        width: 100%;
+        max-width: 300px;
     }
 }

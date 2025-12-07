@@ -1,123 +1,133 @@
-// carrinho.js
+// carrinho.js - Lógica do Carrinho de Compras
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Referências aos elementos do DOM
     const cartList = document.getElementById('cart-items-list');
     const subtotalValue = document.getElementById('subtotal-value');
     const totalValue = document.getElementById('total-value');
     const shippingValue = document.getElementById('shipping-value');
+    const checkoutBtn = document.querySelector('.checkout-btn');
     const FIXED_SHIPPING = 15.00; // Frete fixo R$15,00
 
     // --- FUNÇÕES DE UTILIDADE ---
 
+    // Obtém o carrinho do localStorage
     const getCart = () => {
         const cartJSON = localStorage.getItem('techfitCart');
         return cartJSON ? JSON.parse(cartJSON) : [];
     };
 
+    // Salva o carrinho no localStorage e renderiza novamente
     const saveCart = (cart) => {
         localStorage.setItem('techfitCart', JSON.stringify(cart));
         renderCart(); // Recarrega o carrinho toda vez que ele é salvo
-        // Opcional: Atualizar o contador do carrinho na navegação após salvar
         updateCartCounter(); 
     };
 
+    // Formata o valor numérico para o padrão monetário brasileiro (R$ 00,00)
     const formatPrice = (price) => {
         return `R$ ${price.toFixed(2).replace('.', ',')}`;
     };
 
-    // Função auxiliar para atualizar o contador global (importante para o header)
+    // Atualiza o contador de itens no cabeçalho
     const updateCartCounter = () => {
         const cart = getCart();
-        let count = 0;
-        cart.forEach(item => { count += item.quantidade; });
+        const totalItems = cart.reduce((sum, item) => sum + item.quantidade, 0);
         const cartCounter = document.getElementById('cart-counter');
         if (cartCounter) {
-            cartCounter.textContent = count.toString();
-            cartCounter.style.display = count > 0 ? 'block' : 'none';
+            cartCounter.textContent = totalItems;
         }
     };
 
-
-    // --- FUNÇÕES DE RENDERIZAÇÃO E CÁLCULO ---
-
-    const createCartItemElement = (item) => {
-        const card = document.createElement('div');
-        card.classList.add('cart-item');
-        card.setAttribute('data-code', item.codigo);
-
-        // Converte o preço unitário para número (recomenda-se que o preço venha como número do seu PHP)
-        // Se vier como string "R$ 69,90", esta lógica funciona:
-        const numericPrice = parseFloat(item.preco.replace('R$', '').replace(',', '.').trim());
-        const totalPriceItem = numericPrice * item.quantidade;
-
-        card.innerHTML = `
-            <img src="IMAGEM/placeholder.jpg" alt="${item.nome}" class="item-image">
-            <div class="item-details">
-                <h4 class="item-name">${item.nome}</h4>
-                <p class="item-price">${formatPrice(totalPriceItem)}</p>
-            </div>
-            <div class="item-quantity-control">
-                <button class="qty-btn remove-one" data-code="${item.codigo}">-</button>
-                <span class="item-quantity">${item.quantidade}</span>
-                <button class="qty-btn add-one" data-code="${item.codigo}">+</button>
-            </div>
-            <button class="remove-item-btn" data-code="${item.codigo}">Remover</button>
-        `;
-        return card;
-    };
-
-    const calculateTotals = (cart) => {
+    // Calcula Subtotal e Total
+    const calculateSummary = (cart) => {
         let subtotal = 0;
-
         cart.forEach(item => {
-            const numericPrice = parseFloat(item.preco.replace('R$', '').replace(',', '.').trim());
-            subtotal += numericPrice * item.quantidade;
+            // Limpa e converte a string de preço para número
+            const priceString = item.preco.replace('R$', '').trim().replace(',', '.');
+            const price = parseFloat(priceString);
+            if (!isNaN(price)) {
+                subtotal += price * item.quantidade;
+            }
         });
-
-        // O frete só é cobrado se houver itens no carrinho
-        const shipping = subtotal > 0 ? FIXED_SHIPPING : 0.00;
-        const total = subtotal + shipping;
-
-        // Atualiza o DOM do resumo
+        
+        // Frete só é cobrado se houver itens no carrinho
+        const currentShipping = cart.length > 0 ? FIXED_SHIPPING : 0.00;
+        const total = subtotal + currentShipping;
+        
+        // Atualiza os valores no HTML
         subtotalValue.textContent = formatPrice(subtotal);
-        shippingValue.textContent = formatPrice(shipping);
         totalValue.textContent = formatPrice(total);
+        shippingValue.textContent = formatPrice(currentShipping);
+        
+        return { subtotal, total, currentShipping };
     };
 
+    // Renderiza o HTML dos itens do carrinho
     const renderCart = () => {
         const cart = getCart();
         cartList.innerHTML = ''; // Limpa a lista existente
 
         if (cart.length === 0) {
-            cartList.innerHTML = '<p class="empty-cart-message">Seu carrinho está vazio. Visite a página de <a href="/techfit_php/public/Produtos.html" style="color: var(--primary-color);">Produtos</a> para adicionar itens!</p>';
-        } else {
-            cart.forEach(item => {
-                cartList.appendChild(createCartItemElement(item));
-            });
-        }
-        
-        calculateTotals(cart);
-        updateCartCounter(); // Garante que o contador esteja correto ao renderizar
-    };
-    
-    // --- MANIPULAÇÃO DE EVENTOS DO CARRINHO ---
-
-    const handleCartAction = (e) => {
-        const target = e.target;
-        if (!target.classList.contains('qty-btn') && !target.classList.contains('remove-item-btn')) {
+            cartList.innerHTML = '<p class="empty-cart-message">Seu carrinho está vazio. Que tal adicionar alguns produtos?</p>';
+            calculateSummary(cart); // Atualiza os valores para 0
+            checkoutBtn.disabled = true;
             return;
         }
+        
+        checkoutBtn.disabled = false;
+
+        cart.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('cart-item');
+            
+            // Limpa e converte o preço unitário
+            const priceString = item.preco.replace('R$', '').trim().replace(',', '.');
+            const unitPrice = parseFloat(priceString);
+            const itemTotal = unitPrice * item.quantidade;
+            
+            // ATENÇÃO: Adicionado o span com o código do produto para a funcionalidade de remoção.
+            itemElement.innerHTML = `
+                <div class="item-info">
+                    <h4 class="item-name">${item.nome}</h4>
+                    <p class="item-price-unit">${item.preco} por unidade</p>
+                </div>
+                <div class="item-quantity-control">
+                    <button class="qty-btn remove-one" data-code="${item.codigo}">-</button>
+                    <span class="item-quantity">${item.quantidade}</span>
+                    <button class="qty-btn add-one" data-code="${item.codigo}">+</button>
+                </div>
+                <div class="item-total">
+                    <span class="item-total-price">${formatPrice(itemTotal)}</span>
+                </div>
+                <button class="remove-item-btn" data-code="${item.codigo}">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            cartList.appendChild(itemElement);
+        });
+        
+        calculateSummary(cart);
+    };
+
+    // Lida com as ações de Adicionar/Remover/Ajustar Quantidade
+    const handleCartAction = (e) => {
+        // Encontra o botão mais próximo que foi clicado
+        const target = e.target.closest('button');
+        if (!target) return;
 
         const productCode = target.getAttribute('data-code');
-        let cart = getCart();
+        if (!productCode) return;
+
+        const cart = getCart();
         const itemIndex = cart.findIndex(item => item.codigo === productCode);
 
         if (itemIndex === -1) return;
 
         if (target.classList.contains('add-one')) {
-            // Aumenta a quantidade
             cart[itemIndex].quantidade++;
         } else if (target.classList.contains('remove-one')) {
-            // Diminui a quantidade, remove se chegar a 0
             if (cart[itemIndex].quantidade > 1) {
                 cart[itemIndex].quantidade--;
             } else {
@@ -129,22 +139,32 @@ document.addEventListener('DOMContentLoaded', () => {
             cart.splice(itemIndex, 1);
         }
 
-        saveCart(cart);
+        saveCart(cart); // Salva e renderiza novamente
     };
     
+    // --- LÓGICA DE CHECKOUT (Finalizar Compra) ---
+    checkoutBtn.addEventListener('click', () => {
+        const cart = getCart();
+        if (cart.length > 0) {
+            const { subtotal, total, currentShipping } = calculateSummary(cart);
+
+            // Opcional: Salva o resumo final no localStorage para uso na página de checkout
+            localStorage.setItem('finalOrderSummary', JSON.stringify({
+                subtotal: subtotal,
+                shipping: currentShipping,
+                total: total,
+                items: cart // Inclui os itens para visualização na tela de checkout
+            }));
+
+            // Redireciona para a página de finalização da compra
+            window.location.href = 'finalizar_compra.html';
+        } else {
+            alert('Seu carrinho está vazio. Adicione produtos antes de finalizar a compra.');
+        }
+    });
+
     // Inicia a renderização do carrinho e adiciona o listener de ações
     renderCart();
     cartList.addEventListener('click', handleCartAction);
-    
-    // Listener para o botão Finalizar Compra (apenas simulação)
-    document.querySelector('.checkout-btn').addEventListener('click', () => {
-        const cart = getCart();
-        if (cart.length > 0) {
-            alert('Simulação de Compra Finalizada! Redirecionando para o pagamento...');
-            // Exemplo de como limpar o carrinho após a finalização:
-            // saveCart([]); 
-        } else {
-            alert('Seu carrinho está vazio! Adicione produtos para prosseguir.');
-        }
-    });
+    updateCartCounter();
 });

@@ -1,106 +1,52 @@
-document.getElementById('cadastroForm').addEventListener('submit', async function(event) {
-    // Impede o envio padrão do formulário
-    event.preventDefault();
+// cadastro.js
 
-    // Captura os valores dos campos
-    const nome = document.getElementById('nome').value.trim();
-    const cpf = document.getElementById('cpf').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const senha = document.getElementById('senha').value.trim();
-    const repitaSenha = document.getElementById('repita-senha').value.trim();
-    
-    const errorMessage = document.getElementById('error-message');
-    const submitButton = event.target.querySelector('button[type="submit"]');
+document.addEventListener('DOMContentLoaded', () => {
+    // Seleciona o formulário pelo seu elemento pai (form-section) ou use o seletor 'form'
+    const cadastroForm = document.querySelector('.form-section form');
 
-    // Limpa mensagens de erro
-    if (errorMessage) {
-        errorMessage.textContent = '';
-        errorMessage.style.display = 'none';
-    }
+    if (cadastroForm) {
+        cadastroForm.addEventListener('submit', (event) => {
+            // Evita o comportamento de submissão padrão do formulário (que enviaria para login.html)
+            event.preventDefault(); 
 
-    // Validação no frontend
-    if (!nome || !email || !senha || !repitaSenha) {
-        if (errorMessage) {
-            errorMessage.textContent = '⚠️ Preencha todos os campos obrigatórios!';
-            errorMessage.style.display = 'block';
-        }
-        return;
-    }
+            // Coleta os valores do formulário
+            const nome = document.getElementById('nome').value;
+            const cpf = document.getElementById('cpf').value;
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            const repitaSenha = document.getElementById('repita-senha').value;
 
-    if (senha !== repitaSenha) {
-        if (errorMessage) {
-            errorMessage.textContent = '⚠️ As senhas não coincidem!';
-            errorMessage.style.display = 'block';
-        }
-        return;
-    }
+            // --- Lógica de Validação Básica ---
+            if (senha !== repitaSenha) {
+                alert('As senhas digitadas não são iguais. Por favor, verifique.');
+                return; // Impede o cadastro
+            }
+            if (!nome || !cpf || !email || !senha) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
 
-    if (senha.length < 6) {
-        if (errorMessage) {
-            errorMessage.textContent = '⚠️ A senha deve ter no mínimo 6 caracteres!';
-            errorMessage.style.display = 'block';
-        }
-        return;
-    }
-
-    // Desabilita o botão durante o cadastro
-    if (submitButton) {
-        submitButton.disabled = true;
-        submitButton.textContent = 'Cadastrando...';
-    }
-
-    try {
-        // Envia requisição para o backend
-        const response = await fetch('/api/cadastro.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
+            // --- 1. Armazenar os Dados (Simulação de Cadastro) ---
+            const userData = {
                 nome: nome,
                 cpf: cpf,
                 email: email,
-                senha: senha,
-                'repita-senha': repitaSenha
-            })
+                // Armazenar a senha em localStorage não é seguro, mas é feito aqui para fins de simulação de login:
+                senha: senha, 
+                // Você pode adicionar um token de login simulado
+                loggedIn: true 
+            };
+
+            // Salva os dados do usuário no localStorage
+            localStorage.setItem('currentUserData', JSON.stringify(userData));
+
+            // Feedback visual e redirecionamento (Simulação de Sucesso)
+            alert('✅ Cadastro realizado com sucesso! Você será redirecionado para o Login.');
+            
+            // --- 2. Redirecionamento ---
+            // Redireciona para a página de login para que o usuário "entre" na conta.
+            // O caminho precisa ser ajustado para onde seu login.html está, se for diferente de login.html
+            window.location.href = '/techfit_php/public/login.html'; 
         });
-
-        const data = await response.json();
-
-        if (data.success) {
-            // Cadastro bem-sucedido!
-            
-            // Mostra mensagem de sucesso (se você tiver um modal ou alert)
-            alert('✅ Cadastro realizado com sucesso! Faça login para continuar.');
-            
-            // Redireciona para a página de login
-            window.location.href = '/login.html';
-            
-        } else {
-            // Cadastro falhou
-            if (errorMessage) {
-                errorMessage.textContent = data.message || '❌ Erro ao cadastrar. Tente novamente.';
-                errorMessage.style.display = 'block';
-            }
-            
-            // Reabilita o botão
-            if (submitButton) {
-                submitButton.disabled = false;
-                submitButton.textContent = 'Cadastrar';
-            }
-        }
-    } catch (error) {
-        console.error('Erro ao fazer cadastro:', error);
-        
-        if (errorMessage) {
-            errorMessage.textContent = '❌ Erro ao conectar com o servidor. Tente novamente.';
-            errorMessage.style.display = 'block';
-        }
-        
-        // Reabilita o botão
-        if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Cadastrar';
-        }
     }
 });

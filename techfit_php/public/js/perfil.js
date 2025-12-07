@@ -54,3 +54,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Código para simular o clique inicial (opcional, já está no HTML)
     // document.querySelector('.day-button.active').click(); 
 });
+// perfil.js (para carregar na tela inicial.html ou perfil.html)
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Pega os dados do usuário salvos no localStorage
+    const userDataJSON = localStorage.getItem('currentUserData');
+    const userData = userDataJSON ? JSON.parse(userDataJSON) : null;
+    
+    // Supondo que você tenha um elemento na tela inicial para mostrar as boas-vindas:
+    const welcomeMessage = document.getElementById('welcome-message');
+    
+    if (userData && welcomeMessage) {
+        // Exibe o nome do usuário cadastrado na tela inicial
+        welcomeMessage.textContent = `Bem-vindo(a) de volta, ${userData.nome.split(' ')[0]}!`;
+        
+        // Simulação de "Dados da Conta" na tela inicial (você precisaria criar esses elementos no HTML)
+        /*
+        document.getElementById('profile-name').textContent = userData.nome;
+        document.getElementById('profile-email').textContent = userData.email;
+        document.getElementById('profile-cpf').textContent = userData.cpf;
+        */
+        
+    } else if (welcomeMessage) {
+        // Se não houver dados salvos, exibe a mensagem padrão
+        welcomeMessage.textContent = 'Bem-vindo(a) à TechFit.';
+    }
+});

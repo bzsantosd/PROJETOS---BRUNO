@@ -1,3 +1,4 @@
+/* ==================== VARIÁVEIS CONSOLIDADAS ==================== */
 :root {
     --color-dark: #000000;
     --color-text-light: #ffffff;
@@ -5,9 +6,10 @@
     --color-input-bg: #222222;
     --color-placeholder: #aaaaaa;
     --color-border: #444444;
-    
+    --color-form-bg: #1a1a1a;
 }
 
+/* ==================== RESET E ESTRUTURA BÁSICA ==================== */
 * {
     margin: 0;
     padding: 0;
@@ -15,181 +17,178 @@
     font-family: 'Poppins', sans-serif;
 }
 body {
-background-color: var(--color-dark);
-color: var(--color-text-light);
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
-}
-.container {
-display: flex;
-width: 1100px;        
-min-height: 500px;    
-background-color: var(--color-dark);
-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-overflow: hidden;
-border-radius: 12px;
-margin-left: 120px; 
-}
-.image-section {
-    width: 20%;
     background-color: var(--color-dark);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: left;
-    padding: 00px;
-}
-.image-section {
-flex: 10 20 40%;
-/* Verifique se o caminho da imagem está correto no seu projeto */
-background-image: url('/techfit/public/images/suplementos.jpg');
-background-size: cover; 
-background-position: center; 
-background-repeat: no-repeat;
-
-}
-.techfit-logo {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    width: 120px;
-    height: auto;
-    margin: 0;
-}
-.form-section {
-    width: 50%;
-    background-color: var(--color-dark);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-}
-.form-section h2 {
-    font-size: 2.0rem;
-    font-weight: bold;
     color: var(--color-text-light);
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* Garante espaço em telas pequenas */
+}
+
+/* ==================== CONTAINER PRINCIPAL ==================== */
+.container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;        
+    background-color: var(--color-dark);
+    /* Sombra neon roxa */
+    box-shadow: 0 0 40px rgba(160, 32, 240, 0.4); 
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 550px;
+}
+
+/* ==================== SEÇÃO VISUAL/IMAGEM ==================== */
+.image-section {
+    width: 40%;
+    /* Imagem de fundo ou cor sólida com gradiente */
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), /* Escurece a imagem */
+        url('https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/Logo.png?raw=true') no-repeat center center; /* Exemplo de URL de fundo */
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
     text-align: center;
 }
-.input-group {
+
+.logo-title {
+    color: var(--color-purple-primary);
+    font-size: 3em;
+    font-weight: 900;
     margin-bottom: 10px;
+    /* Dando um brilho neon ao título */
+    text-shadow: 0 0 5px var(--color-purple-primary), 0 0 10px var(--color-purple-primary);
 }
+
+.slogan {
+    font-size: 1.1em;
+    font-weight: 300;
+    color: var(--color-text-light);
+}
+
+
+/* ==================== SEÇÃO DO FORMULÁRIO ==================== */
+.form-section {
+    width: 60%;
+    background-color: var(--color-form-bg);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-title {
+    color: var(--color-purple-primary);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+/* --- GRUPOS DE INPUT --- */
+.input-group {
+    margin-bottom: 20px;
+}
+
 .input-group label {
     display: block;
-    margin-bottom: 5px;
-    font-size: 1rem;
-    font-weight: bold;
+    margin-bottom: 8px;
+    font-weight: 600;
     color: var(--color-text-light);
 }
+
 .input-group input {
     width: 100%;
-    padding: 10px 15px;
-    border: none;
+    padding: 12px;
     background-color: var(--color-input-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
     color: var(--color-text-light);
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: border-bottom 0.3s ease;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
-.input-group input:focus {
-    outline: none;
-    border-bottom: 2px solid var(--color-purple-primary);
-}
+
 .input-group input::placeholder {
     color: var(--color-placeholder);
-    font-size: 0.9rem;
 }
 
-/* Estilo para o link "CADASTRAR" (botão de submissão) */
-.form-section a {
-    display: block; 
-    text-align: center;
-    font-family: 'Poppins', sans-serif; 
+.input-group input:focus {
+    border-color: var(--color-purple-primary);
+    outline: none;
+    box-shadow: 0 0 10px rgba(160, 32, 240, 0.5);
+}
+
+/* --- BOTÃO CADASTRAR (SUBSTITUIU O <a>) --- */
+.action-button {
+    display: block;
     width: 100%;
-    padding: 12px;
-    background: linear-gradient(to right, #a020f0, #8a2be2);
+    background-color: var(--color-purple-primary);
     color: var(--color-text-light);
-    font-size: 1.2rem;
-    font-weight: bold;
     border: none;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 700;
+    text-transform: uppercase;
     cursor: pointer;
-    margin-top: 30px;
-    transition: background 0.3s ease, transform 0.1s ease;
-    text-decoration: none; 
+    margin-top: 15px;
+    transition: background-color 0.2s, transform 0.2s;
 }
 
-.form-section a:hover {
-    background: linear-gradient(to right, #8a2be2, #a020f0);
-    transform: translateY(-2px);
-}
-.form-section a:active {
-    transform: translateY(0);
+.action-button:hover {
+    background-color: #8A00FF; /* Roxo um pouco mais escuro */
 }
 
-/* --- ESTILOS PARA O MODAL (NOTIFICAÇÃO) --- */
-
-.modal-content {
-    background-color: var(--color-dark) !important; /* Fundo escuro */
-    border: 1px solid var(--color-purple-primary) !important; /* Borda roxa */
-    box-shadow: 0 0 15px rgba(160, 32, 240, 0.4) !important; /* Sombra roxa */
+.action-button:active {
+    transform: scale(0.98);
 }
 
-.modal-body {
-    padding: 1.5rem 1rem !important;
+/* Link para login (texto abaixo do botão) */
+.login-link-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: var(--color-placeholder);
 }
 
-.modal-body h5 {
-    font-weight: bold !important;
-    color: var(--color-purple-primary) !important;
+.login-link {
+    color: var(--color-purple-primary);
+    font-weight: 600;
 }
 
-.modal-footer {
-    border-top: none !important; /* Remove a linha divisória */
-    padding: 0 !important;
-}
+/* ==================== RESPONSIVIDADE ==================== */
 
-.modal-footer a {
-    /* Transforma o link em um botão de ação */
-    flex: 1; /* Ocupa todo o rodapé */
-    padding: 10px 0;
-    color: var(--color-text-light) !important;
-    text-decoration: none !important;
-    font-weight: bold;
-    background-color: var(--color-purple-primary); /* Cor de fundo roxa */
-    border-bottom-left-radius: 0.2rem; /* Segue o raio do modal */
-    border-bottom-right-radius: 0.2rem;
-    transition: background-color 0.2s ease;
-}
-
-.modal-footer a:hover {
-    background-color: #8a2be2; /* Um roxo ligeiramente diferente no hover */
-}
-
-/* --- FIM DOS ESTILOS DO MODAL --- */
-
-
-@media (max-width: 950px) {
+@media (max-width: 900px) {
+    /* Em telas de tablet, a seção de imagem desaparece e o formulário ocupa tudo */
     .container {
         flex-direction: column;
-        width: 95%;
-        height: auto;
-        min-height: 100vh;
-        margin-left: 0; /* Centraliza no mobile */
+        max-width: 500px;
+        min-height: auto;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Sombra mais suave em mobile */
     }
+    
     .image-section {
         width: 100%;
-        height: 100px;
+        height: 150px; /* Altura fixa no topo */
+        padding: 20px;
+        /* Garante que o texto seja visível */
+        background-position: top center; 
     }
+    
+    .logo-title {
+        font-size: 2.5em;
+    }
+
     .form-section {
         width: 100%;
-        padding: 20px;
+        padding: 30px;
     }
-    .form-section h2 {
-        margin-top: 20px;
-        text-align: center; 
+
+    .form-title {
+        font-size: 1.8em;
+        margin-bottom: 20px;
     }
 }

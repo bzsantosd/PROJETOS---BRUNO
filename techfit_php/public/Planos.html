@@ -14,7 +14,7 @@
     <header class="header-content">
         <nav class="navbar">
             <ul class="nav-list">
-                <li class="nav-item"><a href="/techfit_php/public/tela ao logan.html" data-page="home">HOME</a></li>
+                <li class="nav-item"><a href="/techfit_php/public/perfil.html" data-page="home">HOME</a></li>
                 <li class="nav-item active"><a href="/techfit_php/public/Planos.html" data-page="planos">PLANOS</a></li>
                 <li class="nav-item"><a href="/techfit_php/public/Produtos.html" data-page="produtos">PRODUTOS</a></li>
                 <li class="nav-item"><a href="/techfit_php/public/contato.html" data-page="contato">CONTATO</a></li>
@@ -40,7 +40,7 @@
                         </p>
                     </div>
                     <div class="product-price-box">
-                        <p class="price-old">de R$100,00</p>
+                        <p class="price-old">de R$150,00</p>
                         <p class="price-new">por R$89,90</p>
                         <a href="Assinatura.html" data-page="assinar agora" class="action-button">Assinar Agora</a>
                     </div>
@@ -60,7 +60,7 @@
                     <div class="product-price-box">
                         <p class="price-old">de R$199,90</p>
                         <p class="price-new">por R$159,90</p>
-                        <a href="Assinatura.html" data-page="assinar agora" class="action-button">Assinar Agora</a>
+                        <a href="Assinatura.html" data-page="Assinar agora" class="action-button">Assinar Agora</a>
                     </div>
                 </div>   
                 
@@ -77,7 +77,7 @@
                         </p>
                     </div>
                     <div class="product-price-box">
-                        <p class="price-old">de R$299,90</p>
+                        <p class="price-old">de R$260,00</p>
                         <p class="price-new">por R$199,90</p>
                         <a href="Assinatura.html" data-page="assinar agora" class="action-button">Assinar Agora</a>
                     </div>
@@ -86,45 +86,6 @@
         </section>             
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const botoesAssinar = document.querySelectorAll('.product-price-box a');
-            
-            botoesAssinar.forEach(function(botao, index) {
-                botao.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Pega o card pai do botão
-                    const card = this.closest('.product-card');
-                    
-                    // Extrai as informações do plano
-                    const nomePlano = card.querySelector('.product-title').textContent.trim();
-                    const precoAntigoElement = card.querySelector('.price-old');
-                    const precoNovoElement = card.querySelector('.price-new');
-                    
-                    // Certifica-se de que os elementos existem antes de tentar extrair o texto
-                    const precoAntigo = precoAntigoElement ? precoAntigoElement.textContent.trim() : 'N/A';
-                    const precoNovo = precoNovoElement ? precoNovoElement.textContent.trim() : 'N/A';
-                    
-                    // Extrai apenas os números dos preços
-                    const valorAntigo = precoAntigo.match(/[\d,]+/)?.[0] || 'N/A';
-                    const valorNovo = precoNovo.match(/[\d,]+/)?.[0] || 'N/A';
-                    
-                    // Cria um objeto com os dados do plano
-                    const dadosPlano = {
-                        nome: nomePlano,
-                        precoAntigo: valorAntigo,
-                        precoNovo: valorNovo
-                    };
-                    
-                    // Salva no sessionStorage
-                    sessionStorage.setItem('planoSelecionado', JSON.stringify(dadosPlano));
-                    
-                    // Redireciona para a página de assinatura
-                    window.location.href = 'Assinatura.html';
-                });
-            });
-        });
-    </script>
+    <script src="/techfit_php/public/js/planos.js"></script> 
 </body>
 </html>

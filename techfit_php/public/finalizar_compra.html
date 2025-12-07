@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - Tech Fit</title>
+    <link rel="stylesheet" href="/techfit_php/public/css/finalizar_compra.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header-content">
+        <h1 class="main-title">COMPRAS</h1>
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="tela inicial.html">HOME</a></li>
+                <li class="nav-item"><a href="/techfit_php/public/Produtos.html">PRODUTOS</a></li>
+                <li class="nav-item"><a href="/techfit_php/public/carrinho.html">CARRINHO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2 class="page-title">Dados de Envio e Pagamento</h2>
+
+        <div class="checkout-grid">
+            <section class="checkout-form">
+                <h3>1. Informações Pessoais e Endereço</h3>
+                <form id="checkout-data-form">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" id="endereco" required>
+                    </div>
+                    </form>
+
+                <h3 style="margin-top: 30px;">2. Forma de Pagamento</h3>
+                <div class="payment-options">
+                    <label><input type="radio" name="payment" value="cartao" checked> Cartão de Crédito</label>
+                    <label><input type="radio" name="payment" value="boleto"> Boleto Bancário</label>
+                    <label><input type="radio" name="payment" value="pix"> PIX</label>
+                </div>
+
+                <button class="action-button" id="place-order-btn" style="margin-top: 30px; background-color: #008000;">
+                    Realizar Pedido
+                </button>
+            </section>
+
+            <aside class="cart-summary" id="order-summary-display">
+                <h3>Resumo da Compra</h3>
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span id="subtotal-checkout-value">R$ 0,00</span>
+                </div>
+                <div class="summary-line">
+                    <span>Frete:</span>
+                    <span id="shipping-checkout-value">R$ 0,00</span>
+                </div>
+                <div class="summary-line total-line">
+                    <span>Total:</span>
+                    <span id="total-checkout-value">R$ 0,00</span>
+                </div>
+                
+                <p style="margin-top: 20px; font-weight: 600;">Itens no Pedido:</p>
+                <ul id="items-in-order-list" style="list-style: none; padding-left: 0; font-size: 0.9em;">
+                    </ul>
+
+            </aside>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const summary = JSON.parse(localStorage.getItem('finalOrderSummary'));
+            const totalItems = document.getElementById('items-in-order-list');
+
+            if (summary) {
+                document.getElementById('subtotal-checkout-value').textContent = `R$ ${summary.subtotal.toFixed(2).replace('.', ',')}`;
+                document.getElementById('shipping-checkout-value').textContent = `R$ ${summary.shipping.toFixed(2).replace('.', ',')}`;
+                document.getElementById('total-checkout-value').textContent = `R$ ${summary.total.toFixed(2).replace('.', ',')}`;
+                
+                // Lista os itens do carrinho
+                totalItems.innerHTML = '';
+                summary.items.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${item.quantidade}x ${item.nome}`;
+                    totalItems.appendChild(listItem);
+                });
+
+            } else {
+                // Redireciona de volta se o resumo não for encontrado (navegação direta)
+                alert('Nenhum pedido para finalizar. Redirecionando para o carrinho.');
+                window.location.href = 'carrinho.html';
+            }
+
+            // Ação do botão "Realizar Pedido" (Simulação)
+            document.getElementById('place-order-btn').addEventListener('click', () => {
+                alert('🎉 Pedido Realizado com Sucesso! (Simulação)');
+                
+                // Limpar o carrinho após a finalização
+                localStorage.removeItem('techfitCart'); 
+                localStorage.removeItem('finalOrderSummary'); 
+                
+                // Redirecionar para uma página de confirmação (opcional)
+                window.location.href = 'tela inicial.html';
+            });
+
+            // Opcional: Atualizar o contador do header na página de checkout
+            const cart = JSON.parse(localStorage.getItem('techfitCart') || '[]');
+            const totalCount = cart.reduce((sum, item) => sum + item.quantidade, 0);
+            const cartCounter = document.getElementById('cart-counter');
+            if (cartCounter) {
+                cartCounter.textContent = totalCount;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -2,15 +2,14 @@
 @import url("/techfit_php/public/css/Produtos.css"); 
 
 /* ------------------------------------------------ */
-/* --- ESTILOS GERAIS DO HEADER (Para alinhamento) --- */
+/* --- ESTILOS GERAIS DO HEADER --- */
 /* ------------------------------------------------ */
-/* Assumindo que as variáveis como --bg-dark e --primary-color vêm de Produtos.css */
 .header-content {
     display: flex;
-    justify-content: space-between; /* Alinha o título à esquerda e a navegação à direita */
+    justify-content: space-between; 
     align-items: center; 
     padding: 25px 5%; 
-    background-color: var(--bg-dark, #000000); /* Fallback para cores escuras */
+    background-color: var(--background-dark, #000000); 
     border-bottom: 2px solid var(--primary-color, #A020F0); 
 }
 
@@ -22,20 +21,17 @@
     margin: 0; 
 }
 
-/* Ajuste: Remove flex-grow e text-align para gerenciar o layout interno com flexbox */
 .navbar {
-    /* flex-grow: 1; Removido para controle de espaço mais preciso */
-    /* text-align: right; Removido, usando flexbox */
+    flex-grow: 1; /* Permite que ocupe o espaço */
+    text-align: center;
 }
 
-/* Modificado para ser o container de navegação (links e carrinho) */
 .nav-list {
     display: flex;
+    justify-content: center;
     list-style: none;
-    justify-content: flex-end; /* Alinha todos os itens (incluindo o carrinho) à direita */
-    align-items: center; /* Alinha verticalmente os itens da lista */
-    padding: 0; /* Garante que não há padding */
-    margin: 0; /* Garante que não há margem */
+    padding: 0;
+    margin: 0;
 }
 
 .nav-item {
@@ -43,108 +39,96 @@
 }
 
 .nav-item a {
-    font-weight: 600;
-    padding-bottom: 5px;
     text-decoration: none;
-    color: var(--text-light, #FFFFFF); 
+    color: var(--text-light);
+    transition: color 0.2s, border-bottom 0.2s;
+    padding-bottom: 5px;
 }
-/* Estilos do Badge do Carrinho (Contador) */
+
+.nav-item a:hover {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
 .cart-icon-item {
-    position: relative; 
-    padding-right: 20px; 
-    /* Ajuste para que a margem do ícone do carrinho seja consistente com os outros itens da nav-list */
-    margin-left: 15px; 
-    margin-right: 0; /* Remove a margem final, se houver */
+    position: relative;
+    font-size: 1.5em;
+    padding-left: 20px;
 }
+
+.cart-link {
+    color: var(--text-light);
+}
+
 .cart-badge {
     position: absolute;
-    top: -10px; 
+    top: -5px;
     right: -10px;
-    background-color: var(--primary-color, #A020F0); 
-    color: var(--text-light, #FFFFFF); 
-    font-size: 10px;
-    font-weight: 700;
-    line-height: 1.2;
-    text-align: center;
+    background-color: var(--primary-color, #A020F0);
+    color: var(--text-light, #FFFFFF);
+    border-radius: 50%;
     padding: 2px 6px;
-    border-radius: 50%; 
-    min-width: 20px; 
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
-    pointer-events: none; 
+    font-size: 0.7em;
+    font-weight: 600;
 }
 
-
-/* ---------------------------------------------------- */
-/* --- Layout Principal do Carrinho (Corpo da Página) --- */
-/* ---------------------------------------------------- */
-
-.carrinho-main {
-    margin-left: var(--margin-left, 0); 
+/* ------------------------------------------------ */
+/* --- ESTILOS DO CONTEÚDO PRINCIPAL (CARRINHO) --- */
+/* ------------------------------------------------ */
+.container {
+    width: 90%;
     max-width: 1200px;
     margin: 30px auto;
-    padding: 30px;
+    padding: 0;
 }
 
 .page-title {
-    color: var(--primary-color, #A020F0);
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--primary-color);
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 2em;
+    margin-bottom: 40px;
+    text-transform: uppercase;
 }
 
 .cart-container {
     display: grid;
-    /* Divide em 2 colunas: 3 partes para a lista e 1 parte para o resumo */
-    grid-template-columns: 3fr 1fr;
-    gap: 30px;
-    margin-top: 30px;
+    grid-template-columns: 2fr 1fr; /* Lista de itens maior que o resumo */
+    gap: 40px;
 }
-
-/* --- Lista de Itens do Carrinho --- */
 
 .cart-items {
     padding-right: 20px;
 }
 
+/* --- ESTILO DE CADA ITEM DO CARRINHO --- */
 .cart-item {
-    background-color: var(--bg-card, #1A1A1A);
-    color: var(--text-light, #FFFFFF);
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--secondary-color, #7B68EE); /* Borda sutil */
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--background-card);
 }
 
-.item-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-right: 15px;
-    border: 1px solid var(--primary-color, #A020F0);
+.cart-item:last-child {
+    border-bottom: none;
 }
 
-.item-details {
+.item-info {
     flex-grow: 1;
 }
 
 .item-name {
     font-size: 1.1em;
-    color: var(--text-light, #FFFFFF);
+    font-weight: 600;
     margin-bottom: 5px;
 }
 
-.item-price {
-    font-size: 1em;
-    color: var(--primary-color, #A020F0);
-    font-weight: 700;
+.item-price-unit {
+    color: var(--text-secondary);
+    font-size: 0.9em;
 }
 
-/* Controle de Quantidade */
 .item-quantity-control {
     display: flex;
     align-items: center;
@@ -152,83 +136,78 @@
 }
 
 .qty-btn {
-    background-color: var(--primary-color, #A020F0);
-    color: var(--text-light, #FFFFFF);
-    border: none;
+    background-color: var(--background-card);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     width: 30px;
     height: 30px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1.2em;
-    font-weight: 700;
-    line-height: 1;
-    transition: background-color 0.2s;
+    font-size: 1.1em;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .qty-btn:hover {
-    background-color: var(--secondary-color, #7B68EE);
+    background-color: var(--primary-color);
+    color: var(--text-light);
 }
 
 .item-quantity {
-    display: inline-block;
-    min-width: 40px;
-    text-align: center;
+    margin: 0 10px;
     font-weight: 600;
-    color: var(--text-light, #FFFFFF);
+    min-width: 15px; /* Evita que o número mova o layout */
+    text-align: center;
+}
+
+.item-total-price {
+    font-weight: 700;
+    font-size: 1.1em;
 }
 
 .remove-item-btn {
-    background-color: #CC0000; /* Vermelho para exclusão */
-    color: var(--text-light, #FFFFFF);
+    background: none;
     border: none;
-    padding: 8px 15px;
-    border-radius: 6px;
-    font-weight: 600;
+    color: var(--text-secondary);
     cursor: pointer;
-    transition: background-color 0.2s;
+    font-size: 1.2em;
+    transition: color 0.2s;
+    margin-left: 15px;
 }
 
 .remove-item-btn:hover {
-    background-color: #990000;
+    color: red;
 }
 
-
-/* --- Resumo do Pedido (Lateral) --- */
-
+/* --- RESUMO DO PEDIDO --- */
 .cart-summary {
-    background-color: var(--bg-card, #1A1A1A);
-    color: var(--text-light, #FFFFFF);
-    border: 2px solid var(--primary-color, #A020F0);
+    background-color: var(--background-card);
+    padding: 25px;
     border-radius: 8px;
-    padding: 20px;
-    height: fit-content; 
+    height: fit-content;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .cart-summary h3 {
-    color: var(--primary-color, #A020F0);
-    font-size: 1.4em;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 15px;
     margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--text-secondary, #AAAAAA);
+    font-size: 1.5em;
+    color: var(--primary-color);
 }
 
 .summary-line {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
-.total-line {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px dashed var(--text-secondary, #AAAAAA);
-}
-
-.total-line span {
+.summary-line.total-line {
     font-size: 1.3em;
-    font-weight: 900;
-    color: var(--secondary-color, #7B68EE);
+    font-weight: 700;
+    padding-top: 15px;
+    border-top: 1px dashed var(--text-secondary);
+    margin-top: 15px;
 }
 
 .checkout-btn {
@@ -241,11 +220,17 @@
     padding: 12px;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, opacity 0.3s;
 }
 
-.checkout-btn:hover {
-    background-color: var(--secondary-color, #7B68EE);
+.checkout-btn:hover:not(:disabled) {
+    background-color: var(--primary-color);
+    filter: brightness(1.2);
+}
+
+.checkout-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .empty-cart-message {
@@ -263,48 +248,32 @@
     }
     
     .cart-summary {
-        order: 2; 
+        order: 1; /* Move o resumo para o topo em mobile */
+        margin-bottom: 30px;
     }
     
     .cart-items {
-        order: 1;
+        order: 2;
         padding-right: 0;
     }
 
     .cart-item {
         flex-wrap: wrap; 
-        justify-content: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 20px 0;
+    }
+    
+    .item-info {
+        flex-basis: 100%; /* Ocupa a linha toda em mobile */
         text-align: center;
     }
 
-    .item-details, .item-quantity-control, .remove-item-btn {
-        margin: 10px 0;
+    .item-quantity-control {
+        margin: 0;
     }
-
-    /* Ajuste para o header em telas menores */
-    .header-content {
-        flex-direction: column; 
-        align-items: center;
-        text-align: center;
-        padding: 20px;
-    }
-
-    .main-title {
-        margin-bottom: 15px;
-        font-size: 1.5em;
-    }
-
-    .navbar {
-        width: 100%;
-        text-align: center;
-    }
-
-    .nav-list {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .nav-item {
-        margin: 5px 10px;
+    
+    .item-total, .remove-item-btn {
+        margin-left: 0;
     }
 }

@@ -1,0 +1,125 @@
+/* Importa estilos base (header, container, cores, resumo) do carrinho.css */
+@import url("/techfit_php/public/css/carrinho.css"); 
+
+/* ------------------------------------------------ */
+/* --- ESTILOS ESPECÍFICOS DO CHECKOUT --- */
+/* ------------------------------------------------ */
+
+/* Container Principal do Checkout (Layout de duas colunas) */
+.checkout-grid {
+    /* O mesmo layout de grid do carrinho: 2fr para o formulário, 1fr para o resumo */
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+/* Estilo da seção do Formulário */
+.checkout-form {
+    background-color: var(--background-card); /* Fundo escuro do card */
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--primary-color); /* Borda roxa de destaque */
+}
+
+.checkout-form h3 {
+    color: var(--primary-color);
+    font-size: 1.4em;
+    border-bottom: 1px solid rgba(160, 32, 240, 0.4);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Estilo para grupos de formulário (label + input) */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-light);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--background-dark); /* Fundo do input mais escuro */
+    border: 1px solid var(--text-secondary);
+    border-radius: 4px;
+    color: var(--text-light);
+    font-size: 1em;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(160, 32, 240, 0.5);
+}
+
+/* Estilo para opções de pagamento */
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 0;
+}
+
+.payment-options label {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.payment-options input[type="radio"] {
+    margin-right: 10px;
+    accent-color: var(--primary-color); /* Cor do rádio button */
+    width: 16px;
+    height: 16px;
+}
+
+/* Estilo específico para o botão de finalizar pedido (Realizar Pedido) */
+#place-order-btn {
+    /* Sobrescreve a cor do action-button para verde */
+    background-color: #008000 !important; 
+    font-size: 1.2em;
+    font-weight: 700;
+    padding: 15px;
+    transition: background-color 0.2s;
+}
+
+#place-order-btn:hover {
+    background-color: #00a000 !important; 
+    filter: none; 
+}
+
+/* --- Lista de Itens no Resumo (dentro do .cart-summary) --- */
+
+#items-in-order-list li {
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* ------------------------------------------------ */
+/* --- RESPONSIVIDADE ESPECÍFICA DO CHECKOUT --- */
+/* ------------------------------------------------ */
+@media (max-width: 900px) {
+    /* Em telas menores, muda para uma coluna */
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Inverte a ordem para que o Resumo apareça primeiro no mobile */
+    .checkout-form {
+        order: 2; 
+    }
+    
+    #order-summary-display {
+        order: 1; 
+        margin-bottom: 30px;
+    }
+}

@@ -1,153 +1,89 @@
-// produtos_list.js - Lógica Principal para Produtos e Carrinho
+// produtos_list.js - Lógica para o carrinho de compras
 
 document.addEventListener('DOMContentLoaded', () => {
     const productsGrid = document.querySelector('.products-grid');
 
-    // 1. DADOS DE PRODUTOS (Simulação de um banco de dados/API)
-    const productData = [
-        { codigo: 'C001', 'nome-produto': 'Conjunto Masculino', 'preco-unitario': 'R$ 69,90', status: 'ativo', 'descricao-produto': 'O Kit Camiseta e Shorts de Performance, em preto, oferece tecnologia de tecido para liberdade de movimento e secagem rápida.' },
-        { codigo: 'C002', 'nome-produto': 'Conjunto Feminino', 'preco-unitario': 'R$ 69,90', status: 'ativo', 'descricao-produto': 'Top cropped regata e um shorts-saia com legging integrada, oferecendo estilo e funcionalidade.' },
-        { codigo: 'S001', 'nome-produto': 'Creatina 500g', 'preco-unitario': 'R$ 34,90', status: 'ativo', 'descricao-produto': 'Potencialize seus treinos com nossa creatina em pó, sabor natural.' },
-        { codigo: 'S002', 'nome-produto': 'Whey', 'preco-unitario': 'R$ 39,90', status: 'ativo', 'descricao-produto': 'Potencialize seus treinos com nosso Whey sabor Morango.' },
-        { codigo: 'S003', 'nome-produto': 'Suplementos', 'preco-unitario': 'R$ 34,90', status: 'ativo', 'descricao-produto': 'Potencialize seus treinos com nosso Whey sabor Morango.' },
-        // Adicione mais produtos conforme necessário
-    ];
+    // 1. MAPEAMENTO DE PRODUTOS
+    const productDataMap = {
+        'C001': { 'nome-produto': 'Conjunto Masculino', 'preco-unitario': 'R$ 69,90' }, //
+        'C002': { 'nome-produto': 'Conjunto Feminino', 'preco-unitario': 'R$ 69,90' }, //
+        'S001': { 'nome-produto': 'Creatina 500g', 'preco-unitario': 'R$ 34,90' }, //
+        'S002': { 'nome-produto': 'Whey', 'preco-unitario': 'R$ 39,90' }, //
+        'S003': { 'nome-produto': 'Suplementos', 'preco-unitario': 'R$ 34,90' } //
+        // Adicione outros produtos se necessário aqui
+    };
 
-    // --- FUNÇÕES DE UTILIDADE E CARRINHO ---
+    // --- FUNÇÕES DE CARRINHO ---
 
-    // Obtém o carrinho do localStorage
+    // Obtém o carrinho do localStorage ou retorna um array vazio
     const getCart = () => {
-        const cartJSON = localStorage.getItem('techfitCart');
-        return cartJSON ? JSON.parse(cartJSON) : [];
+        const cartJSON = localStorage.getItem('techfitCart'); //
+        return cartJSON ? JSON.parse(cartJSON) : []; //
     };
 
-    // Salva o carrinho no localStorage e atualiza o contador
+    // Salva o carrinho no localStorage e chama a atualização do contador
     const saveCart = (cart) => {
-        localStorage.setItem('techfitCart', JSON.stringify(cart));
-        updateCartCount();
-    };
-
-    // Formata o preço para exibição (ex: R$ 69,90)
-    const formatPrice = (priceStr) => {
-        const numericPrice = priceStr.replace('R$', '').replace(/\s/g, '').replace(',', '.');
-        const price = parseFloat(numericPrice);
-        return isNaN(price) ? priceStr : `R$ ${price.toFixed(2).replace('.', ',')}`;
-    };
-
-    // Encontra apenas produtos 'ativos' (neste caso, todos na lista simulada)
-    const getActiveProducts = () => {
-        // Em um projeto real, você faria uma requisição AJAX/Fetch aqui.
-        // Aqui, filtramos a lista simulada (todos são 'ativo' por padrão)
-        return productData.filter(p => p.status === 'ativo');
+        localStorage.setItem('techfitCart', JSON.stringify(cart)); //
+        updateCartCount(); //
     };
 
     // Adiciona um produto ao carrinho
     const addToCart = (productCode, product) => {
-        const cart = getCart();
-        const existingItemIndex = cart.findIndex(item => item.codigo === productCode);
+        const cart = getCart(); //
+        const existingItemIndex = cart.findIndex(item => item.codigo === productCode); //
 
         if (existingItemIndex > -1) {
-            cart[existingItemIndex].quantidade++;
+            // Se o produto já existe, incrementa a quantidade
+            cart[existingItemIndex].quantidade++; //
         } else {
+            // Se não existe, adiciona o novo item com quantidade 1
             cart.push({
-                codigo: productCode,
-                nome: product['nome-produto'],
-                preco: product['preco-unitario'],
-                quantidade: 1
+                codigo: productCode, //
+                nome: product['nome-produto'], //
+                preco: product['preco-unitario'], //
+                quantidade: 1 //
             });
         }
-        saveCart(cart);
-        alert(`"${product['nome-produto']}" adicionado ao carrinho!`);
+        saveCart(cart); //
+        
+        // CORREÇÃO APLICADA AQUI:
+        // 1. Removemos o alert()
+        // 2. Redirecionamos para a página do carrinho
+        window.location.href = '/techfit_php/public/carrinho.html'; // Redireciona para a página do carrinho
     };
     
-    // Atualiza o contador de itens no cabeçalho
+    // Atualiza o contador de itens no cabeçalho (#cart-counter)
     const updateCartCount = () => {
-        const cart = getCart();
+        const cart = getCart(); //
         // Soma a quantidade de todos os itens no carrinho
-        const totalItems = cart.reduce((sum, item) => sum + item.quantidade, 0);
+        const totalItems = cart.reduce((sum, item) => sum + item.quantidade, 0); //
         
-        const cartBadge = document.getElementById('cart-counter');
+        const cartBadge = document.getElementById('cart-counter'); //
         if (cartBadge) {
             // Atualiza o span com o ID 'cart-counter'
-            cartBadge.textContent = totalItems;
+            cartBadge.textContent = totalItems; //
         }
     };
 
-    // --- FUNÇÕES DE RENDERIZAÇÃO ---
-
-    // Cria o HTML de um card de produto
-    const createProductCard = (product) => {
-        const card = document.createElement('div');
-        card.classList.add('product-card');
-
-        // Note: As URLs de imagem são baseadas nos links do seu HTML para simulação
-        let imageUrl = '';
-        if (product.codigo === 'C001') {
-            imageUrl = 'https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/01.jpg?raw=true';
-        } else if (product.codigo === 'C002') {
-            imageUrl = 'https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/02.jpg?raw=true';
-        } else if (product.codigo === 'S001') {
-            imageUrl = 'https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/15.jpg?raw=true';
-        } else if (product.codigo === 'S002') {
-            imageUrl = 'https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/17.jpg?raw=true';
-        } else if (product.codigo === 'S003') {
-            imageUrl = 'https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/suplemento.png?raw=true';
-        } else {
-            imageUrl = 'IMAGEM/placeholder.jpg';
-        }
-        
-        card.innerHTML = `
-            <img src="${imageUrl}" alt="${product['nome-produto']}" class="product-image">
-            <div class="product-details">
-                <h3 class="product-title">${product['nome-produto']}</h3>
-                <p class="product-description">${product['descricao-produto'] || 'Sem descrição.'}</p>
-            </div>
-            <div class="product-price-box">
-                <p class="product-price">${formatPrice(product['preco-unitario'])}</p>
-                <button class="action-button add-to-cart" data-code="${product.codigo}">Colocar no Carrinho</button>
-            </div>
-        `;
-        return card;
-    };
-
-    // Renderiza todos os produtos ativos no grid
-    const renderProducts = () => {
-        const activeProducts = getActiveProducts();
-        if (!productsGrid) return; 
-
-        productsGrid.innerHTML = ''; 
-
-        if (activeProducts.length === 0) {
-            productsGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; padding: 20px;">Nenhum produto ATIVO cadastrado no momento.</p>';
-            return;
-        }
-
-        activeProducts.forEach(product => {
-            productsGrid.appendChild(createProductCard(product));
-        });
-    };
-    
     // --- MANIPULAÇÃO DE EVENTOS ---
 
     if (productsGrid) {
+        // Adiciona o listener para todos os botões no grid
         productsGrid.addEventListener('click', (e) => {
-            if (e.target.classList.contains('add-to-cart')) {
-                const productCode = e.target.getAttribute('data-code');
-                const activeProducts = getActiveProducts();
-                
-                // Encontra o produto completo para adicionar ao carrinho
-                const productToAdd = activeProducts.find(p => p.codigo === productCode);
-                
+            // Verifica se o clique foi em um botão com a classe 'add-to-cart'
+            if (e.target.classList.contains('add-to-cart')) { //
+                const productCode = e.target.getAttribute('data-code'); //
+                const productToAdd = productDataMap[productCode]; //
+
                 if (productToAdd) {
-                    addToCart(productCode, productToAdd);
+                    addToCart(productCode, productToAdd); //
                 } else {
-                     alert('Erro: Produto não encontrado para adicionar ao carrinho.');
+                    alert('Erro: Produto não encontrado. Verifique o código no HTML.'); //
                 }
             }
         });
     }
-
-    // Inicialização
-    renderProducts();
-    updateCartCount(); // Inicia o contador assim que a página carrega
+    
+    // Inicializa o contador de carrinho quando a página carrega
+    updateCartCount(); //
 });

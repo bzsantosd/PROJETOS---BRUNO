@@ -24,45 +24,38 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         submitButton.textContent = 'Entrando...';
     }
 
+// ... (Etapas 1, 2 e 3 permanecem iguais)
+    
     try {
-        // 4. Envia requisição para o backend
-        const response = await fetch('/api/login.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: emailInput,
-                senha: passwordInput
-            })
-        });
-
-        const data = await response.json();
-
-        // 5. Verifica a resposta do servidor
-        if (data.success) {
-            // Login bem-sucedido!
+        // **NOVA LÓGICA: Verifica no Local Storage (SIMULAÇÃO)**
+        const userDataString = localStorage.getItem('currentUserData');
+        
+        if (userDataString) {
+            const userData = JSON.parse(userDataString);
             
-            // Redireciona de acordo com o tipo de usuário
-            if (data.user.tipo === 'admin') {
-                window.location.href = '/PAINEL ADM/adm.html';
-            } else {
-                window.location.href = '/techfit_php/public/tela ao logan.html';
-            }
-        } else {
-            // Login falhou
-            errorMessage.textContent = data.message || '❌ Email ou senha incorretos!';
-            errorMessage.style.display = 'block';
-            
-            // Reabilita o botão
-            if (submitButton) {
-                submitButton.disabled = false;
-                submitButton.textContent = 'Entrar';
+            // Verifica se o email e a senha batem com o que foi salvo no cadastro.js
+            if (userData.email === emailInput && userData.senha === passwordInput) {
+                // Login bem-sucedido (SIMULADO)
+                
+                // Redireciona para a tela de logado (simulando um usuário padrão)
+                window.location.href = '/techfit_php/public/tela ao logan.html'; 
+                return; // Encerra a função
             }
         }
+        
+        // Se chegou aqui, as credenciais não bateram ou não há dados salvos
+        errorMessage.textContent = '❌ Email ou senha incorretos!';
+        errorMessage.style.display = 'block';
+            
+        // Reabilita o botão
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Entrar';
+        }
+
     } catch (error) {
         console.error('Erro ao fazer login:', error);
-        errorMessage.textContent = '❌ Erro ao conectar com o servidor. Tente novamente.';
+        errorMessage.textContent = '❌ Erro interno na simulação de login.';
         errorMessage.style.display = 'block';
         
         // Reabilita o botão
