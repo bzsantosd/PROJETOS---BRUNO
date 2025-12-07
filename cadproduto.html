@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produtos | Academia</title>
+    <link rel="stylesheet" href="/techfit_php/public/css/cadproduto.css"> 
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Cadastro de Produtos 🏋🏽‍♂️</h1>
+        <form action="#" method="post" class="cadastro-form">
+            
+            <div class="form-group">
+                <label for="nome">Nome do Produto:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao" rows="3"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="categoria">Categoria:</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="">Selecione a Categoria</option>
+                    <option value="equipamento">Equipamento</option>
+                    <option value="suplemento">Suplemento</option>
+                    <option value="acessorio">Acessório</option>
+                    <option value="servico">Serviço</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="preco">Preço (R$):</label>
+                <input type="number" id="preco" name="preco" step="0.01" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label for="quantidade">Quantidade em Estoque:</label>
+                <input type="number" id="quantidade" name="quantidade" required min="0">
+            </div>
+            
+            <button type="submit" class="btn-submit">Cadastrar Produto</button>
+            <div id="notificacao" class="notificacao-popup"></div>
+            
+        </form>
+        
+        <hr class="separator">
+        <h2 style="text-align: center;"><a href="produtoscadastrados.html" style="color: #A020F0; text-decoration: none;">Ver Lista de Produtos Cadastrados »</a></h2>
+        
+        </div>
+    
+   <script src="js/cadproduto.js"></script>
+</body>
+</html>

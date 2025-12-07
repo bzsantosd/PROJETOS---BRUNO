@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADM -  TechFit Academia</title>
+    <link rel="stylesheet" href="/techfit_php/public/css/rendimento.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <header class="header">
+            <div class="user-profile">
+                <div class="profile-img"></div>
+                <div class="user-info">
+                    <span>Vitória Pereira</span>
+                    <span class="adm-label">| ADM</span>
+                </div>
+            </div>
+<div class="header-content">
+    <h1 class="main-title">ACADEMIA TECHFIT</h1>
+
+    <div class="logo-box" style="max-width: 150px;">
+        <img src="https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/Logotipo%20Faustino%20Academia%20Ilustrativo%20Verde%20Azul%20Branco.png?raw=true" alt="TechFit Logo" class="logo-img" style="width: 100%; height: auto; max-height: 125px;">
+    </div>
+</div>
+        </header>
+
+        <nav class="period-nav" id="periodNav">
+            <button class="nav-button" data-period="mes-anterior">Mês Anterior</button>
+            <button class="nav-button active" data-period="este-mes">Este Mês</button>
+            <button class="nav-button" data-period="este-ano">Este Ano</button>
+
+        </nav>
+
+        <main class="main-content">
+            
+            <div class="row row-people">
+                <div class="card stat-card new-clients-card">
+                    <h2 class="card-title">Novos Clientes</h2>
+                    <div class="card-content">
+                        <i class="fas fa-users icon-people"></i>
+                        <span class="main-value">135</span>
+                        <div class="trend up">70%</div>
+                    </div>
+                </div>
+
+                <div class="card stat-card total-clients-card">
+                    <h2 class="card-title">Clientes</h2>
+                    <div class="card-content">
+                        <i class="fas fa-users icon-people"></i>
+                        <span class="main-value">1.200</span>
+                        <div class="trend up">10%</div>
+                    </div>
+                </div>
+
+                <div class="card stat-card collaborators-card">
+                    <h2 class="card-title">Colaboradores</h2>
+                    <div class="card-content">
+                        <i class="fas fa-users icon-people"></i>
+                        <span class="main-value">50</span>
+                        <span class="secondary-label">Total</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row row-products">
+                
+                <div class="card stat-card product-high-card">
+                    <h2 class="card-title">Produto em Alta</h2>
+                    <div class="product-stats">
+                        <i class="fas fa-hand-holding-usd icon-money"></i>
+                        
+                        <div class="product-info-group">
+                            <span class="product-name">Creatina 300g Integralmedica</span>
+                            <div class="product-values">
+                                <div class="product-value-box">
+                                    <span class="product-value-number green">10 K</span>
+                                    <span class="product-value-label">Vendidos</span>
+                                </div>
+                                
+                                <div class="product-value-box">
+                                    <span class="product-value-number">500</span>
+                                    <span class="product-value-label">Em Estoque</span>
+                                </div>
+
+                                <div class="product-value-box">
+                                    <span class="product-value-number green">1 M</span>
+                                    <span class="product-value-label">Valor Obtido</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card stat-card product-low-card">
+                    <h2 class="card-title">Produtos estoque baixo</h2>
+                    <div class="low-stock-content">
+                        <div class="warning-section">
+                             <i class="fas fa-chart-line icon-warning"></i>
+                             <p>Necessário Reabastecer!</p>
+                        </div>
+                        <div class="stock-info">
+                            <p class="stock-name">Whey Protein 900g Integralmedica</p>
+                            <div class="stock-value-box">
+                                <span class="stock-value-number red">3</span>
+                                <span class="stock-value-label">Em Estoque</span>
+                                <div class="trend down"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row row-flow">
+                <div class="card flow-card">
+                    <h2 class="card-title">Fluxo de Alunos</h2>
+                    <div class="flow-content">
+                        <div class="flow-metric">
+                            <span class="flow-value yellow">106</span>
+                            <span class="flow-label">Média diária</span>
+                        </div>
+                        <div class="flow-chart">
+                            <div class="chart-labels">
+                                <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
+                            </div>
+                            <div class="chart-line"></div>
+                            <div class="chart-data-point red" style="height: 30px; left: 10%;"></div>
+                            <div class="chart-data-point red" style="height: 80px; left: 25%;"></div>
+                            <div class="chart-data-point red" style="height: 50px; left: 40%;"></div>
+                            <div class="chart-data-point red" style="height: 90px; left: 55%;"></div>
+                            <div class="chart-data-point red" style="height: 40px; left: 70%;"></div>
+                            <div class="chart-data-point red" style="height: 70px; left: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/script2.js"></script>
+</body>

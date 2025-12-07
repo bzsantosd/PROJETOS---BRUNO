@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFit Academia - Nossos Planos</title>
+    
+    <link rel="stylesheet" href="/techfit_php/public/css/Planos.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <header class="header-content">
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/techfit_php/public/tela ao logan.html" data-page="home">HOME</a></li>
+                <li class="nav-item active"><a href="/techfit_php/public/Planos.html" data-page="planos">PLANOS</a></li>
+                <li class="nav-item"><a href="/techfit_php/public/Produtos.html" data-page="produtos">PRODUTOS</a></li>
+                <li class="nav-item"><a href="/techfit_php/public/contato.html" data-page="contato">CONTATO</a></li>
+                <li class="nav-item"><a href="/techfit_php/public/sobrenos.html" data-page="sobre">SOBRE NÓS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        
+        <h2 class="page-title">ESCOLHA SEU PLANO</h2> 
+
+        <section class="products-section"> 
+            <div class="products-grid">
+                
+                <div class="product-card">
+                    <div class="product-details">
+                        <h3 class="product-title">PLANO BÁSICO</h3>
+                        <p class="card-text"> 
+                            🟣 Acesso à Área de Musculação <br>
+                            🟣 Aulas coletivas <br>
+                            🟣 Estacionamento gratuito
+                        </p>
+                    </div>
+                    <div class="product-price-box">
+                        <p class="price-old">de R$150,00</p>
+                        <p class="price-new">por R$89,90</p>
+                        <a href="Assinatura.html" data-page="assinar agora" class="action-button">Assinar Agora</a>
+                    </div>
+                </div>   
+                
+                <div class="product-card">
+                    <div class="product-details">
+                        <h3 class="product-title">PLANO AVANÇADO</h3>
+                        <p class="card-text"> 
+                            🟣 Avaliação física trimestral <br>
+                            🟣 Treino personalizado <br>
+                            🟣 Aulas coletivas <br>
+                            🟣 Desconto em Suplementos<br>
+                            🟣 TechDance, TechBox, TechCardio
+                        </p>
+                    </div>
+                    <div class="product-price-box">
+                        <p class="price-old">de R$199,90</p>
+                        <p class="price-new">por R$159,90</p>
+                        <a href="Assinatura.html" data-page="Assinar agora">Assinar Agora</a>
+                    </div>
+                </div>   
+                
+                <div class="product-card">
+                    <div class="product-details">
+                        <h3 class="product-title">PLANO PREMIUM</h3>
+                       <p class="card-text"> 
+                            🟣 Avaliação física Mensal <br>
+                            🟣 Armário Privativo <br>
+                            🟣 Treino personalizado <br>
+                            🟣 Consulta com nutricionista <br>
+                            🟣 Tech Fit App<br>
+                            🟣 Acesso Ilimitado à Cadeira de massagem
+                        </p>
+                    </div>
+                    <div class="product-price-box">
+                        <p class="price-old">de R$260,00</p>
+                        <p class="price-new">por R$199,90</p>
+                        <a href="Assinatura.html" data-page="assinar agora" class="action-button">Assinar Agora</a>
+                    </div>
+                </div>
+            </div>
+        </section>             
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const botoesAssinar = document.querySelectorAll('.product-price-box a');
+            
+            botoesAssinar.forEach(function(botao, index) {
+                botao.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Pega o card pai do botão
+                    const card = this.closest('.product-card');
+                    
+                    // Extrai as informações do plano
+                    const nomePlano = card.querySelector('.product-title').textContent.trim();
+                    const precoAntigoElement = card.querySelector('.price-old');
+                    const precoNovoElement = card.querySelector('.price-new');
+                    
+                    // Certifica-se de que os elementos existem antes de tentar extrair o texto
+                    const precoAntigo = precoAntigoElement ? precoAntigoElement.textContent.trim() : 'N/A';
+                    const precoNovo = precoNovoElement ? precoNovoElement.textContent.trim() : 'N/A';
+                    
+                    // Extrai apenas os números dos preços
+                    const valorAntigo = precoAntigo.match(/[\d,]+/)?.[0] || 'N/A';
+                    const valorNovo = precoNovo.match(/[\d,]+/)?.[0] || 'N/A';
+                    
+                    // Cria um objeto com os dados do plano
+                    const dadosPlano = {
+                        nome: nomePlano,
+                        precoAntigo: valorAntigo,
+                        precoNovo: valorNovo
+                    };
+                    
+                    // Salva no sessionStorage
+                    sessionStorage.setItem('planoSelecionado', JSON.stringify(dadosPlano));
+                    
+                    // Redireciona para a página de assinatura
+                    window.location.href = 'Assinatura.html';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

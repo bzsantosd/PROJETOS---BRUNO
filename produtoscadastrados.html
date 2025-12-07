@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos Cadastrados | TechFit</title>
+    <link rel="stylesheet" href="/techfit_php/public/css/cadproduto.css"> 
+    <style>
+        /* Ajusta o layout para a página de lista ser mais larga e centralizada */
+        body {
+            display: block; 
+            padding: 30px;
+            min-height: auto;
+            background-color: #000; /* Cor de fundo clara para contraste */
+        }
+        .container {
+            max-width: 900px; /* Aumenta a largura para a lista */
+            margin: 30px auto;
+        }
+        .link-voltar {
+            display: block;
+            margin-bottom: 20px;
+            color: #591484;
+            text-decoration: none;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <a href="cadproduto.html" class="link-voltar">← Voltar para o Cadastro</a>
+        <h1>Produtos Cadastrados 📝</h1>
+        
+        <hr class="separator">
+        
+        <div id="lista-produtos" class="lista-produtos-container">
+        </div>
+        
+    </div>
+    
+    <script src="js/produtoscadastrados.js"></script>
+</body>
+</html>
