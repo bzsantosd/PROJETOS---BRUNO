@@ -1,12 +1,33 @@
 <?php
 require_once __DIR__ . '/../core/db.php';
 
+use PDO;
+
 class UsuarioModel {
     private $conn;
+
+    public $nome;
+    public $cpf;
+    public $email;
+    public $senha;
     
     public function __construct() {
         $this->conn = Database::getInstance()->getConnection();
     }
+
+    public function criarUsuario($usuario) {
+        $query = "INSERT INTO USUARIOS (ID, NOME, EMAIL, TIPO, CREATED_AT) VALUES (:nome, :cpf, :email, :senha)";
+
+        $stmt = $this -> conn -> prepare($query);
+
+        $stmt -> bindParam(':nome', $this->nome);
+        $stmt -> bindParam(':cpf', $this->cpf);
+        $stmt -> bindParam(':email', $this->email);
+        $stmt -> bindParam(':senha', $this->senha);
+
+        return $stmt -> execute();
+    }
+
     
     public function buscarTodos() {
         try {

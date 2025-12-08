@@ -5,7 +5,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const emailInput = document.getElementById('usuario').value.trim();
     const passwordInput = document.getElementById('senha').value.trim();
     const errorMessage = document.getElementById('error-message');
-    const submitButton = event.target.querySelector('button[type="submit"]');
+    // Busca o botão pelo tipo 'submit' e pela classe CSS correta.
+    const submitButton = event.target.querySelector('button[type="submit"].btn-login-full');
 
     // 1. Limpa mensagens de erro
     errorMessage.textContent = '';
@@ -24,8 +25,6 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         submitButton.textContent = 'Entrando...';
     }
 
-// ... (Etapas 1, 2 e 3 permanecem iguais)
-    
     try {
         // **NOVA LÓGICA: Verifica no Local Storage (SIMULAÇÃO)**
         const userDataString = localStorage.getItem('currentUserData');
@@ -37,8 +36,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             if (userData.email === emailInput && userData.senha === passwordInput) {
                 // Login bem-sucedido (SIMULADO)
                 
-                // Redireciona para a tela de logado (simulando um usuário padrão)
-                window.location.href = '/techfit_php/public/tela ao logan.html'; 
+                // CORRIGIDO: Redireciona para o arquivo 'cliente.html'
+                window.location.href = '/techfit_php/public/cliente.html'; 
                 return; // Encerra a função
             }
         }

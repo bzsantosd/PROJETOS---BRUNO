@@ -1,6 +1,8 @@
 <?php
 // Inclua o Model necessário
-require_once ROOT_PATH . '/app/models/User.php';
+require_once ROOT_PATH . '/models/UsuarioModel.php';
+
+use UsuarioModel as User;
 
 class UserController {
     
