@@ -1,80 +1,89 @@
-/* Variáveis CSS (Custom Properties) */
+/*
+ * Arquivo: perfil.css
+ * Descrição: Estilos para a página de perfil do TechFit.
+ */
+
 :root {
-    --color-dark: #000000;
-    --color-text-light: #ffffff;
-    --color-purple-primary: #a020f0; /* Cor principal da TechFit / Roxo/Magenta Vibrante */
-    --color-purple-hover: #8000ff; /* Roxo para o destaque / Hover */
-    --color-bg-secondary: #1a1a1a;
-    --color-border: #444444;
-    --card-bg: #1c1c1c; /* Fundo do card */
-    --text-secondary: #AAAAAA; /* Texto secundário */
-    --highlight-border: var(--color-purple-hover); /* Mantendo a variável de destaque */
-    --class-item-bg: #282828; /* Fundo mais claro para item da aula */
+    /* Cores */
+    --primary-color: #A020F0; /* Roxo primário */
+    --secondary-color: #7d21b6; /* Rosa/Vermelho de destaque */
+    --background-light: #000000; /* Fundo principal claro */
+    --card-background: #ffffff; /* Fundo dos cards */
+    --text-dark: #8b8b8b; /* Texto principal escuro */
+    --text-light: #666666; /* Texto secundário */
+    --border-color: #e0e0e0; /* Cor da borda */
+    --success-color: #a200ff; /* Cor de sucesso (verde) */
 }
 
-/* Reset Básico e Fonte */
+/* Estilos Globais */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background-color: var(--color-dark);
-    color: var(--color-text-light);
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-dark);
     line-height: 1.6;
+    min-height: 100vh;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-
-a {
-    color: var(--color-text-light);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--color-purple-primary);
-}
-
-/* 1. CABEÇALHO e NAVEGAÇÃO (Ajustado para o perfil) */
+/* --- Header e Navegação --- */
 .header {
+    background-color: var(--card-background);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%;
-    background-color: var(--color-bg-secondary);
 }
 
 .nav-menu ul {
-    display: flex;
     list-style: none;
+    display: flex;
 }
 
 .nav-item {
-    margin: 0 15px;
+    margin-right: 30px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .nav-item a {
-    font-weight: 600;
-    padding-bottom: 5px;
+    text-decoration: none;
+    color: var(--text-dark);
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s;
 }
 
-.nav-item.active a,
 .nav-item a:hover {
-    color: var(--color-purple-primary);
-    border-bottom: 2px solid var(--color-purple-primary);
+    color: var(--primary-color);
+}
+
+.nav-item.active a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* Perfil do Usuário */
+.user-profile-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 .user-info {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .user-avatar {
@@ -83,208 +92,283 @@ a:hover {
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-    border: 2px solid var(--color-purple-primary);
+    border: 2px solid var(--primary-color);
     margin-right: 10px;
 }
 
-.header-line-separator {
-    width: 100%;
-    height: 3px;
-    background-color: var(--color-purple-primary);
-}
-
-/* 2. LAYOUT PRINCIPAL (Flexbox para a seção de detalhes e cards) */
-.profile-details {
-    background-color: var(--card-bg);
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    border-left: 5px solid var(--color-purple-primary);
-}
-
-.profile-details p {
-    margin: 5px 0;
-    font-size: 1.1rem;
-}
-
-.profile-details strong {
-    color: var(--color-purple-primary);
+.user-name {
     font-weight: 700;
+    color: var(--text-dark);
+    transition: color 0.3s;
 }
 
-.content-wrapper {
-    display: flex;
+.user-info:hover .user-name {
+    color: var(--primary-color);
+}
+
+/* --- Conteúdo Principal --- */
+.profile-content {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Coluna da agenda maior que a do pagamento */
     gap: 30px;
-    align-items: flex-start; /* Alinha o conteúdo ao topo */
 }
 
-/* Estilo Base para os Cards */
-.agenda-card, .payment-card {
-    background-color: var(--card-bg);
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    min-height: 250px;
+/* Seção de Boas-Vindas */
+.welcome-section {
+    grid-column: 1 / -1; /* Ocupa toda a largura */
+    padding: 20px 0;
 }
 
-.agenda-card h2, .payment-card h2 {
-    color: var(--color-purple-primary);
+#welcome-message {
+    font-weight: 900;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+}
+
+/* Estilo Geral dos Cards */
+.schedule-card,
+.payment-card {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.schedule-card h2,
+.payment-card h2 {
+    font-weight: 700;
+    font-size: 1.5rem;
     margin-bottom: 20px;
-    font-size: 1.8rem;
-    border-bottom: 2px solid var(--color-border);
+    border-bottom: 2px solid var(--border-color);
     padding-bottom: 10px;
 }
 
-/* 3. CARD DE PAGAMENTO */
+/* --- Card de Agenda de Aulas --- */
+.schedule-card {
+    grid-column: 1 / 2;
+}
+
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.schedule-header h2 {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.schedule-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.schedule-date .date {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.schedule-date .day-of-week {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* Botões de Dia */
+.day-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px; /* Para sombra ou scrollbar */
+}
+
+.day-button {
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    flex-shrink: 0;
+}
+
+.day-button:hover {
+    background-color: var(--border-color);
+}
+
+.day-button.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Lista de Aulas */
+.class-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.class-list.hidden {
+    display: none;
+}
+
+.class-item {
+    background-color: var(--background-light);
+    border-left: 5px solid var(--success-color);
+    padding: 15px;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr; /* Nome | Horário | Instrutor */
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.class-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.class-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+.class-time {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.class-instructor {
+    font-weight: 400;
+    color: var(--text-light);
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+.class-list > p {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-light) !important;
+    padding: 30px !important;
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+}
+
+/* --- Card de Pagamento --- */
 .payment-card {
-    flex: 0 0 350px; /* Largura fixa para o card de pagamento */
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: fit-content; /* Ajusta a altura ao conteúdo */
 }
 
 .payment-method {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    background-color: var(--color-bg-secondary);
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid var(--color-border);
-    margin-bottom: 20px;
+    gap: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .visa-logo {
     font-size: 1.5rem;
     font-weight: 900;
-    color: var(--color-purple-primary);
-    margin-right: 15px;
-    border: 2px solid var(--color-purple-primary);
+    background-color: white;
+    color: var(--primary-color);
     padding: 5px 10px;
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
 .card-details {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 
 .card-holder {
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.card-number {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-.payment-note {
-    font-size: 0.9rem;
-    font-style: italic;
-    color: var(--text-secondary);
-    border-top: 1px dashed var(--color-border);
-    padding-top: 15px;
-    margin-top: 10px;
-}
-
-/* 4. CARD DE AGENDA */
-.agenda-card {
-    flex-grow: 1;
-}
-
-.day-selector {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.day-button {
-    background-color: var(--color-bg-secondary);
-    color: var(--color-text-light);
-    border: 1px solid var(--color-border);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-.day-button:hover:not(.active) {
-    background-color: #333;
-}
-
-.day-button.active {
-    background-color: var(--color-purple-primary);
-    border-color: var(--color-purple-primary);
-    color: var(--color-dark); /* Texto escuro no botão ativo */
-    transform: scale(1.1);
-}
-
-.schedule-date {
-    display: flex;
-    align-items: baseline;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: 5px;
-}
-
-.day-of-week {
-    font-size: 1.4rem;
     font-weight: 700;
-    color: var(--color-purple-primary);
-    margin-right: 10px;
-}
-
-.date {
-    font-size: 2rem;
-    font-weight: 900;
-}
-
-.class-list {
-    margin-top: 15px;
-}
-
-.class-item {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr; /* Nome, Horário, Instrutor */
-    gap: 15px;
-    background-color: var(--class-item-bg);
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    border-left: 4px solid var(--color-purple-primary);
-    align-items: center;
-}
-
-.class-name {
-    font-weight: 700;
+    font-size: 1.1rem;
     text-transform: uppercase;
 }
 
-.class-time {
-    color: var(--color-purple-primary);
-    font-weight: 600;
-    text-align: center;
-}
-
-.class-instructor {
-    font-style: italic;
-    color: var(--text-secondary);
+.card-number {
+    font-weight: 400;
     font-size: 0.9rem;
-    text-align: right;
+    opacity: 0.8;
+    margin-top: 5px;
 }
 
-/* Classe de utilidade (para o JavaScript, mantida para a estrutura) */
-.hidden {
-    display: none !important;
+.payment-note {
+    font-style: italic;
+    color: var(--secondary-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
-/* 5. MEDIA QUERIES (Responsividade) */
-@media (max-width: 1000px) {
-    .content-wrapper {
-        flex-direction: column;
+.payment-note:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* --- Media Queries para Responsividade --- */
+@media (max-width: 900px) {
+    .profile-content {
+        grid-template-columns: 1fr; /* Empilha as colunas */
     }
 
+    .schedule-card,
     .payment-card {
-        flex: auto; /* Permite que o card de pagamento ocupe a largura total */
+        grid-column: 1 / -1;
+    }
+    
+    .schedule-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .schedule-header h2 {
+        margin-bottom: 15px;
+    }
+
+    .class-item {
+        grid-template-columns: 1fr; /* Empilha os detalhes da aula */
+        text-align: center;
+    }
+
+    .class-instructor {
+        text-align: center;
+        margin-top: 5px;
+        border-top: 1px dashed var(--border-color);
+        padding-top: 5px;
+    }
+    
+    .day-buttons {
+        justify-content: flex-start;
     }
 }
 
@@ -292,39 +376,38 @@ a:hover {
     .header {
         flex-direction: column;
         align-items: flex-start;
-        padding-bottom: 10px;
-    }
-
-    .nav-menu {
-        width: 100%;
-        margin-bottom: 10px;
+        padding: 10px 20px;
     }
 
     .nav-menu ul {
-        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 10px;
     }
 
     .nav-item {
-        margin: 0 5px;
-    }
-
-    .user-info {
-        align-self: flex-end; /* Mantém as informações do usuário à direita */
-    }
-
-    .day-button {
-        width: 35px;
-        height: 35px;
-        font-size: 0.8rem;
-    }
-
-    .class-item {
-        grid-template-columns: 1fr 1fr; /* Simplifica o layout da aula para telas menores */
-        gap: 10px;
+        margin-right: 15px;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
     }
     
-    .class-instructor {
-        grid-column: 1 / -1; /* Ocupa a linha inteira */
-        text-align: left;
+    .user-info {
+        margin-top: 10px;
+    }
+    
+    .profile-content {
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+    
+    #welcome-message {
+        font-size: 1.8rem;
+    }
+    
+    .payment-method {
+        flex-direction: column;
+    }
+    
+    .card-details {
+        align-items: center;
     }
 }

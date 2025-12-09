@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Perfil - {{cliente.nome_completo}}</title>
+    <title>Meu Perfil - TechFit</title> 
     <link rel="stylesheet" href="/techfit_php/public/css/cliente.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -12,7 +13,7 @@
     
     <header class="header-content"> 
         <div class="welcome-box">
-            <h1 class="main-title">Bem-vindo(a), **{{cliente.nome_completo}}**!</h1> 
+            <h1 class="main-title" id="main-title">Bem-vindo(a)!</h1> 
         </div>
 
         <nav class="navbar"> 
@@ -30,7 +31,7 @@
                 <li class="nav-item"><a href="/techfit_php/public/Produtos.html" data-page="produtos">PRODUTOS</a></li>
                 <li class="nav-item"><a href="/techfit_php/public/contato.html" data-page="contato">CONTATO</a></li>
                 <li class="nav-item"><a href="/techfit_php/public/sobrenos.html" data-page="sobre">SOBRE NÓS</a></li>
-                <li class="nav-item active"><a href="/techfit_php/public/cliente.html" data-page="perfil">MEU PERFIL</a></li>
+                <li class="nav-item active"><a href="/techfit_php/public/cliente.php" data-page="perfil">MEU PERFIL</a></li>
             </ul>
         </nav>
     </header>
@@ -42,22 +43,22 @@
             
             <div class="info-bloco">
                 <label for="nome">Nome Completo</label>
-                <p id="nome">{{cliente.nome_completo}}</p>
+                <p id="nome">Carregando...</p>
             </div>
             
             <div class="info-bloco">
                 <label for="email">E-mail</label>
-                <p id="email">{{cliente.email}}</p>
+                <p id="email">Carregando...</p>
             </div>
 
             <div class="info-bloco">
                 <label for="telefone">Telefone</label>
-                <p id="telefone">{{cliente.telefone}}</p>
+                <p id="telefone">Carregando...</p>
             </div>
 
             <div class="info-bloco">
                 <label for="endereco">Endereço de Entrega</label>
-                <p id="endereco">{{cliente.endereco}}</p>
+                <p id="endereco">Carregando...</p>
             </div>
             
             <button class="editar-btn"><i class="fas fa-edit"></i> Editar Informações</button>
@@ -66,9 +67,7 @@
         <section id="pedidos" class="perfil-secao">
             <h2>Meus Últimos Pedidos (Histórico do Cadastro)</h2>
             <ul id="lista-pedidos">
-                <li>**Pedido #{{pedido.id_1}}** - R$ {{pedido.valor_1}} - **Status:** {{pedido.status_1}} (Exemplo Dinâmico)</li>
-                <li>**Pedido #{{pedido.id_2}}** - R$ {{pedido.valor_2}} - **Status:** {{pedido.status_2}} (Exemplo Dinâmico)</li>
-                <li>**Pedido #{{pedido.id_3}}** - R$ {{pedido.valor_3}} - **Status:** {{pedido.status_3}} (Exemplo Dinâmico)</li>
+                <li>Carregando histórico de pedidos...</li>
             </ul>
             <button class="editar-btn"><i class="fas fa-list-alt"></i> Ver Histórico Completo</button>
         </section>

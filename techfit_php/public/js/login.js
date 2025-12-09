@@ -36,7 +36,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             if (userData.email === emailInput && userData.senha === passwordInput) {
                 // Login bem-sucedido (SIMULADO)
                 
-                // CORRIGIDO: Redireciona para o arquivo 'cliente.html'
+                // CORRIGIDO: Redireciona para o arquivo 'cliente.php'
                 window.location.href = '/techfit_php/public/cliente.html'; 
                 return; // Encerra a função
             }

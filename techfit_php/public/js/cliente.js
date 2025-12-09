@@ -1,20 +1,70 @@
 /**
  * cliente.js
- * Script para funcionalidades da página de perfil do cliente.
+ * Script para funcionalidades da página de perfil do cliente e carregamento de dados.
  */
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- Funções de utilidade do Carrinho (Copiadas de carrinho.js) ---
+    // ==========================================================
+    // --- NOVO: FUNÇÃO PARA CARREGAR DADOS DO CLIENTE DO LOCALSTORAGE ---
+    // ==========================================================
+    const loadClientData = () => {
+        // Busca os dados salvos pelo processo de cadastro/login
+        const userDataString = localStorage.getItem('currentUserData');
+        
+        if (userDataString) {
+            const userData = JSON.parse(userDataString);
+            
+            // 1. Injeta os dados nas Informações Pessoais
+            document.getElementById('main-title').textContent = `Bem-vindo(a), ${userData.nome || 'Cliente'}!`;
+            document.getElementById('nome').textContent = userData.nome || 'Não informado';
+            document.getElementById('email').textContent = userData.email || 'Não informado';
+            
+            // ATENÇÃO: Os campos 'telefone' e 'endereco' não estão no formulário 'usuario.php' 
+            // que você enviou. Eles podem ser vazios.
+            document.getElementById('telefone').textContent = userData.telefone || 'N/A';
+            document.getElementById('endereco').textContent = userData.endereco || 'N/A';
+            
+            // 2. Simula e Injeta os Dados de Pedidos
+            // Como o histórico de pedidos não está no localStorage, usaremos uma simulação
+            const pedidosDados = [
+                { id: '1027', valor: '399,00', status: 'Pagamento Confirmado' },
+                { id: '1026', valor: '89,50', status: 'Em Transporte' },
+                { id: '1025', valor: '249,90', status: 'Entregue' }
+            ];
+
+            const listaPedidos = document.getElementById('lista-pedidos');
+            listaPedidos.innerHTML = ''; // Limpa o "Carregando..."
+            
+            pedidosDados.forEach(pedido => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `**Pedido #${pedido.id}** - R$ ${pedido.valor} - **Status:** ${pedido.status}`;
+                listaPedidos.appendChild(listItem);
+            });
+            
+        } else {
+            // Caso não haja dados no localStorage (cliente não logado)
+            document.getElementById('main-title').textContent = 'Bem-vindo(a), Visitante!';
+            document.getElementById('nome').textContent = 'Usuário não logado.';
+            document.getElementById('email').textContent = 'Faça login para ver seus dados.';
+        }
+    };
+    
+    // Chama a função de carregamento
+    loadClientData();
+    // ==========================================================
+    // --- FIM DA NOVA FUNÇÃO ---
+    // ==========================================================
+
+
+    // --- Funções de utilidade do Carrinho (Mantidas) ---
     const getCart = () => {
-        // Lê o carrinho do localStorage. 'techfitCart' é a chave usada em carrinho.js.
         const cartJSON = localStorage.getItem('techfitCart');
         return cartJSON ? JSON.parse(cartJSON) : [];
     };
     
     const calculateItemCount = (cart) => {
         let count = 0;
-        // Soma as quantidades de todos os itens no carrinho
         cart.forEach(item => {
             count += item.quantidade;
         });
@@ -22,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
 
-    // --- 1. Inicialização do Contador do Carrinho ---
+    // --- 1. Inicialização do Contador do Carrinho (Mantida) ---
     
     const cart = getCart();
     const itemCount = calculateItemCount(cart);
@@ -30,31 +80,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const cartCounter = document.getElementById('cart-counter');
 
     if (cartCounter) {
-        // Atualiza o texto do contador com o número real de itens
         cartCounter.textContent = itemCount.toString();
         
-        // Exibe o contador apenas se houver itens
         if (itemCount > 0) {
             cartCounter.style.display = 'block'; 
         } else {
-            cartCounter.style.display = 'none'; // Oculta se estiver vazio
+            cartCounter.style.display = 'none';
         }
     }
 
 
-    // --- 2. Destaque do Item de Navegação Ativo ---
+    // --- 2. Destaque do Item de Navegação Ativo (Mantido) ---
     
-    // Este bloco garante que o link da página atual esteja ativo, 
-    // com base no href do link.
     const navItems = document.querySelectorAll('.nav-item a');
-    // Obtém o nome do arquivo atual (e.g., 'cliente.html')
-    const currentPagePath = window.location.pathname.split('/').pop() || 'cliente.html'; 
+    // Corrigido para buscar .php
+    const currentPagePath = window.location.pathname.split('/').pop() || 'cliente.php'; 
 
     navItems.forEach(item => {
         const linkPath = item.getAttribute('href').split('/').pop();
         const parentLi = item.parentElement;
 
-        // Garante que apenas o link correto tenha a classe 'active'
         if (linkPath === currentPagePath) {
             parentLi.classList.add('active');
         } else {
@@ -62,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- 3. Funcionalidade básica dos botões de Edição ---
+    // --- 3. Funcionalidade básica dos botões de Edição (Mantida) ---
     
     const editButtons = document.querySelectorAll('.editar-btn');
     editButtons.forEach(button => {
