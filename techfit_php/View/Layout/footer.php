@@ -1,7 +1,8 @@
 </div> <footer class="bg-dark text-white text-center py-4 mt-auto">
     <div class="container">
-        <p class="mb-1">&copy; <?php echo date('Y'); ?> GymSystem. Todos os direitos reservados.</p>
-        <small class="text-secondary">Desenvolvido para fins educacionais.</small>
+         <footer class="footer">
+    <p>&copy; 2025 TechFit Academia. Todos os direitos reservados.</p>
+ </footer>
     </div>
 </footer>
 
