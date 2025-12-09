@@ -2,6 +2,44 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     // Impede o envio padrão do formulário
     event.preventDefault(); 
 
+    document.addEventListener('DOMContentLoaded', () => {
+    // 1. Defina as credenciais de administrador
+    const ADMIN_EMAIL = 'admin@techfit.com';
+    const ADMIN_PASSWORD = 'Admin123!';
+    const ADMIN_PAGE = 'adm.html';
+
+    // 2. Selecione os elementos importantes
+    const loginForm = document.querySelector('.login-form');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const errorMessage = document.querySelector('.error-message');
+
+    // 3. Adicione o ouvinte de evento para o envio do formulário
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+            // Previne o envio padrão do formulário (que recarregaria a página)
+            event.preventDefault();
+
+            // Oculta qualquer mensagem de erro anterior
+            errorMessage.style.display = 'none';
+
+            // Pega os valores dos campos
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            // 4. Lógica de Verificação
+            if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+                // Credenciais CORRETAS: Redireciona para a página do administrador
+                window.location.href = ADMIN_PAGE;
+            } else {
+                // Credenciais INCORRETAS: Exibe a mensagem de erro
+                errorMessage.textContent = 'Email ou senha incorretos. Tente novamente.';
+                errorMessage.style.display = 'block';
+            }
+        });
+    }
+});
+
     const emailInput = document.getElementById('usuario').value.trim();
     const passwordInput = document.getElementById('senha').value.trim();
     const errorMessage = document.getElementById('error-message');
