@@ -1,194 +1,185 @@
-/* ==================== VARIÁVEIS CONSOLIDADAS ==================== */
+/*
+ * ----------------------------------------------------------------
+ * Variáveis e Reset
+ * ----------------------------------------------------------------
+ */
+
 :root {
-    --color-dark: #000000;
-    --color-text-light: #ffffff;
-    --color-purple-primary: #A020F0;
-    --color-input-bg: #222222;
-    --color-placeholder: #aaaaaa;
-    --color-border: #444444;
-    --color-form-bg: #1a1a1a;
+    --primary-color: #7A00FF; 
+    --secondary-color: #5E00CC; 
+    --text-dark: #222222; 
+    --text-light: #f4f4f4; 
+    --background-form: #fff;
+    --background-body: #1a1a1a; 
+    --border-radius: 6px; /* Bordas levemente menores */
 }
 
-/* ==================== RESET E ESTRUTURA BÁSICA ==================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
+
 body {
-    background-color: var(--color-dark);
-    color: var(--color-text-light);
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-body);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px; /* Garante espaço em telas pequenas */
 }
 
-/* ==================== CONTAINER PRINCIPAL ==================== */
+/*
+ * ----------------------------------------------------------------
+ * Container Menor e Formulário Centralizado
+ * ----------------------------------------------------------------
+ */
+
 .container {
-    display: flex;
-    max-width: 1200px;
-    width: 100%;        
-    background-color: var(--color-dark);
-    /* Sombra neon roxa */
-    box-shadow: 0 0 40px rgba(160, 32, 240, 0.4); 
-    border-radius: 12px;
-    overflow: hidden;
-    min-height: 550px;
-}
-
-/* ==================== SEÇÃO VISUAL/IMAGEM ==================== */
-.image-section {
-    width: 40%;
-    /* Imagem de fundo ou cor sólida com gradiente */
-    background: 
-        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), /* Escurece a imagem */
-        url('https://github.com/bzsantosd/PROJETOS---BRUNO/blob/main/IMAGENS/Logo.png?raw=true') no-repeat center center; /* Exemplo de URL de fundo */
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    text-align: center;
-}
-
-.logo-title {
-    color: var(--color-purple-primary);
-    font-size: 3em;
-    font-weight: 900;
-    margin-bottom: 10px;
-    /* Dando um brilho neon ao título */
-    text-shadow: 0 0 5px var(--color-purple-primary), 0 0 10px var(--color-purple-primary);
-}
-
-.slogan {
-    font-size: 1.1em;
-    font-weight: 300;
-    color: var(--color-text-light);
-}
-
-
-/* ==================== SEÇÃO DO FORMULÁRIO ==================== */
-.form-section {
-    width: 60%;
-    background-color: var(--color-form-bg);
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    width: 90%;
+    max-width: 380px; /* Largura Máxima Reduzida (Mais estreito) */
+    background-color: var(--background-form);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 25px rgba(122, 0, 255, 0.4); 
+    padding: 30px; /* Padding Reduzido (Menos espaço interno) */
 }
 
 .form-title {
-    color: var(--color-purple-primary);
+    color: var(--primary-color);
+    font-size: 1.6em; /* Título um pouco menor */
+    font-weight: 700;
+    margin-bottom: 20px;
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 2em;
 }
 
-/* --- GRUPOS DE INPUT --- */
+/* Remove a seção de imagem, se ela ainda estivesse no CSS */
+.image-section {
+    display: none; 
+}
+
+
+/*
+ * ----------------------------------------------------------------
+ * Inputs e Botão (Ajustados ao novo padding)
+ * ----------------------------------------------------------------
+ */
+
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Margem entre inputs reduzida */
 }
 
 .input-group label {
     display: block;
-    margin-bottom: 8px;
     font-weight: 600;
-    color: var(--color-text-light);
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    font-size: 0.85em; /* Fonte da label ligeiramente menor */
 }
 
 .input-group input {
     width: 100%;
-    padding: 12px;
-    background-color: var(--color-input-bg);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    color: var(--color-text-light);
-    font-size: 1em;
+    padding: 10px 12px; /* Padding do input ajustado */
+    border: 1px solid #ddd;
+    border-radius: 4px; /* Bordas mais suaves */
+    font-size: 0.95em; 
+    color: var(--text-dark);
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.input-group input::placeholder {
-    color: var(--color-placeholder);
-}
-
 .input-group input:focus {
-    border-color: var(--color-purple-primary);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(122, 0, 255, 0.2);
     outline: none;
-    box-shadow: 0 0 10px rgba(160, 32, 240, 0.5);
 }
 
-/* --- BOTÃO CADASTRAR (SUBSTITUIU O <a>) --- */
 .action-button {
-    display: block;
     width: 100%;
-    background-color: var(--color-purple-primary);
-    color: var(--color-text-light);
+    padding: 10px; /* Padding do botão reduzido */
+    background-color: var(--primary-color);
+    color: var(--text-light);
     border: none;
-    padding: 15px;
-    border-radius: 6px;
-    font-size: 1.1em;
+    border-radius: 4px;
+    font-size: 1.0em;
     font-weight: 700;
     text-transform: uppercase;
     cursor: pointer;
+    transition: background-color 0.3s;
     margin-top: 15px;
-    transition: background-color 0.2s, transform 0.2s;
 }
 
 .action-button:hover {
-    background-color: #8A00FF; /* Roxo um pouco mais escuro */
+    background-color: var(--secondary-color);
 }
 
-.action-button:active {
-    transform: scale(0.98);
-}
 
-/* Link para login (texto abaixo do botão) */
+/*
+ * ----------------------------------------------------------------
+ * Link para Login
+ * ----------------------------------------------------------------
+ */
+
 .login-link-text {
     text-align: center;
-    margin-top: 20px;
-    font-size: 0.9em;
-    color: var(--color-placeholder);
+    margin-top: 18px;
+    font-size: 0.8em; /* Fonte do link um pouco menor */
+    color: var(--text-dark);
 }
 
 .login-link {
-    color: var(--color-purple-primary);
+    color: var(--primary-color);
+    text-decoration: none;
     font-weight: 600;
 }
 
-/* ==================== RESPONSIVIDADE ==================== */
+.login-link:hover {
+    text-decoration: underline;
+}
 
-@media (max-width: 900px) {
-    /* Em telas de tablet, a seção de imagem desaparece e o formulário ocupa tudo */
+/*
+ * ----------------------------------------------------------------
+ * Responsividade Simples
+ * ----------------------------------------------------------------
+ */
+
+@media (max-width: 400px) {
     .container {
-        flex-direction: column;
-        max-width: 500px;
-        min-height: auto;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Sombra mais suave em mobile */
-    }
-    
-    .image-section {
-        width: 100%;
-        height: 150px; /* Altura fixa no topo */
+        max-width: 95%;
         padding: 20px;
-        /* Garante que o texto seja visível */
-        background-position: top center; 
+        margin: 10px;
     }
-    
-    .logo-title {
-        font-size: 2.5em;
-    }
+}
+/*
+ * ----------------------------------------------------------------
+ * Estilos de Notificação (Alerta)
+ * ----------------------------------------------------------------
+ */
 
-    .form-section {
-        width: 100%;
-        padding: 30px;
-    }
+.custom-alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+    min-width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* Cor de sucesso (verde) */
+    background-color: #28a745; 
+}
 
-    .form-title {
-        font-size: 1.8em;
-        margin-bottom: 20px;
-    }
+.custom-alert.error {
+    /* Cor de erro (vermelho) */
+    background-color: #dc3545; 
+}
+
+.custom-alert.show {
+    opacity: 1;
+    visibility: visible;
 }
