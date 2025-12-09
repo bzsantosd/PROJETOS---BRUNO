@@ -75,7 +75,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
                 // Login bem-sucedido (SIMULADO)
                 
                 // CORRIGIDO: Redireciona para o arquivo 'cliente.php'
-                window.location.href = '/techfit_php/public/cliente.html'; 
+                window.location.href = '/public/cliente.html'; 
                 return; // Encerra a função
             }
         }

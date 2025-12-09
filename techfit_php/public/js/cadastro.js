@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // --- 2. Redirecionamento ---
             // Redireciona para a página de login para que o usuário "entre" na conta.
             // O caminho precisa ser ajustado para onde seu login.html está, se for diferente de login.html
-            window.location.href = '/techfit_php/public/login.html'; 
+            window.location.href = 'login.html'; 
         });
     }
 });

@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             pedidosDados.forEach(pedido => {
                 const listItem = document.createElement('li');
-                listItem.innerHTML = `**Pedido #${pedido.id}** - R$ ${pedido.valor} - **Status:** ${pedido.status}`;
+                listItem.innerHTML = `<b>Pedido #${pedido.id}</b> - R$ ${pedido.valor} - <b>Status:</b> ${pedido.status}`;
                 listaPedidos.appendChild(listItem);
             });
             

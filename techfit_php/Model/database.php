@@ -9,7 +9,7 @@ class Database {
     // Propriedades privadas para segurança e configuração
     private $host     = 'localhost'; 
     private $db_name  = 'techfit'; 
-    private $user     = 'Local instance MySQL80';
+    private $user     = 'root';
     private $password = 'senaisp';
     private $conn; // A instância de conexão PDO
 
